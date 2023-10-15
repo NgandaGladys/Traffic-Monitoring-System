@@ -23,11 +23,11 @@ switch(DB_URL){
 		defined ("DB_USER") or define("DB_USER", "root");
 		defined ("DB_PASS") or define("DB_PASS", "");
 		defined ("DB_NAME") or define("DB_NAME", "nalongonjalasupermarket");
-		defined ("SITE_URL") or define("SITE_URL", 'http://localhost/nalongonjalasupermarket.com');
-		defined ("HOME_URL") or define("HOME_URL", 'http://localhost/nalongonjalasupermarket.com/users/');
+		defined ("SITE_URL") or define("SITE_URL", 'http://localhost/final_year_project');
+		defined ("HOME_URL") or define("HOME_URL", 'http://localhost/final_year_project/users/');
 	break;
 
-	case 'https://www.nalongonjalasupermarket.com': 
+	case 'production': 
 		defined ("DB_SERVER") or define("DB_SERVER", 'localhost');
 		defined ("DB_USER") or define("DB_USER", "nalongonjalasupe_user");
 		defined ("DB_PASS") or define("DB_PASS", "]Y0Zn_vFGfn9");
