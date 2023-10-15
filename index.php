@@ -11,7 +11,7 @@ if (empty($_SESSION['userid'])) {
     $email   = $_SESSION['email'];
     $userid = $_SESSION['userid'];
     $date_registered = $_SESSION['date_registered'];
-    header("refresh:3; url=".HOME_URL);
+    header("refresh:1; url=".HOME_URL);
 } 
 ?>
 
