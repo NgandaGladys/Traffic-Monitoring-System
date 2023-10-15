@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 15, 2023 at 08:41 PM
+-- Generation Time: Oct 15, 2023 at 09:58 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -21,17 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `tms`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `roads`
---
-
-CREATE TABLE `roads` (
-  `road_id` int(11) NOT NULL,
-  `road_name` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -55,18 +44,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered`) VALUES
-(5, 'osp pro', '0704487563', 'osp123ug@gmail.com', 'bd8da86331934bc695d34a103a42beb18d072dd6', '', 'user', '2023-10-15 19:05:42 PM');
+(5, 'osp pro', '0704487563', 'osp123ug@gmail.com', 'bd8da86331934bc695d34a103a42beb18d072dd6', '', 'admin', '2023-10-15 19:05:42 PM');
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `roads`
---
-ALTER TABLE `roads`
-  ADD PRIMARY KEY (`road_id`),
-  ADD KEY `road_id` (`road_id`,`road_name`);
 
 --
 -- Indexes for table `users`
@@ -79,12 +61,6 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for dumped tables
 --
-
---
--- AUTO_INCREMENT for table `roads`
---
-ALTER TABLE `roads`
-  MODIFY `road_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
