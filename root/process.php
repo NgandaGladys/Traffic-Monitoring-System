@@ -18,18 +18,24 @@ if (isset($_POST['register_btn'])) {
             // $body = "Hello {$fullname} you have successfully registered to Traffic Monitoring System.<br>
             // Your Login details is as follows: Email {$email} and Password {$password}. ";
             // GoMail($email,$subj,$body);
-
-            echo "<script>
-                alert('Registration is Successful');
-                window.location = '".SITE_URL."/login';
-                </script>";
+            //make the page have nice loader and alert after successful registration...
+            $_SESSION['loader'] = '<center><div class="spinner-border text-dark"></div></center>';
+            $_SESSION['status'] = '<div class="card card-body alert alert-dark text-center">User registration is successfully, Redirecting to login ...</div>';
+            header("refresh:3; url =".SITE_URL.'/login');
+            //another method for alerting after successful registration...
+            // echo "<script>
+            //     alert('Registration is Successful');
+            //     window.location = '".SITE_URL."/login';
+            //     </script>";
         }else{
+            //--error , registratio failed. 
             echo "<script>
               alert('User registration failed');
               window.location = '".SITE_URL."/signup';
               </script>";
         }
      }else{
+        //user already exists...
           echo "<script>
             alert('Email Adding already registered');
             window.location = '".SITE_URL."/signup';
