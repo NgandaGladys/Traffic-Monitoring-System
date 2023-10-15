@@ -50,7 +50,7 @@ if (isset($_POST['register_btn'])) {
         $password = sha1($password);
         $result = $dbh->query("SELECT * FROM users WHERE email = '$email' AND password = '$password' ");
         if ($result->rowCount() == 1) {
-            $rows = $result->fetch(PDO::FETCH_OBJ);
+            $row = $result->fetch(PDO::FETCH_OBJ);
             $_SESSION['userid'] = $row->userid;
             $_SESSION['fullname'] = $row->fullname;
             $_SESSION['phone'] = $row->phone;
@@ -64,7 +64,7 @@ if (isset($_POST['register_btn'])) {
             $_SESSION['status'] = '<div class=" card card-body alert alert-danger text-center">
             Invalid account, Try again.</div>';
         }
-        
+
     }else{
         $_SESSION['status'] = '<div class=" card card-body alert alert-danger text-center">
         Wrong Login details </div>';
