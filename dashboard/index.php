@@ -1,5 +1,173 @@
-<?php include 'header.php'; ?>
+<?php include 'header.php';
+if ($role == 'admin') { 
+   if (isset($_REQUEST['officers'])) { ?>
+     <!-- Hover effect table starts -->
+   <div class="content-wrapper">
+      <!-- Container-fluid starts -->
+      <!-- Main content starts -->
+      <div class="container-fluid">
+         <div class="row">
+            <div class="main-header">
+               <h4>Trafic Officers / Admins</h4>
+            </div>
+         </div>
+         <!-- 4-blocks row start -->
+         <div class="row dashboard-header">
+             <div class="card">
+               <div class="card-header">
+                  <h5 class="card-header-text">Officers / Admins</h5>
+               </div>
+               <div class="card-block">
+                  <div class="row">
+                     <div class="col-sm-12 table-responsive">
+                        <table class="table table-hover">
+                           <thead>
+                              <tr>
+                                 <th>#</th>
+                                 <th>First Name</th>
+                                 <th>Last Name</th>
+                                 <th>Username</th>
+                                 <th>Nickname</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr>
+                                 <td>8</td>
+                                 <td>Jacob</td>
+                                 <td>Thornton</td>
+                                 <td>@fat</td>
+                                 <td>Ducky</td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </div>            
+         </div>
+         <!-- 4-blocks row end -->
+      </div>
+      <!-- Main content ends -->
+      <!-- Container-fluid ends -->
+   </div>
+   <!-- Hover effect table ends -->
+   <?php }elseif (isset($_REQUEST['users'])) { ?>
+       <!-- Sidebar chat end-->
+   <div class="content-wrapper">
+      <!-- Container-fluid starts -->
+      <!-- Main content starts -->
+      <div class="container-fluid">
+         <div class="row">
+            <div class="main-header">
+               <h4>Road Users</h4>
+            </div>
+         </div>
+         <!-- 4-blocks row start -->
+         <div class="row dashboard-header">
+             <div class="card">
+               <div class="card-header">
+                  <h5 class="card-header-text">Road Users</h5>
+               </div>
+               <div class="card-block">
+                  <div class="row">
+                     <div class="col-sm-12 table-responsive">
+                        <table class="table table-hover">
+                           <thead>
+                              <tr>
+                                 <th>#</th>
+                                 <th>First Name</th>
+                                 <th>Last Name</th>
+                                 <th>Username</th>
+                                 <th>Nickname</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr>
+                                 <td>8</td>
+                                 <td>Jacob</td>
+                                 <td>Thornton</td>
+                                 <td>@fat</td>
+                                 <td>Ducky</td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </div>            
+         </div>
+         <!-- 4-blocks row end -->
+      </div>
+      <!-- Main content ends -->
+      <!-- Container-fluid ends -->
+   </div>
+   <?php }elseif (isset($_REQUEST['roads'])) { ?>
+   <div class="content-wrapper">
+      <!-- Container-fluid starts -->
+      <!-- Main content starts -->
+      <div class="container-fluid">
+         <div class="row">
+            <div class="main-header">
+               <h4>Road Users</h4>
+            </div>
+         </div>
+         <!-- 4-blocks row start -->
+         <div class="row dashboard-header">
+             <div class="card">
+               <div class="card-header">
+                  <h5 class="card-header-text">Road Users</h5>
+               </div>
+               <div class="card-block">
+                  <div class="row">
+                     <div class="col-sm-12 table-responsive">
+                        <table class="table table-hover">
+                           <thead>
+                              <tr>
+                                 <th>#</th>
+                                 <th>First Name</th>
+                                 <th>Last Name</th>
+                                 <th>Username</th>
+                                 <th>Nickname</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr>
+                                 <td>8</td>
+                                 <td>Jacob</td>
+                                 <td>Thornton</td>
+                                 <td>@fat</td>
+                                 <td>Ducky</td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </div>            
+         </div>
+         <!-- 4-blocks row end -->
+      </div>
+      <!-- Main content ends -->
+      <!-- Container-fluid ends -->
+   </div>
+   <?php }elseif (isset($_REQUEST[''])) { ?>
 
+   <?php }elseif (isset($_REQUEST[''])) { ?>
+
+   <?php }elseif (isset($_REQUEST[''])) { ?>
+
+   <?php }elseif (isset($_REQUEST[''])) { ?>
+
+   <?php }elseif (isset($_REQUEST[''])) { ?>
+
+   <?php }elseif (isset($_REQUEST[''])) { ?>
+
+   <?php }elseif (isset($_REQUEST[''])) { ?>
+
+   <?php }elseif (isset($_REQUEST[''])) { ?>
+
+   <?php }else { ?>
+  
    <!-- Sidebar chat end-->
    <div class="content-wrapper">
       <!-- Container-fluid starts -->
@@ -17,9 +185,20 @@
                <?php $users = $dbh->query("SELECT * FROM users ")->rowCount(); ?>
                   <span>Users</span>
                   <h2 class="dashboard-total-products"><?=number_format($users); ?></h2>
-                  <span class="label label-warning">Road Users</span>
+                  <span class="label label-warning"><a style="text-decoration: none; color: #FFF; " href="?roads">Road Users</a></span>
                   <div class="side-box">
                      <i class="ti-user text-warning-color"></i>
+                  </div>
+               </div>
+            </div>
+             <div class="col-lg-3 col-md-6">
+               <div class="card dashboard-product">
+                  <span>Officers</span>
+                  <?php $officers = $dbh->query("SELECT * FROM users WHERE role = 'officer' ")->rowCount(); ?>
+                  <h2 class="dashboard-total-products"><span><?=number_format($officers); ?></span></h2>
+                  <span class="label label-success"><a style="text-decoration: none; color: #FFF; " href="?officers">Officers</a></span>
+                  <div class="side-box">
+                     <i class="icon-user text-primary-color"></i>
                   </div>
                </div>
             </div>
@@ -28,30 +207,20 @@
                   <span>Roads</span>
                   <?php $rds = $dbh->query("SELECT * FROM roads ")->rowCount(); ?>
                   <h2 class="dashboard-total-products"><?=number_format($rds); ?></h2>
-                  <span class="label label-primary">Roads</span>
+                  <span class="label label-primary"><a style="text-decoration: none; color: #FFF; " href="?roads">Roads</a></span>
                   <div class="side-box ">
-                     <i class="fa fa-road"></i>
-                     <!-- <i class="ti-map text-primary-color"></i> -->
+                     <i class="icon-map text-primary-color"></i>
+                     <!-- <i class="ti-direction-alt text-primary-color"></i> -->
                   </div>
                </div>
             </div>
-            <div class="col-lg-3 col-md-6">
-               <div class="card dashboard-product">
-                  <span>Officers</span>
-                  <?php $officers = $dbh->query("SELECT * FROM users WHERE role = 'officer' ")->rowCount(); ?>
-                  <h2 class="dashboard-total-products"><span><?=number_format($officers); ?></span></h2>
-                  <span class="label label-success">Officers</span>
-                  <div class="side-box">
-                     <i class="ti-direction-alt text-success-color"></i>
-                  </div>
-               </div>
-            </div>
+           
             <div class="col-lg-3 col-md-6">
                <div class="card dashboard-product">
                   <span>Routes</span>
                   <?php $rts = $dbh->query("SELECT * FROM routes ")->rowCount(); ?>
                   <h2 class="dashboard-total-products"><span><?=number_format($rts); ?></span></h2>
-                  <span class="label label-danger">Routes</span>
+                  <span class="label label-danger"><a style="text-decoration: none; color: #FFF; " href="?routes">Routes</a></span>
                   <div class="side-box">
                      <i class="ti-rocket text-danger-color"></i>
                   </div>
@@ -63,5 +232,10 @@
       <!-- Main content ends -->
       <!-- Container-fluid ends -->
    </div>
+<?php } ?>
+
+<?php }elseif ($role == 'user') { ?>
+   
+<?php } ?>
 
 <?php include 'footer.php'; ?>
