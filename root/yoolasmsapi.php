@@ -14,7 +14,7 @@
     CURLOPT_POSTFIELDS =>'{
       "phone": "'.$phones.'",
       "message":"'.$message.'",
-      "api_key": "7rz4BXu3zmT66Tx3o60JFqLDGC23n2YqN6OIe9X1779xJauc43wbfb6eUC9YAG27"
+      "api_key": ""
   }',
     CURLOPT_HTTPHEADER => array(
       'Content-Type: application/json'
