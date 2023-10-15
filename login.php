@@ -7,7 +7,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
         <link rel="stylesheet" href="src/style.css">
-  
 </head>
 <body>
     <div class="overlay">
@@ -28,14 +27,14 @@
                                 <input type="password" placeholder="Password" class="form-control" id="exampleInputPassword1" required>
                             </div>
                             <div class="d-flex align-items-center justify-content-between" >
-                                <div><a href="forgot_password.html" >Forget Password?</a></div>
+                                <div><a href="forgot_password" >Forget Password?</a></div>
                             </div>
                             <div class="pb-2">
                                 <button type="submit" class="btn btn-dark w-100 font-weight-bold mt-2">Submit</button>
                             </div>
                         </form>
                         <div class="pt-4 text-center" style="text-align: left!important">
-                            Don't have an account. <a href="signup.html">Sign Up</a>
+                            Don't have an account. <a href="signup">Sign Up</a>
                         </div>
                     </div>
         
