@@ -105,7 +105,7 @@ if (empty($_SESSION['userid'])) {
                            <div class="dropdown-divider m-0"></div>
                         </li>
                         <li><a href="#"><i class="icon-lock"></i> Lock Screen</a></li>
-                        <li><a href="login1.html"><i class="icon-logout"></i> Logout</a></li>
+                        <li><a href="<?=SITE_URL; ?>/logout" onclick="return confirm('Do you really want to Logout?. '); "><i class="icon-logout"></i> Logout</a></li>
 
                      </ul>
                   </li>

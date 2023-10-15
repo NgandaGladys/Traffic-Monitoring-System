@@ -14,8 +14,9 @@
          <div class="row dashboard-header">
             <div class="col-lg-3 col-md-6">
                <div class="card dashboard-product">
-                  <span>Products</span>
-                  <h2 class="dashboard-total-products">4500</h2>
+               <?php $users = $dbh->query("SELECT * FROM users ")->rowCount(); ?>
+                  <span>Users</span>
+                  <h2 class="dashboard-total-products"><?=number_format($users); ?></h2>
                   <span class="label label-warning">Road Users</span>
                   <div class="side-box">
                      <i class="ti-user text-warning-color"></i>
@@ -24,9 +25,9 @@
             </div>
             <div class="col-lg-3 col-md-6">
                <div class="card dashboard-product">
-                  <span>Products</span>
+                  <span>Roads</span>
                   <h2 class="dashboard-total-products">37,500</h2>
-                  <span class="label label-primary">Views</span>View Today
+                  <span class="label label-primary">Roads</span>
                   <div class="side-box ">
                      <i class="ti-gift text-primary-color"></i>
                   </div>
