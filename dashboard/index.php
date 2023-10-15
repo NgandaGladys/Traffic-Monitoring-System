@@ -47,9 +47,10 @@
             </div>
             <div class="col-lg-3 col-md-6">
                <div class="card dashboard-product">
-                  <span>Products</span>
-                  <h2 class="dashboard-total-products">$<span>30,780</span></h2>
-                  <span class="label label-danger">Sales</span>Reviews
+                  <span>Routes</span>
+                  <?php $rts = $dbh->query("SELECT * FROM routes ")->rowCount(); ?>
+                  <h2 class="dashboard-total-products"><span><?=number_format($rts); ?></span></h2>
+                  <span class="label label-danger">Routes</span>
                   <div class="side-box">
                      <i class="ti-rocket text-danger-color"></i>
                   </div>
