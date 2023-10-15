@@ -25,6 +25,17 @@ include 'root/process.php';
                     <h3 class="pb-3">LOGIN</h3>
                     <div class="form-style">
                         <form method="post" action="">
+                        <?php 
+                            if (isset($_SESSION['status'])) {
+                                echo $_SESSION['status'];
+                                unset($_SESSION['status']);
+                            }
+
+                            if (isset($_SESSION['loader'])) {
+                                echo $_SESSION['loader'];
+                                unset($_SESSION['loader']);
+                            }
+                        ?>
                             <div class="form-group pb-3">
                                 <input type="tel" placeholder="Email Address" name="email" class="form-control" id="exampleInputPhoneNumber" required>
                             </div>

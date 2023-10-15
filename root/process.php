@@ -46,34 +46,28 @@ if (isset($_POST['register_btn'])) {
 }elseif (isset($_POST['login_btn'])) {
     trim(extract($_POST));
     if (count($errors) == 0) {
-    $password = sha1($password);
-    $result = $dbh->query("SELECT * FROM users WHERE phone = '$phone' AND password = '$password' ");
+        // `userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered`
+        $password = sha1($password);
+        $result = $dbh->query("SELECT * FROM users WHERE email = '$email' AND password = '$password' ");
         if ($result->rowCount() == 1) {
             $rows = $result->fetch(PDO::FETCH_OBJ);
-            if ($rows->status == 'Approved') {  
-                //`userid`, `fullname`, `email`, `phone`, `bsc_id`, `role`, `token`, `status`, `date_registered`, `password`
-                $token = rand(11111, 99999);
-                $dbh->query("UPDATE users SET token = '$token' WHERE userid = '".$rows->userid."' ");
-                $message = "Hi ".$rows->fullname.', your Login token is  '. $token;
-                $nums = $rows->phone;
-                $message = "Nalongo Njala Supermarket : ".$message;
-                $send = send_message($message, $phone);
-                $_SESSION['phone'] = $phone;
-                $_SESSION['loader'] = '<center><div class="spinner-border text-dark"></div></center>';
-                $_SESSION['status'] = '<div class="card card-body alert alert-dark text-center">Account matched, New Token generated Successfully</div>';
-                header("refresh:3; url=".SITE_URL.'/token');
-            }else{
-                $_SESSION['status'] = '<div class="card card-body alert alert-primary text-center">
-                Account matched, But Under Preview!</div>';
-            }
+            $_SESSION['userid'] = $row->userid;
+            $_SESSION['fullname'] = $row->fullname;
+            $_SESSION['phone'] = $row->phone;
+            $_SESSION['email'] = $row->email;
+            $_SESSION['role'] = $row->role;
+            $_SESSION['date_registered'] = $row->date_registered;
+            $_SESSION['loader'] = '<center><div class="spinner-border text-dark"></div></center>';
+            $_SESSION['status'] = '<div class="card card-body alert alert-dark text-center">Account matched, Login Successfully</div>';
+            header("refresh:3; url=".SITE_URL);
         }else{
             $_SESSION['status'] = '<div class=" card card-body alert alert-danger text-center">
             Invalid account, Try again.</div>';
         }
-
+        
     }else{
         $_SESSION['status'] = '<div class=" card card-body alert alert-danger text-center">
-        Wrong Token inserted</div>';
+        Wrong Login details </div>';
     }
 }elseif (isset($_POST['verify'])) {
     trim(extract($_POST));
