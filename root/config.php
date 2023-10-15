@@ -22,27 +22,27 @@ switch(DB_URL){
 		defined ("DB_SERVER") or define("DB_SERVER", 'localhost');
 		defined ("DB_USER") or define("DB_USER", "root");
 		defined ("DB_PASS") or define("DB_PASS", "");
-		defined ("DB_NAME") or define("DB_NAME", "nalongonjalasupermarket");
+		defined ("DB_NAME") or define("DB_NAME", "tms");
 		defined ("SITE_URL") or define("SITE_URL", 'http://localhost/final_year_project');
-		defined ("HOME_URL") or define("HOME_URL", 'http://localhost/final_year_project/users/');
+		defined ("HOME_URL") or define("HOME_URL", 'http://localhost/final_year_project/dashboard/');
 	break;
 
 	case 'production': 
 		defined ("DB_SERVER") or define("DB_SERVER", 'localhost');
-		defined ("DB_USER") or define("DB_USER", "nalongonjalasupe_user");
-		defined ("DB_PASS") or define("DB_PASS", "]Y0Zn_vFGfn9");
-		defined ("DB_NAME") or define("DB_NAME", "nalongonjalasupe_db");
-		defined ("SITE_URL") or define("SITE_URL", 'https://nalongonjalasupermarket.com');
-		defined ("HOME_URL") or define("HOME_URL", 'https://nalongonjalasupermarket.com/users/');
+		defined ("DB_USER") or define("DB_USER", "");
+		defined ("DB_PASS") or define("DB_PASS", "");
+		defined ("DB_NAME") or define("DB_NAME", "");
+		defined ("SITE_URL") or define("SITE_URL", "");
+		defined ("HOME_URL") or define("HOME_URL", "");
 	break;
 
 	default: 
 		defined ("DB_SERVER") or define("DB_SERVER", 'localhost');
-		defined ("DB_USER") or define("DB_USER", "nalongonjalasupe_user");
-		defined ("DB_PASS") or define("DB_PASS", "]Y0Zn_vFGfn9");
-		defined ("DB_NAME") or define("DB_NAME", "nalongonjalasupe_db");
-		defined ("SITE_URL") or define("SITE_URL", 'https://nalongonjalasupermarket.com');
-		defined ("HOME_URL") or define("HOME_URL", 'https://nalongonjalasupermarket.com/users/');
+		defined ("DB_USER") or define("DB_USER", "root");
+		defined ("DB_PASS") or define("DB_PASS", "");
+		defined ("DB_NAME") or define("DB_NAME", "tms");
+		defined ("SITE_URL") or define("SITE_URL", 'http://localhost/final_year_project');
+		defined ("HOME_URL") or define("HOME_URL", 'http://localhost/final_year_project/dashboard/');
 	}
 	
  try{
