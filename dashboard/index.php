@@ -35,9 +35,10 @@
             </div>
             <div class="col-lg-3 col-md-6">
                <div class="card dashboard-product">
-                  <span>Products</span>
-                  <h2 class="dashboard-total-products">$<span>30,780</span></h2>
-                  <span class="label label-success">Sales</span>Reviews
+                  <span>Officers</span>
+                  <?php $officers = $dbh->query("SELECT * FROM users WHERE role = 'officer' ")->rowCount(); ?>
+                  <h2 class="dashboard-total-products"><span><?=number_format($officers); ?></span></h2>
+                  <span class="label label-success">Officers</span>
                   <div class="side-box">
                      <i class="ti-direction-alt text-success-color"></i>
                   </div>
