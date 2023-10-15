@@ -21,7 +21,7 @@ include 'root/process.php';
                 </div>
                 <div class="col-md-6 bg-white p-5" style="border-radius: 0 10px 10px 0;">
                     <div class="form-style">
-                                               
+                        <center><div class="spinner-border text-dark"></div></center>                    
                     </div>
                 </div>
             </div>
