@@ -16,9 +16,9 @@
                <div class="card dashboard-product">
                   <span>Products</span>
                   <h2 class="dashboard-total-products">4500</h2>
-                  <span class="label label-warning">Sales</span>Road Users
+                  <span class="label label-warning">Road Users</span>
                   <div class="side-box">
-                     <i class="ti-signal text-warning-color"></i>
+                     <i class="ti-user text-warning-color"></i>
                   </div>
                </div>
             </div>
@@ -58,5 +58,5 @@
       <!-- Main content ends -->
       <!-- Container-fluid ends -->
    </div>
-   
+
 <?php include 'footer.php'; ?>

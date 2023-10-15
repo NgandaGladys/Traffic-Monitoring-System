@@ -1,3 +1,19 @@
+<?php 
+include '../root/config.php'; 
+include '../root/process.php';
+if (empty($_SESSION['userid'])) {
+    header("Location: ".SITE_URL.'/login');
+}else{
+    // `userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered`
+    $role = $_SESSION['role'];
+    $fullname   = $_SESSION['fullname'];
+    $phone   = $_SESSION['phone'];
+    $email   = $_SESSION['email'];
+    $userid = $_SESSION['userid'];
+    $date_registered = $_SESSION['date_registered'];
+} 
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
