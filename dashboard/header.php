@@ -93,7 +93,7 @@ if (empty($_SESSION['userid'])) {
                   <!-- User Menu-->
                   <li class="dropdown">
                      <a href="#!" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle drop icon-circle drop-image">
-                        <span><img class="img-circle " src="assets/images/avatar.png" style="width:40px;" alt="User Image"></span>
+                        <span><img class="img-circle " src="../images/avatar.png" style="width:40px;" alt="User Image"></span>
                         <span><b><?=ucwords($fullname); ?></b> <i class=" icofont icofont-simple-down"></i></span>
 
                      </a>
