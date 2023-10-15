@@ -24,7 +24,7 @@ switch(DB_URL){
 		defined ("DB_PASS") or define("DB_PASS", "");
 		defined ("DB_NAME") or define("DB_NAME", "tms");
 		defined ("SITE_URL") or define("SITE_URL", 'http://localhost/final_year_project');
-		defined ("HOME_URL") or define("HOME_URL", 'http://localhost/final_year_project/dashboard/');
+		defined ("HOME_URL") or define("HOME_URL", 'http://localhost/final_year_project/dashboard');
 	break;
 
 	case 'production': 

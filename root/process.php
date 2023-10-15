@@ -50,7 +50,10 @@ if (isset($_POST['register_btn'])) {
         $password = sha1($password);
         $result = $dbh->query("SELECT * FROM users WHERE email = '$email' AND password = '$password' ");
         if ($result->rowCount() == 1) {
+            //getting the login users..
             $row = $result->fetch(PDO::FETCH_OBJ);
+            //creating succession for a login user... 
+            //getting user data...
             $_SESSION['userid'] = $row->userid;
             $_SESSION['fullname'] = $row->fullname;
             $_SESSION['phone'] = $row->phone;
