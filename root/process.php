@@ -1,6 +1,4 @@
 <?php 
-include 'yoolasmsapi.php';
-
 $errors = array();
 foreach ($errors as $error) {
     echo $errors;

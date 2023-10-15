@@ -30,6 +30,11 @@ include 'root/process.php';
                                 <input type="text" placeholder="Full Name" name="fullname" class="form-control"
                                     id="exampleInputFullName" required>
                             </div>
+                            <!-- `userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered` -->
+                            <div class="form-group pb-3">
+                                <input type="tel" placeholder="Email Address" name="email" class="form-control"
+                                    id="exampleInputPhoneNumber" required>
+                            </div>
                             <div class="form-group pb-3">
                                 <input type="tel" placeholder="Phone Number" name="phone" class="form-control"
                                     id="exampleInputPhoneNumber" required>
