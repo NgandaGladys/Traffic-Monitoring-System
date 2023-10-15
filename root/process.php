@@ -4,12 +4,43 @@ foreach ($errors as $error) {
     echo $errors;
 }
 
-if (isset($_POST['login_btn'])) {
+if (isset($_POST['register_btn'])) {
+    trim(extract($_POST));
+    if (count($errors) == 0) {
+        // `userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered`
+        $check = $dbh->query("SELECT email FROM users WHERE email='$email' ")->fetchColumn();
+      if(!$check){
+        $pass= sha1($password);
+        $sql = "INSERT INTO users VALUES(NULL,'$fullname','$phone','$email','$pass','','user','$dtime')";
+        $result = dbCreate($sql);
+        if($result == 1){
+            $api_key = "lSwE2BEOF8Z79A1L4n489S2WB6DJ9VQ9Q92yF3XlOyJ9VMl2T03hzVs52L6Kk1lI";
+            $message = "GREMBASI Inv. LTD: Hi ".$surname.', your Login details is: Phone '. $phone.' Password: '.$password;
+            @json_decode(send_sms_yoola_api($api_key, $phone, $message), true);
+                
+            echo "<script>
+                alert('Registration is Successful');
+                window.location = '".SITE_URL."?users';
+                </script>";
+        }else{
+            echo "<script>
+              alert('User registration failed');
+              window.location = '".SITE_URL."?users';
+              </script>";
+        }
+     }else{
+          echo "<script>
+            alert('Username already registered');
+            window.location = '".SITE_URL."?users';
+            </script>";
+        }
+    }
+    
+}elseif (isset($_POST['login_btn'])) {
     trim(extract($_POST));
     if (count($errors) == 0) {
     $password = sha1($password);
-    $result = $dbh->query("SELECT * FROM users WHERE phone = '$phone' AND password = '$password' AND status = 'Approved' ");
-    $result2 = $dbh->query("SELECT * FROM users WHERE phone = '$phone' AND password = '$password' AND status = 'Pending' ");
+    $result = $dbh->query("SELECT * FROM users WHERE phone = '$phone' AND password = '$password' ");
         if ($result->rowCount() == 1) {
             $rows = $result->fetch(PDO::FETCH_OBJ);
             if ($rows->status == 'Approved') {  
@@ -28,9 +59,6 @@ if (isset($_POST['login_btn'])) {
                 $_SESSION['status'] = '<div class="card card-body alert alert-primary text-center">
                 Account matched, But Under Preview!</div>';
             }
-        }elseif ($result->rowCount() == 1) {
-            $_SESSION['status_err'] = '<div class=" card card-body alert alert-danger text-center">
-            Account under Preview!. Contact System Admin</div>';
         }else{
             $_SESSION['status'] = '<div class=" card card-body alert alert-danger text-center">
             Invalid account, Try again.</div>';
@@ -198,40 +226,6 @@ if (isset($_POST['login_btn'])) {
             </script>";
     }
 
-}
-elseif (isset($_POST['make_a_milk_sale_by_milk_attendant'])) {
-    trim(extract($_POST));
-    $quantity = $dbh->query("SELECT quantity FROM store WHERE pid=10 ")->fetchColumn();
-    if ($quantity < $liters) {
-        $_SESSION['status'] = '<div class="alert alert-danger alert-dismissible">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <strong>Failed!</strong> You have only '.$quantity.' liters in store.
-      </div>';
-      redirect_page(SITE_URL.'/milk-sale');
-    }
-    $price = $dbh->query("SELECT buying_price FROM milk_customer WHERE id = '$customer_id' ")->fetchColumn();
-    $amount_to_pay = $price * $liters;
-    $_SESSION['amount_to_pay'] = $amount_to_pay;
-    $_SESSION['liters'] = $liters;
-    $_SESSION['price_each'] = $price;
-    $_SESSION['customer_id'] = $customer_id;
-    redirect_page(SITE_URL.'/milk-sale-preview');
-}elseif (isset($_POST['save_new_milk_customer_btn'])) {
-    trim(extract($_POST));
-    // `milk_id`, `milk_supplier_id`, `milk_quantity`, `milk_price`, `milk_date_added`
-    $sql = dbCreate("INSERT INTO `milk_customer`(`id`, `name`, `phone`, `buying_price`) VALUES (NULL, '$name', '$phone', '$price') ");
-    if ($sql) {
-        $_SESSION['status'] = '<div class="alert alert-success alert-dismissible">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <strong>Success!</strong> Milk Customer Recorded Successfully.
-      </div>';
-    }else{
-        echo "<script>
-            alert('Milk Customer Add Failed');
-            window.location = '".SITE_URL."/milk-inventory';
-            </script>";
-    }
-
 }elseif(isset($_POST['update_user_details_btn'])){
     trim(extract($_POST));
     //`userid`, `fullname`, `email`, `role`, `password`, `phone`, `token`, `status`, `date_registered`, `pic`
@@ -281,200 +275,6 @@ elseif (isset($_POST['make_a_milk_sale_by_milk_attendant'])) {
             </div>';
         }
 
-}elseif (isset($_POST['submit_rooms_details_btn'])) {
-   trim(extract($_POST));
-    //`room_id`, `rtid`, `room_number`, `room_pic`, `room_status`
-     $filename = trim($_FILES['room_pic']['name']);
-     $chk = rand(1111111111111,9999999999999);
-     $ext = strrchr($filename, ".");
-     $room_pic = $chk.$ext;
-     $target_img = "uploads/".$room_pic;
-     $url = SITE_URL.'/uploads/'.$room_pic;
-    $result = dbCreate("INSERT INTO rooms VALUES(NULL,'$rtid','$room_number','$url','Available')");
-     if (move_uploaded_file($_FILES['room_pic']['tmp_name'], $target_img)) {
-          $msg ="Image uploaded Successfully";
-          }else{
-            $msg ="There was a problem uploading image";
-          }
-        if($result == 1){
-            $_SESSION['room_status'] = '<div class="alert alert-success alert-dismissible">
-              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-              <strong>Success!</strong>Room Details Updated Successfully.
-            </div>';
-            header("Location: ".SITE_URL."/banners");
-        }else{
-            $_SESSION['room_status'] = '<div class="alert alert-success alert-dismissible">
-              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-              <strong>Failed!</strong>Room Upload Failed.
-            </div>';
-        }
-}elseif (isset($_POST['update_rooms_details_btn'])) {
-    trim(extract($_POST));
-    // `room_id`, `rtid`, `room_number`, `room_pic`, `room_status`
-    $sql = $dbh->query("UPDATE rooms SET room_number = '$room_number', room_status = '$room_status' WHERE room_id = '$room_id' ");
-    if ($sql) {
-        echo "<script>
-            alert('Room Updated Successful');
-            window.location = '".SITE_URL."/rooms';
-            </script>";
-    }else{
-        echo "<script>
-            alert('Room Update Failed');
-            window.location = '".SITE_URL."/rooms';
-            </script>";
-    }
-}elseif (isset($_POST['save_new_book_shop_btn'])) {
-    trim(extract($_POST));
-    //`bs_id`, `bs_name`
-     $bs_name = addslashes($bs_name);
-    $chk = $dbh->query("SELECT bs_name FROM book_shops WHERE (bs_name='$bs_name' ) ")->fetchColumn();
-    if(!$chk){
-        $result = dbCreate("INSERT INTO book_shops VALUES(NULL,'$bs_name')");
-        if($result == 1){
-            $_SESSION['book_shop_status'] = '<div class="alert alert-success alert-dismissible">
-              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-              <strong>Success!</strong>Book Shop Name Added Successfully.
-            </div>';
-            header("refresh:3;url=".SITE_URL."/book-shops");
-            }else{
-                $_SESSION['book_shop_status'] = '<div class="alert alert-dark alert-dismissible">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                  <strong>Error!</strong>Error while adding new book shop.
-                </div>';
-            }
-        }else{
-            $_SESSION['book_shop_status'] = '<div class="alert alert-danger alert-dismissible">
-              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-              <strong>Warning!</strong>This Book Shop already Exists.
-            </div>';
-        }
-}elseif (isset($_POST['update_room_type_details_btn'])) {
-    trim(extract($_POST));
-    // `rtid`, `rt_price`, `discount`
-    $sql = $dbh->query("UPDATE room_types SET rt_price = '$rt_price', discount = '$discount' WHERE rtid = '$rtid' ");
-    if ($sql) {
-        echo "<script>
-            alert('Room Type Updated Successful');
-            window.location = '".SITE_URL."/room-types';
-            </script>";
-    }else{
-        echo "<script>
-            alert('Room Type Update Failed');
-            window.location = '".SITE_URL."/room-types';
-            </script>";
-    }
-}elseif (isset($_POST['save_new_book_category_btn'])) {
-    trim(extract($_POST));
-    //`cat_id`, `cat_name`
-     $cat_name = addslashes($cat_name);
-    $chk = $dbh->query("SELECT cat_name FROM book_categories WHERE (cat_name='$cat_name' ) ")->fetchColumn();
-    if(!$chk){
-        $result = dbCreate("INSERT INTO book_categories VALUES(NULL,'$cat_name')");
-        if($result == 1){
-            $_SESSION['book_shop_status'] = '<div class="alert alert-success alert-dismissible">
-              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-              <strong>Success!</strong>Book Category Added Successfully.
-            </div>';
-            header("refresh:3;url=".SITE_URL."/category");
-            }else{
-                $_SESSION['book_shop_status'] = '<div class="alert alert-dark alert-dismissible">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                  <strong>Error!</strong>Error while adding new book Category.
-                </div>';
-            }
-        }else{
-            $_SESSION['book_shop_status'] = '<div class="alert alert-danger alert-dismissible">
-              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-              <strong>Warning!</strong>This Book Category already Exists.
-            </div>';
-        }
-}elseif (isset($_POST['submit_Stock_btn'])) {
-    trim(extract($_POST));
-    $check = $dbh->query("SELECT product_name FROM products WHERE product_name='$product_name' ")->fetchColumn();
-    if(!$check){
-        // $stock_date_added = time();
-        $userid = $_SESSION['userid'];
-        $result = dbCreate("INSERT INTO products(`pid`, `barcode`, `product_name`, `category_of_user`,`cost_price`, `selling_price`, `qty`, `stock_added_by`, `stock_date_added`) 
-            VALUES(NULL, '$code', '$product_name', '$category_of_user', '$cost_price','$selling_price',1,'$userid','$today')" );
-        if($result == 1){
-            $id = $dbh->query("SELECT pid FROM products ORDER BY pid DESC LIMIT 1")->fetchColumn();
-            $dbh->query("INSERT INTO store VALUES('','$id','$qty')");
-            if ($category_of_user == 'bakery') {
-                $dbh->query("INSERT INTO `bakery_inventory`(`item_id`, `item_name`, `quantity`, `price_each`, `date`) VALUES ('$id', '$product_name', '$qty', '$cost_price', '$today')");
-            }
-            echo "<script>
-            alert('Stock added successfuly');
-            window.location = 'stock';
-            </script>";
-        }else{
-            echo "<script>
-            alert('Stock registration failed. ');
-            // window.location = 'stock';
-            </script>";
-        }
-    }else{
-        echo "<script>
-            alert('This stock is already added... Try adding another stock');
-            window.location = 'manage-stock';
-            </script>";
-    }
-
-}elseif (isset($_POST['update_stock'])) {
-   trim(extract($_POST));
-      //`pid`, `product_name`, `cost_price`, `selling_price`, `qty`, `stock_added_by`, `stock_date_added`
-      $result = dbCreate("UPDATE products SET barcode='$code', cost_price='$cost_price', selling_price = '$selling_price', product_name = '$productname' WHERE pid='$pid' ");
-      if($result == 1){
-         echo "<script>
-        alert('Product updated successfully');
-        window.location = '".SITE_URL."/stock';
-        </script>";
-      }else{
-        echo "<script>
-        alert('Product updated failed');
-        window.location = '".SITE_URL."/stock';
-        </script>";
-    }
-}elseif(isset($_POST['add_stock'])){
-    trim(extract($_POST));
-    $old_qty = $dbh->query("SELECT quantity FROM store WHERE pid='$identity' ")->fetchColumn();
-    if($action == 'add'){
-        $new_qty = ($old_qty + $quantity);
-        if($action == 'add'){
-            if ($category_of_user == 'bakery') {
-                $product_name = $dbh->query("SELECT product_name FROM products WHERE pid='$identity'")->fetchColumn();
-                $cost_price = $dbh->query("SELECT cost_price FROM products WHERE pid='$identity'")->fetchColumn();
-                $dbh->query("INSERT INTO `bakery_inventory`(`item_id`, `item_name`, `quantity`, `price_each`, `date`) VALUES ('$identity', '$product_name', '$quantity', '$cost_price', '$today')");
-            }
-    }
-    }else{
-        $new_qty = ($old_qty - $quantity);
-    }
-    if($new_qty >= 0){
-        $dbh->query("UPDATE store SET quantity='$new_qty' WHERE pid='$identity' ");
-        redirect_page(SITE_URL.'/stock');
-    }else{
-        echo "<script>
-        alert('Quantity can not be negative, please check the quantity or action');
-        window.location = '".SITE_URL."/stock';
-        </script>";
-    }
-}elseif (isset($_POST['confirm_milk_inventory_edit'])) {
-    trim(extract($_POST));
-    $old_liters = $dbh->query("SELECT liters FROM milk_inventory WHERE milk_supplier_id='$supllier_id' AND date_time='$date_time' LIMIT 1")->fetchColumn();
-
-    if($new_quantity >= -1){
-        $dbh->query("UPDATE milk_inventory SET liters='$new_quantity' WHERE milk_supplier_id='$supllier_id' AND date_time='$date_time' ");
-        $_SESSION['status'] = '<div class="alert alert-success alert-dismissible">
-          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-          <strong>Success!</strong> Liter details Updated Successfully.
-        </div>';
-        redirect_page(SITE_URL.'/milk-inventory');
-    }else{
-        echo "<script>
-        alert('Liters can not be negative, please check');
-        window.location = '".SITE_URL."/milk-inventory';
-        </script>";
-    }
 }elseif (isset($_POST['recover_btn'])) {
     trim(extract($_POST));
     $res = $dbh->query("SELECT phone FROM users WHERE (phone='$phone' ) ")->fetchColumn();
@@ -517,288 +317,7 @@ elseif (isset($_POST['make_a_milk_sale_by_milk_attendant'])) {
                 alert('Account Login details updated Successfully');
                 window.location = '".SITE_URL."/auth-login';
                 </script>";
-            // 0773325394 - nakayima
     }
-}elseif (isset($_POST['make_payments_btn'])) {
-    trim(extract($_POST));
-    //`phid`, `loan_id`, `cid`, `userid`, `deposit`, `date_paid`
-    $check = $dbh->query("SELECT cid, date_paid FROM payment_history WHERE (cid='$cid' AND date_paid = '$today' ) ")->fetchColumn();
-    if(!$check){
-    $sql = dbCreate("INSERT INTO payment_history VALUES(NULL,'$loan_id', '$cid', '$userid', '$deposit', '$today') "); 
-    }else{
-        echo "<script>
-        alert('You have already Paid Loan today.!');
-        // window.location = '".SITE_URL."?save';
-        </script>";
-    }
-}elseif (isset($_POST['saving_type_btn'])) {
-    trim(extract($_POST));
-    //`saving_type_id`, `saving_type`
-    $check = $dbh->query("SELECT * FROM saving_type WHERE saving_type = '$saving_type' ")->fetchColumn(); 
-    if(!$check){
-    $result = $dbh->query("INSERT INTO saving_type VALUES(NULL,'$saving_type') ");
-        if($result){
-            echo "<script>
-            alert('Saving Type details added Successfully');
-            window.location = '".SITE_URL."?save';
-            </script>";
-        }else{
-            echo "<script>
-            alert('Saving Error');
-            window.location = '".SITE_URL."?save';
-            </script>";
-        }
-    }else{
-        echo "<script>
-        alert('This client have got active saving !, First close his/her savings.');
-        window.location = '".SITE_URL."?save';
-        </script>";
-    }
-}elseif (isset($_POST['save_history_btn_btn'])) {
-    
-}elseif (isset($_POST['save_history_btn'])) {
-    trim(extract($_POST));
-    $update_savings = $dbh->query("UPDATE savings SET saving_amount = saving_amount + '$amount' WHERE saving_clients_id = '$saving_clients_id' ");
-    if ($update_savings) {
-        //`shid`, `saving_clients_id`, `amount`, `date_saved`
-        $dbh->query("INSERT INTO saving_history VALUES(NULL,'$saving_clients_id','$amount','$today') ");
-        $ro = dbRow("SELECT * FROM saving_clients WHERE saving_clients_id = '$saving_clients_id' ");
-    // `saving_clients_id`, `saving_type_id`, `firstname`, `lastname`, `photo`, `gender`, `phone`, `location`, `account_number`, `f_member_name`, `f_member_gender`, `f_memeber_phone`, `gmemeber2_name`, `gmemeber2_phone`, `gmemeber2_gender`, `gmemeber2_photo`, `gmemeber3_name`, `gmemeber3_phone`, `gmemeber3_gender`, `gmemeber3_photo`
-        $bo = dbRow("SELECT SUM(saving_amount) AS 'SavingAmount', saving_clients_id FROM savings WHERE saving_clients_id = '$saving_clients_id' ");
-        $message = "Hi ".ucwords($ro->firstname).', Your Saving of ugx. '. $amount.' recieved. New Saving Balc ugx.'.$bo->SavingAmount;
-        $nums = array("+256".$ro->phone);
-        // $nums = array("+256782507087");
-        {
-            $recipients = "".implode(',', $nums);
-            $message = "GREMBASI INVESTMENTS LTD : ".$message;
-            $gateway    = new AfricasTalkingGateway($username, $apikey);
-            try 
-            { 
-              $results = $gateway->sendMessage($recipients, $message);
-              foreach($results as $result) {
-              echo '';
-              }
-            }
-            catch ( AfricasTalkingGatewayException $e )
-            {
-              echo "Encountered an error while sending: ".$e->getMessage();
-            }
-        }
-        echo "<script>
-        alert('Savings added is Successful');
-        window.location = '".SITE_URL."?sav='".base64_encode($saving_clients_id)."';
-        </script>";
-    }
-}elseif (isset($_POST['witdraw_amount_btn'])) {
-    trim(extract($_POST));
-    //`withdraw_id`, `saving_clients_id`, `witdraw_amount`, `withdraw_date`
-    $qu = dbRow("SELECT * FROM savings WHERE saving_clients_id = '$saving_clients_id' ");
-    if ($qu->saving_amount > $witdraw_amount) {
-        $sql = $dbh->query("INSERT INTO widthdraws VALUES(NULL,'$saving_clients_id', '$witdraw_amount','$today') ");
-        if ($sql) {
-            $baal = $dbh->query("UPDATE savings SET saving_amount = saving_amount - '$witdraw_amount' WHERE saving_clients_id = '$saving_clients_id' ");
-            $ro = dbRow("SELECT * FROM saving_clients WHERE saving_clients_id = '$saving_clients_id' ");
-            $blc = dbRow("SELECT * FROM savings WHERE saving_clients_id = '$saving_clients_id' ");
-            $message = "Hi ".ucwords($ro->firstname).', Your Withdraw confirmation of ugx. '. $witdraw_amount.' New Balc.'.$blc->saving_amount;
-            $nums = array("+256".$ro->phone);
-            // $nums = array("+256782507087");
-            {
-                $recipients = "".implode(',', $nums);
-                $message = "GREMBASI INVESTMENTS LTD : ".$message;
-                $gateway    = new AfricasTalkingGateway($username, $apikey);
-                try 
-                { 
-                  $results = $gateway->sendMessage($recipients, $message);
-                  foreach($results as $result) {
-                  echo '';
-                  }
-                }
-                catch ( AfricasTalkingGatewayException $e )
-                {
-                  echo "Encountered an error while sending: ".$e->getMessage();
-                }
-            }
-            echo "<script>
-            alert('Withdraw request initiated Successfully');
-            window.location = '".SITE_URL."?savings';
-            </script>";
-        }
-    }else{
-        echo "<script>
-            alert('Oops !!!, you dont have enough money to Withdraw. ');
-            window.location = '".SITE_URL."?savings';
-            </script>";
-    }
-}elseif (isset($_POST['save_client_form_btn'])) {
-    trim(extract($_POST));
-    if (($saving_type_id == 1) || ($saving_type_id ==2)) {
-        $sql = $dbh->query("INSERT INTO saving_clients(`saving_clients_id`, `saving_type_id`, `firstname`, `lastname`, `photo`, `gender`, `phone`, `location`, `account_number`, `f_member_name`, `f_member_gender`, `f_memeber_phone`, `gmemeber2_name`, `gmemeber2_phone`, `gmemeber2_gender`, `gmemeber2_photo`, `gmemeber3_name`, `gmemeber3_phone`, `gmemeber3_gender`, `gmemeber3_photo`) VALUES(NULL,'$saving_type_id','$firstname','$lastname','','$gender','$phone','$location','$account_number','$f_member_name','$f_member_gender','$f_memeber_phone','','','','','','','','') ");
-        if ($sql) {
-            // `saving_id`, `userid`, `saving_clients_id`, `saving_amount`, `saving_interest`, `barcode`, `saving_status`, `saving_date`
-            $last_id = $dbh->lastInsertId();
-            $userid = $_SESSION['userid'];
-            $barcode = mt_rand();
-            $dbh->query("INSERT INTO  savings VALUES(NULL,'$userid','$last_id',0,5,'$barcode','Approved','$today') ");
-            $account = dbRow("SELECT * FROM saving_type WHERE saving_type_id = '$saving_type_id' ");
-        $message = "Hi ".ucwords($firstname).', Your have opened up a '.$account->saving_type.' Saving Account with GREMBASI Inv. LTD . ';
-        $nums = array("+256".$phone);
-        // $nums = array("+256782507087");
-        {
-            $recipients = "".implode(',', $nums);
-            $message = "GREMBASI INVESTMENTS LTD : ".$message;
-            $gateway    = new AfricasTalkingGateway($username, $apikey);
-            try 
-            { 
-              $results = $gateway->sendMessage($recipients, $message);
-              foreach($results as $result) {
-              echo '';
-              }
-            }
-            catch ( AfricasTalkingGatewayException $e )
-            {
-              echo "Encountered an error while sending: ".$e->getMessage();
-            }
-        }
-        echo "<script>
-        alert('Client Savings details added Successfully');
-        window.location = '".SITE_URL."?save';
-        </script>";
-        }
-    }elseif ($saving_type_id == 3) {
-        $sql = $dbh->query("INSERT INTO saving_clients(`saving_clients_id`, `saving_type_id`, `firstname`, `lastname`, `photo`, `gender`, `phone`, `location`, `account_number`, `f_member_name`, `f_member_gender`, `f_memeber_phone`, `gmemeber2_name`, `gmemeber2_phone`, `gmemeber2_gender`, `gmemeber2_photo`, `gmemeber3_name`, `gmemeber3_phone`, `gmemeber3_gender`, `gmemeber3_photo`) VALUES(NULL,'$saving_type_id','$firstname','$lastname','','$gender','$phone','$location','$account_number','','','','$gmemeber2_name','$gmemeber2_phone','$gmemeber2_gender','','$gmemeber3_name','$gmemeber3_phone','$gmemeber3_gender','') ");
-
-        if ($sql) {
-            // `saving_id`, `userid`, `saving_clients_id`, `saving_amount`, `saving_interest`, `barcode`, `saving_status`, `saving_date`
-            $last_id = $dbh->lastInsertId();
-            $userid = $_SESSION['userid'];
-            $barcode = mt_rand();
-            $dbh->query("INSERT INTO  savings VALUES(NULL,'$userid','$last_id',0,5,'$barcode','Approved','$today') ");
-            $account = dbRow("SELECT * FROM saving_type WHERE saving_type_id = '$saving_type_id' ");
-            $message = "Hi ".ucwords($firstname).', Your have opened up a '.$account->saving_type.' Saving Account with GREMBASI Inv. LTD . ';
-            $nums = array("+256".$phone, "+256".$gmemeber2_phone, "+256".$gmemeber3_phone);
-            // $nums = array("+256782507087");
-        {
-            $recipients = "".implode(',', $nums);
-            $message = "GREMBASI INVESTMENTS LTD : ".$message;
-            $gateway    = new AfricasTalkingGateway($username, $apikey);
-            try 
-            { 
-              $results = $gateway->sendMessage($recipients, $message);
-              foreach($results as $result) {
-              echo '';
-              }
-            }
-            catch ( AfricasTalkingGatewayException $e )
-            {
-              echo "Encountered an error while sending: ".$e->getMessage();
-            }
-        }
-        echo "<script>
-        alert('Client Savings details added Successfully');
-        window.location = '".SITE_URL."?save';
-        </script>";
-        }
-    }
-}elseif (isset($_REQUEST['delete-loan-client'])) {
-    $id = base64_decode($_GET['delete-loan-client']);
-    $sql = $dbh->query("DELETE FROM clients WHERE cid = '$id' ");
-    if ($sql) {
-        echo "<script>
-        alert('Money Lending client deleted successfully');
-        window.location = '".SITE_URL."?clients';
-        </script>";
-    }
-}elseif (isset($_REQUEST['delete-country'])) {
-    $id = base64_decode($_GET['delete-country']);
-    $sql = $dbh->query("DELETE FROM countries WHERE country_id = '$id' ");
-    if ($sql) {
-        echo "<script>
-        alert('Country Details deleted successfully');
-        window.location = '".SITE_URL."?countries';
-        </script>";
-    }
-}elseif (isset($_REQUEST['delete-branch'])) {
-    $id = base64_decode($_GET['delete-branch']);
-    $sql = $dbh->query("DELETE FROM branch WHERE branch_id = '$id' ");
-    if ($sql) {
-        echo "<script>
-        alert('Branch Details deleted successfully');
-        window.location = '".SITE_URL."?branches';
-        </script>";
-    }
-}elseif (isset($_POST['send_sms_btn'])) {
-    trim(extract($_POST));
-    $user = dbRow("SELECT * FROM clients WHERE cid = '$cid' ");
-    $pah = dbRow("SELECT * FROM payment_history WHERE cid = '$cid' ORDER BY phid DESC ");
-    //calculate days without paying....
-    $from=date_create(date($today));
-    $to=date_create($pah->date_paid);
-    $diff=date_diff($to,$from);
-    //print_r($diff);
-    //echo $diff->format('%R%a days');
-    // $start = strtotime($today);
-    // $end = strtotime($pah->date_paid);
-    // $days_between = ceil(abs($end - $start) / 86400);
-    $message = "Hi ".ucwords($user->fname).', Your have taken '.$diff->format('%R%a days').' days without paying your Loan.Kindly pay your Loan Now';
-            $nums = array("+256".$user->cphone);
-            // $nums = array("+256782507087");
-        {
-            $recipients = "".implode(',', $nums);
-            $message = "GREMBASI INVESTMENTS LTD : ".$message;
-            $gateway    = new AfricasTalkingGateway($username, $apikey);
-            try 
-            { 
-              $results = $gateway->sendMessage($recipients, $message);
-              foreach($results as $result) {
-              echo '';
-              }
-            }
-            catch ( AfricasTalkingGatewayException $e )
-            {
-              echo "Encountered an error while sending: ".$e->getMessage();
-            }
-        }
-    echo "<script>
-        alert('Message sent successfully');
-        window.location = '".SITE_URL."?defaulters';
-        </script>";
-}elseif (isset($_POST['fine_send_sms_btn'])) {
-    trim(extract($_POST));
-    $user = dbRow("SELECT * FROM clients WHERE cid = '$cid' ");
-    $pah = dbRow("SELECT * FROM payment_history WHERE cid = '$cid' ORDER BY phid DESC ");
-    $dbh->query("UPDATE loans SET loan_amount = loan_amount + 10000 WHERE cid = '$cid' ");
-    //calculate days without paying....
-    $from=date_create(date($today));
-    $to=date_create($pah->date_paid);
-    $diff=date_diff($to,$from);
-    //print_r($diff);
-    //echo $diff->format('%R%a days');
-    // $start = strtotime($today);
-    // $end = strtotime($pah->date_paid);
-    // $days_between = ceil(abs($end - $start) / 86400);
-    $message = "Hi ".ucwords($user->fname).', Your have taken '.$diff->format('%R%a days').' days without paying your Loan.You have additional charge Ugx. 10,000';
-            $nums = array("+256".$user->cphone);
-            // $nums = array("+256782507087");
-        {
-            $recipients = "".implode(',', $nums);
-            $message = "GREMBASI INVESTMENTS LTD : ".$message;
-            $gateway    = new AfricasTalkingGateway($username, $apikey);
-            try 
-            { 
-              $results = $gateway->sendMessage($recipients, $message);
-              foreach($results as $result) {
-              echo '';
-              }
-            }
-            catch ( AfricasTalkingGatewayException $e )
-            {
-              echo "Encountered an error while sending: ".$e->getMessage();
-            }
-        }
-    echo "<script>
-        alert('Message sent successfully');
-        window.location = '".SITE_URL."?defaulters';
-        </script>";
 }elseif (isset($_POST['update_client_btn'])) {
     trim(extract($_POST));
     //`cid`, `fname`, `lname`, `cphone`, `physical_address`, `id_number`, `occupation`, `monthly_salary`
