@@ -27,19 +27,19 @@ include 'root/process.php';
                     <div class="form-style">
                         <form method="post" action="">
                             <div class="form-group pb-3">
-                                <input type="text" placeholder="Full Name" class="form-control"
+                                <input type="text" placeholder="Full Name" name="fullname" class="form-control"
                                     id="exampleInputFullName" required>
                             </div>
                             <div class="form-group pb-3">
-                                <input type="tel" placeholder="Phone Number" class="form-control"
+                                <input type="tel" placeholder="Phone Number" name="phone" class="form-control"
                                     id="exampleInputPhoneNumber" required>
                             </div>
                             <div class="form-group pb-3">
-                                <input type="password" placeholder="Password" class="form-control"
+                                <input type="password" placeholder="Password" name="password" class="form-control"
                                     id="exampleInputPassword1" required>
                             </div>
                             <div class="pb-2">
-                                <button type="submit" class="btn btn-dark w-100 font-weight-bold mt-2">Sign up</button>
+                                <button type="submit" name="register_btn" class="btn btn-dark w-100 font-weight-bold mt-2">Sign up</button>
                             </div>
                         </form>
                         <div class="pt-4 text-center" style="text-align: left!important">
