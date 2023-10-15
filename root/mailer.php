@@ -12,14 +12,14 @@ function GoMail($to,$subj,$body){
 	$mail = new PHPMailer(true);
 	$mail->SMTPDebug = 0;                           // Enable verbose debug output
 	$mail->isSMTP();								// Set mailer to use SMTP
-	$mail->Host = "mail.penielbeachhotel.com";		// Specify main and backup SMTP servers
+	$mail->Host = "mail.sserembaonlineschool.com";	// Specify main and backup SMTP servers
 	$mail->SMTPAuth = true;							// Enable SMTP authentication
-	$mail->Username = "info@penielbeachhotel.com";	// SMTP username
-	$mail->Password = "Peniel@HotelEntebbe";    	// SMTP password
+	$mail->Username = "info@sserembaonlineschool.com";	// SMTP username
+	$mail->Password = "@WYg4UVL+r%]";   			// SMTP password
 	$mail->SMTPSecure = "ssl";						// Enable TLS encryption, `ssl` also accepted
 	$mail->Port = 465;								// TCP port to connect to
 	// Recipients
-	$mail->setFrom('info@penielbeachhotel.com', 'PENIEL BEACH HOTEL ENTEBBE');
+	$mail->setFrom('info@sserembaonlineschool.com', 'Sseremba Online School');
 	$mail->addAddress($to, $to);					// Add a recipient
 	//$mail->addCC($cc, $cc);
 	// Content

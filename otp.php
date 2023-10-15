@@ -1,3 +1,8 @@
+<?php 
+include 'root/config.php'; 
+include 'root/process.php'; 
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,24 +22,24 @@
             <div class="container">
                 <div class="col-sm-8 offset-sm-2 col-lg-6 offset-lg-3 col-xl-6 offset-xl-3 text-center">
                     <div class="rounded bg-white shadow p-5">
-                        <form method="post" action="">
+                        <form method="POST" action="">
                             <a href="login" style="float: left;">←back </a>
                             <h3 class="text-dark fw-bolder fs-4 mb-2">OTP Verification</h3><br>
                             <div class="otp_input text-start mb-2">
                                 <label for="digit">Enter code sent to your phone number</label>
                                 <div class="d-flex align-items-center justify-content-between mt-2">
-                                    <input type="text" class="form-control" placeholder="" required maxlength="1">
-                                    <input type="text" class="form-control" placeholder="" required maxlength="1">
-                                    <input type="text" class="form-control" placeholder="" required maxlength="1">
-                                    <input type="text" class="form-control" placeholder="" required maxlength="1">
-                                    <input type="text" class="form-control" placeholder="" required maxlength="1">
+                                    <input type="text" class="form-control" name="otp1" placeholder="" required maxlength="1">
+                                    <input type="text" class="form-control" name="otp2" placeholder="" required maxlength="1">
+                                    <input type="text" class="form-control" name="otp3" placeholder="" required maxlength="1">
+                                    <input type="text" class="form-control" name="otp4" placeholder="" required maxlength="1">
+                                    <input type="text" class="form-control" name="otp5" placeholder="" required maxlength="1">
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary submit_btn my-4">Verify</button>
                         </form>
 
                         <!-- <div class="fw-normal text-muted mb-2"> -->
-                        <form method="post" action="">
+                        <form method="POST" action="">
                             <div class="form-group">
                                 Didn't receive the code ?
                                 <button type="submit" name="resend_code_btn" class="btn-sm btn-primary my-4" style="

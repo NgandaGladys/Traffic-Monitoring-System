@@ -1,3 +1,8 @@
+<?php 
+include 'root/config.php'; 
+include 'root/process.php'; 
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,16 +26,16 @@
                     <div class="form-style">
                         <form method="post" action="">
                             <div class="form-group pb-3">
-                                <input type="tel" placeholder="Phone Number" class="form-control" id="exampleInputPhoneNumber" required>
+                                <input type="tel" placeholder="Email Address" name="email" class="form-control" id="exampleInputPhoneNumber" required>
                             </div>
                             <div class="form-group pb-3">
-                                <input type="password" placeholder="Password" class="form-control" id="exampleInputPassword1" required>
+                                <input type="password" placeholder="Password" name="password" class="form-control" id="exampleInputPassword1" required>
                             </div>
                             <div class="d-flex align-items-center justify-content-between" >
                                 <div><a href="forgot-password" >Forget Password?</a></div>
                             </div>
                             <div class="pb-2">
-                                <button type="submit" class="btn btn-dark w-100 font-weight-bold mt-2">Submit</button>
+                                <button type="submit" name="login_btn" class="btn btn-dark w-100 font-weight-bold mt-2">Submit</button>
                             </div>
                         </form>
                         <div class="pt-4 text-center" style="text-align: left!important">
