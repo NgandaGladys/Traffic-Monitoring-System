@@ -14,24 +14,25 @@ if (isset($_POST['register_btn'])) {
         $sql = "INSERT INTO users VALUES(NULL,'$fullname','$phone','$email','$pass','','user','$dtime')";
         $result = dbCreate($sql);
         if($result == 1){
-            $api_key = "lSwE2BEOF8Z79A1L4n489S2WB6DJ9VQ9Q92yF3XlOyJ9VMl2T03hzVs52L6Kk1lI";
-            $message = "GREMBASI Inv. LTD: Hi ".$surname.', your Login details is: Phone '. $phone.' Password: '.$password;
-            @json_decode(send_sms_yoola_api($api_key, $phone, $message), true);
-                
+            // $subj = "Traffic Monitoring System - Registration Verification";
+            // $body = "Hello {$fullname} you have successfully registered to Traffic Monitoring System.<br>
+            // Your Login details is as follows: Email {$email} and Password {$password}. ";
+            // GoMail($email,$subj,$body);
+
             echo "<script>
                 alert('Registration is Successful');
-                window.location = '".SITE_URL."?users';
+                window.location = '".SITE_URL."/login';
                 </script>";
         }else{
             echo "<script>
               alert('User registration failed');
-              window.location = '".SITE_URL."?users';
+              window.location = '".SITE_URL."/signup';
               </script>";
         }
      }else{
           echo "<script>
-            alert('Username already registered');
-            window.location = '".SITE_URL."?users';
+            alert('Email Adding already registered');
+            window.location = '".SITE_URL."/signup';
             </script>";
         }
     }
