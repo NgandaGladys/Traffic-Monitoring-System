@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 15, 2023 at 07:28 PM
+-- Generation Time: Oct 15, 2023 at 08:41 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -21,6 +21,17 @@ SET time_zone = "+00:00";
 --
 -- Database: `tms`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roads`
+--
+
+CREATE TABLE `roads` (
+  `road_id` int(11) NOT NULL,
+  `road_name` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -51,6 +62,13 @@ INSERT INTO `users` (`userid`, `fullname`, `phone`, `email`, `password`, `token`
 --
 
 --
+-- Indexes for table `roads`
+--
+ALTER TABLE `roads`
+  ADD PRIMARY KEY (`road_id`),
+  ADD KEY `road_id` (`road_id`,`road_name`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -61,6 +79,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `roads`
+--
+ALTER TABLE `roads`
+  MODIFY `road_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`

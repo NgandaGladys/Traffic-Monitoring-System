@@ -26,7 +26,8 @@
             <div class="col-lg-3 col-md-6">
                <div class="card dashboard-product">
                   <span>Roads</span>
-                  <h2 class="dashboard-total-products">37,500</h2>
+                  <?php $rds = $dbh->query("SELECT * FROM roads ")->rowCount(); ?>
+                  <h2 class="dashboard-total-products"><?=number_format($rds); ?></h2>
                   <span class="label label-primary">Roads</span>
                   <div class="side-box ">
                      <i class="ti-gift text-primary-color"></i>
