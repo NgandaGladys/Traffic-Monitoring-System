@@ -30,7 +30,8 @@
                   <h2 class="dashboard-total-products"><?=number_format($rds); ?></h2>
                   <span class="label label-primary">Roads</span>
                   <div class="side-box ">
-                     <i class="ti-map text-primary-color"></i>
+                     <i class="fa fa-road"></i>
+                     <!-- <i class="ti-map text-primary-color"></i> -->
                   </div>
                </div>
             </div>
