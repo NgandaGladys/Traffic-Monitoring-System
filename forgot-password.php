@@ -21,15 +21,15 @@
                 </div>
                 <div class="col-md-6 bg-white p-5" style="border-radius: 0 10px 10px 0;">
                     <h3 class="pb-3">Forgot Password</h3>
-                    <p>Enter your phone number to reset password</p>
+                    <p>Enter your Email Address to reset password</p>
                     <div class="form-style">
                         <form method="post" action="">
                             <div class="form-group pb-3">
-                                <input type="tel" placeholder="Phone number" class="form-control"
+                                <input type="tel" placeholder="Email Address" name="email" class="form-control"
                                     id="exampleInputPhoneNumber" required>
                             </div>
                             <div class="pb-2">
-                                <button type="submit" class="btn btn-dark w-100 font-weight-bold mt-2">Continue</button>
+                                <button type="submit" name="forgot_password_btn" class="btn btn-dark w-100 font-weight-bold mt-2">Continue</button>
                             </div>
                         </form>
                         <div class="pt-4 text-center" style="text-align: left!important">
