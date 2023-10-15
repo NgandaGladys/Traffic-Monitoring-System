@@ -14,6 +14,13 @@ include 'root/process.php';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS Link -->
     <link rel="stylesheet" href="src/style.css">
+    <style type="text/css">
+        body{
+            background-image: url('images/pexels-pixabay-210182.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    </style>
 </head>
 
 <body>
