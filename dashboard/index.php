@@ -24,20 +24,27 @@ if ($role == 'admin') {
                            <thead>
                               <tr>
                                  <th>#</th>
-                                 <th>First Name</th>
-                                 <th>Last Name</th>
-                                 <th>Username</th>
-                                 <th>Nickname</th>
+                                 <th>FullName</th>
+                                 <th>Phone</th>
+                                 <th>Email</th>
+                                 <th>Role</th>
+                                 <th>Date Registered</th>
                               </tr>
                            </thead>
+                     <!-- `userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered` -->
                            <tbody>
+                           <?php $users = $dbh->query("SELECT * FROM users WHERE role ='admin' ORDER BY userid DESC ");
+                           $x = 1;
+                           while($rx = $users->fetch(PDO::FETCH_OBJ)){ ?>
                               <tr>
-                                 <td>8</td>
-                                 <td>Jacob</td>
-                                 <td>Thornton</td>
-                                 <td>@fat</td>
-                                 <td>Ducky</td>
+                                 <td><?=$x++; ?></td>
+                                 <td><?=$rx->fullname; ?></td>
+                                 <td><?=$rx->phone; ?></td>
+                                 <td><?=$rx->email; ?></td>
+                                 <td><?=$rx->role; ?></td>
+                                 <td><?=$rx->date_registered; ?></td>
                               </tr>
+                           <?php } ?>
                            </tbody>
                         </table>
                      </div>
@@ -71,24 +78,31 @@ if ($role == 'admin') {
                <div class="card-block">
                   <div class="row">
                      <div class="col-sm-12 table-responsive">
-                        <table class="table table-hover">
+                       <table class="table table-hover">
                            <thead>
                               <tr>
                                  <th>#</th>
-                                 <th>First Name</th>
-                                 <th>Last Name</th>
-                                 <th>Username</th>
-                                 <th>Nickname</th>
+                                 <th>FullName</th>
+                                 <th>Phone</th>
+                                 <th>Email</th>
+                                 <th>Role</th>
+                                 <th>Date Registered</th>
                               </tr>
                            </thead>
+                     <!-- `userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered` -->
                            <tbody>
+                           <?php $users = $dbh->query("SELECT * FROM users WHERE role ='user' ORDER BY userid DESC ");
+                           $x = 1;
+                           while($rx = $users->fetch(PDO::FETCH_OBJ)){ ?>
                               <tr>
-                                 <td>8</td>
-                                 <td>Jacob</td>
-                                 <td>Thornton</td>
-                                 <td>@fat</td>
-                                 <td>Ducky</td>
+                                 <td><?=$x++; ?></td>
+                                 <td><?=$rx->fullname; ?></td>
+                                 <td><?=$rx->phone; ?></td>
+                                 <td><?=$rx->email; ?></td>
+                                 <td><?=$rx->role; ?></td>
+                                 <td><?=$rx->date_registered; ?></td>
                               </tr>
+                           <?php } ?>
                            </tbody>
                         </table>
                      </div>
