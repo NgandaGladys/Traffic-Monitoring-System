@@ -10,35 +10,46 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <!--`userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered` -->
+                    <!--`rid`, `road_id`, `fromm`, `too`, `status`-->
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label>Full Name (required)</label>
-                                <input class="form-control" name="fullname" type="text" required />
+                                <label>Road Name (required)</label>
+                                <select class="form-control" name="road_id" required>
+                                    <option value="">--select road name--</option>
+                                    <?php $rad = $dbh->query("SELECT * FROM roads");
+                                    while ($rx = $rad->fetch(PDO::FETCH_OBJ)) { ?>
+                                        <option value="<?=$rx->road_id; ?>"><?=$rx->road_name; ?></option>
+                                    <?php } ?>
+                                </select>
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label>Phone Number (required)</label>
-                                <input class="form-control" name="phone" maxlength="10" type="text" required />
+                                <label>From (required)</label>
+                                <input class="form-control" name="fromm" type="text" required />
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label>Email (required)</label>
-                                <input class="form-control" name="email" type="email" required />
+                                <label>To (required)</label>
+                                <input class="form-control" name="too" type="text" required />
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label>Password (required)</label>
-                                <input class="form-control" name="password" type="password" required />
+                                <label>Road Status (required)</label>
+                                <select class="form-control" name="status" required>
+                                    <option value="">--select Road Status--</option>
+                                    <option>Green</option>
+                                    <option>Brown</option>
+                                    <option>Red</option>
+                                </select>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" name="add_user_by_admin_new_user_btn" class="btn btn-success">Save</button>
+                        <button type="submit" name="add_route_btn_new_user_btn" class="btn btn-success">Save</button>
                     </div>
                 </div>
             </form>
