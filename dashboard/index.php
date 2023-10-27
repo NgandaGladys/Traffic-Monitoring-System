@@ -103,7 +103,7 @@ if ($role == 'admin') {
                                  <td><?=$rx->role; ?></td>
                                  <td><?=$rx->date_registered; ?></td>
                                  <td>
-                                    <a href="?delete-user=<?=$rx->userid; ?>" class="btn btn-danger">Delete</a>
+                                    <a onclick="return confirm('Do you really want to delete this user?. '); " href="?delete-user=<?=$rx->userid; ?>" class="btn btn-danger">Delete</a>
                                  </td>
                               </tr>
                            <?php } ?>
@@ -119,6 +119,10 @@ if ($role == 'admin') {
       <!-- Main content ends -->
       <!-- Container-fluid ends -->
    </div>
+   <?php }elseif (isset($_REQUEST['delete-user'])) { 
+      dbDelete('users','userid',$_REQUEST['delete-user']);
+      redirect_page('?users'); ?>
+
    <?php }elseif (isset($_REQUEST['roads'])) { ?>
    <div class="content-wrapper">
       <!-- Container-fluid starts -->
