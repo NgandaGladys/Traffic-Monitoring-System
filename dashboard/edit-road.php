@@ -2,6 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <form action="" method="post" enctype="multipart/form-data">
+                <input type="hidden" value="<?=$rx->road_id; ?>" name="road_id">
                 <div class="modal-header">
                     <h5 class="modal-title">Edit Road</h5>
                     <button type="button" class="close" data-dismiss="modal">
