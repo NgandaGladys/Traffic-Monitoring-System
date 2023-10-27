@@ -137,7 +137,7 @@ if ($role == 'admin') {
          <div class="row dashboard-header">
              <div class="card">
                <div class="card-header">
-                  <h5 class="card-header-text">Road Users</h5>
+                  <h5 class="card-header-text">Road Users - <a href="#addroad" data-toggle="modal" class="btn btn-primary">Add Road</a></h5>
                </div>
                <div class="card-block">
                   <div class="row">
@@ -146,20 +146,21 @@ if ($role == 'admin') {
                            <thead>
                               <tr>
                                  <th>#</th>
-                                 <th>First Name</th>
-                                 <th>Last Name</th>
-                                 <th>Username</th>
-                                 <th>Nickname</th>
+                                 <th>Road Name</th>
+                                 <th>Action</th>
                               </tr>
                            </thead>
                            <tbody>
+                           <?php $roads = $dbh->query("SELECT * FROM roads ");
+                           $x = 1; 
+                           while($rx = $roads->fetch(PDO::FETCH_OBJ)){ ?>
                               <tr>
-                                 <td>8</td>
-                                 <td>Jacob</td>
-                                 <td>Thornton</td>
-                                 <td>@fat</td>
-                                 <td>Ducky</td>
+                                 <td><?=$x++; ?></td>
+                                 <td><?=$rx->road_name; ?></td>
+                                 <td><a href="" class="btn btn-primary">Edit</a></td>
+                                 <td><a href="?delete-road=<?=$rx->road_id; ?>" class="btn btn-danger">Delete</a></td>
                               </tr>
+                           <?php } ?>
                            </tbody>
                         </table>
                      </div>
@@ -169,10 +170,10 @@ if ($role == 'admin') {
          </div>
          <!-- 4-blocks row end -->
       </div>
-      <!-- Main content ends -->
-      <!-- Container-fluid ends -->
    </div>
-   <?php }elseif (isset($_REQUEST[''])) { ?>
+   <?php }elseif (isset($_REQUEST['delete-road'])) { 
+      dbDelete('roads','road_id',$_REQUEST['delete-road']);
+      redirect_page('?roads'); ?>
 
    <?php }elseif (isset($_REQUEST[''])) { ?>
 
