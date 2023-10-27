@@ -158,7 +158,7 @@ if ($role == 'admin') {
                                  <td><?=$x++; ?></td>
                                  <td><?=$rx->road_name; ?></td>
                                  <td><a href="" class="btn btn-primary">Edit</a></td>
-                                 <td><a href="?delete-road=<?=$rx->road_id; ?>" class="btn btn-danger">Delete</a></td>
+                                 <td><a onclick="return confirm('Do you really want to delete this Road?. '); " href="?delete-road=<?=$rx->road_id; ?>" class="btn btn-danger">Delete</a></td>
                               </tr>
                            <?php } ?>
                            </tbody>
