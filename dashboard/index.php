@@ -15,7 +15,7 @@ if ($role == 'admin') {
          <div class="row dashboard-header">
              <div class="card">
                <div class="card-header">
-                  <h5 class="card-header-text">Officers / Admins</h5>
+                  <h5 class="card-header-text">Officers / Admins  - <a href="#addofficer" class="btn btn-primary" data-toggle="modal">Add Officer</a></h5>
                </div>
                <div class="card-block">
                   <div class="row">
@@ -29,6 +29,7 @@ if ($role == 'admin') {
                                  <th>Email</th>
                                  <th>Role</th>
                                  <th>Date Registered</th>
+                                 <th>Action</th>
                               </tr>
                            </thead>
                            <!-- `userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered` -->
@@ -43,6 +44,9 @@ if ($role == 'admin') {
                                  <td><?=$rx->email; ?></td>
                                  <td><?=$rx->role; ?></td>
                                  <td><?=$rx->date_registered; ?></td>
+                                 <td>
+                                    <a onclick="return confirm('Do you really want to delete this officer?. '); " href="?delete-user=<?=$rx->userid; ?>" class="btn btn-danger">Delete</a>
+                                 </td>
                               </tr>
                            <?php } ?>
                            </tbody>
