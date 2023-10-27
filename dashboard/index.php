@@ -31,7 +31,7 @@ if ($role == 'admin') {
                                  <th>Date Registered</th>
                               </tr>
                            </thead>
-                     <!-- `userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered` -->
+                           <!-- `userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered` -->
                            <tbody>
                            <?php $users = $dbh->query("SELECT * FROM users WHERE role ='admin' ORDER BY userid DESC ");
                            $x = 1;
@@ -87,6 +87,7 @@ if ($role == 'admin') {
                                  <th>Email</th>
                                  <th>Role</th>
                                  <th>Date Registered</th>
+                                 <th>Action</th>
                               </tr>
                            </thead>
                      <!-- `userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered` -->
@@ -101,6 +102,9 @@ if ($role == 'admin') {
                                  <td><?=$rx->email; ?></td>
                                  <td><?=$rx->role; ?></td>
                                  <td><?=$rx->date_registered; ?></td>
+                                 <td>
+                                    <a href="?delete-user=<?=$rx->userid; ?>" class="btn btn-danger">Delete</a>
+                                 </td>
                               </tr>
                            <?php } ?>
                            </tbody>
