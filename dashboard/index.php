@@ -45,10 +45,11 @@ if ($role == 'admin') {
                                  <td><?=$rx->role; ?></td>
                                  <td><?=$rx->date_registered; ?></td>
                                  <td>
+                                    <a href="#edit-user<?=$rx->userid; ?>" data-toggle="modal" class="btn btn-primary">Edit</a>
                                     <a onclick="return confirm('Do you really want to delete this officer?. '); " href="?delete-user=<?=$rx->userid; ?>" class="btn btn-danger">Delete</a>
                                  </td>
                               </tr>
-                           <?php } ?>
+                           <?php include 'edit-user.php'; } ?>
                            </tbody>
                         </table>
                      </div>
@@ -94,7 +95,7 @@ if ($role == 'admin') {
                                  <th>Action</th>
                               </tr>
                            </thead>
-                     <!-- `userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered` -->
+                           <!-- `userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered` -->
                            <tbody>
                            <?php $users = $dbh->query("SELECT * FROM users WHERE role ='user' ORDER BY userid DESC ");
                            $x = 1;
@@ -107,10 +108,11 @@ if ($role == 'admin') {
                                  <td><?=$rx->role; ?></td>
                                  <td><?=$rx->date_registered; ?></td>
                                  <td>
+                                    <a href="#edit-user<?=$rx->userid; ?>" data-toggle="modal" class="btn btn-primary">Edit</a>
                                     <a onclick="return confirm('Do you really want to delete this user?. '); " href="?delete-user=<?=$rx->userid; ?>" class="btn btn-danger">Delete</a>
                                  </td>
                               </tr>
-                           <?php } ?>
+                           <?php include 'edit-user.php'; } ?>
                            </tbody>
                         </table>
                      </div>
