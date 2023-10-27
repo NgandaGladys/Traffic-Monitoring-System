@@ -344,7 +344,7 @@ if ($role == 'admin') {
                               <tr>
                                  <td><?=$x++; ?></td>
                                  <td><?=$rx->road_name; ?></td>
-                                 <td><a href="#google-map<?=$rx->road_id; ?>" data-toggle="modal" class="btn btn-primary">View Google Map</a></td>
+                                 <td><a href="#google-map<?=$rx->road_id; ?>" data-toggle="modal" class="btn btn-primary">View in Google Map</a></td>
                               </tr>
                            <?php include 'google-map.php'; } ?>
                            </tbody>
