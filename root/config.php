@@ -765,4 +765,26 @@ function validate_token($token){
 function error_display(){
 
 }
+
+
+function geolocation_api($query){
+	$curl = curl_init();
+	curl_setopt_array($curl, array(
+	  CURLOPT_URL => 'http://api.positionstack.com/v1/forward?access_key=5db51a05a26db8e3a5489233364d1208&query='.$query,
+	  CURLOPT_RETURNTRANSFER => true,
+	  CURLOPT_ENCODING => '',
+	  CURLOPT_MAXREDIRS => 10,
+	  CURLOPT_TIMEOUT => 0,
+	  CURLOPT_FOLLOWLOCATION => true,
+	  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+	  CURLOPT_CUSTOMREQUEST => 'GET',
+	));
+
+	$response = curl_exec($curl);
+	curl_close($curl);
+	return $response;
+}
+
+
+
 ?>

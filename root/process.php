@@ -173,170 +173,125 @@ if (isset($_POST['register_btn'])) {
         </script>";
         }
     }
-}elseif (isset($_POST['save_new_milk_inventory_btn'])) {
+}elseif (isset($_POST['add_road_new_user_btn'])) {
     trim(extract($_POST));
-    // `milk_id`, `milk_supplier_id`, `milk_quantity`, `milk_price`, `milk_date_added`
-    $price = $dbh->query("SELECT price_per_liter FROM milk_supplier WHERE id='$supplier' ")->fetchColumn();
-    $sql = dbCreate("INSERT INTO milk_inventory (`milk_supplier_id`, `day_or_eve`, `price`, `date`, `liters`, `date_time`) VALUES('$supplier', '$time','$price','$today', '$quantity', '$dtime') ");
-    $dbh->query("UPDATE store SET quantity= quantity + '$quantity' WHERE pid=10 ");
-    if ($sql) {
-        $_SESSION['status'] = '<div class="alert alert-success alert-dismissible">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <strong>Success!</strong> Inventory Recorded Successfully.
-      </div>';
-      redirect_page(SITE_URL.'/milk-inventory');
+    // `road_id`, `road_name`
+    $road_name = addslashes($road_name);
+    $sql = dbCreate("INSERT INTO roads VALUES(NULL, '$road_name') ");
+    if ($sql ==1) {
+        echo "<script>
+            alert('Road Name Added successfully');
+            window.location = '".HOME_URL."?roads';
+            </script>";
     }else{
         echo "<script>
-            alert('Milk Inventory Adding Failed');
-            window.location = '".SITE_URL."/milk-inventory';
+            alert('Adding Road Failed');
+            window.location = '".HOME_URL."?roads';
             </script>";
     }
 
-}elseif(isset($_POST['save_new_milk_supplier_btn'])){
+}elseif(isset($_POST['update_road_new_user_btn'])){
     trim(extract($_POST));
     if (count($errors) == 0) {
-        $userid = rand(11111111,99999999);
-        $fullname = addslashes($name);
-        $sql = "INSERT INTO milk_supplier (`full_name`, `village`, `phone_number`, `price_per_liter`) VALUES ('$fullname', '$village', '$phone', '$amount')";
+        $road_name = addslashes($road_name);
+        $sql = $dbh->query("UPDATE roads SET road_name = '$road_name' WHERE road_id = '$road_id' ");
+    
+        if($sql){
+            echo "<script>
+            alert('Road Name Updated successfully');
+            window.location = '".HOME_URL."?roads';
+            </script>";
+        }else{
+           echo "<script>
+            alert('Road Name Updated failed');
+            window.location = '".HOME_URL."?roads';
+            </script>";
+        }
+    }
+}elseif (isset($_POST['add_user_by_admin_new_user_btn'])) {
+    trim(extract($_POST));
+    if (count($errors) == 0) {
+        // `userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered`
+        $check = $dbh->query("SELECT email FROM users WHERE email='$email' ")->fetchColumn();
+      if(!$check){
+        $pass= sha1($password);
+        $sql = "INSERT INTO users VALUES(NULL,'$fullname','$phone','$email','$pass','','admin','$dtime')";
         $result = dbCreate($sql);
         if($result == 1){
-            $_SESSION['status'] = '<div class="alert alert-success alert-dismissible">
-              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-              <strong>Success!</strong> Milk Supplier Registered Successfully.
-            </div>';
-            header("refresh:3; url=".SITE_URL.'/milk-suppliers');
-        }else{
-            $_SESSION['status'] = '<div class="alert alert-danger alert-dismissible">
-              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-              <strong>Invalid!</strong> Milk Supplier Registration Failed.
-            </div>';
-        }
-    }
-}elseif (isset($_POST['update_milk_supplier_details_btn'])){
-    trim(extract($_POST));
-    $fullname = addslashes($fullname);
-    //UPDATE `milk_supplier` SET `id`='[value-1]',`full_name`='[value-2]',`village`='[value-3]',`phone_number`='[value-4]',`price_per_liter`='[value-5]' WHERE 1
-    $sql = $dbh->query("UPDATE milk_supplier SET full_name = '$fullname', village = '$village', phone_number = '$phone', price_per_liter = '$price' WHERE id = '$id' ");
-    if ($sql) {
-        $_SESSION['status'] = '<div class="alert alert-success alert-dismissible">
-          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-          <strong>Success!</strong> Supplier Details Updated Successfully.
-        </div>';
-        header("Location: ".SITE_URL.'/milk-suppliers');
-    }else{
-        echo "<script>
-            alert('Supplier Details Update Failed');
-            window.location = '".SITE_URL."/milk-suppliers';
-            </script>";
-    }
-
-}elseif(isset($_POST['update_user_details_btn'])){
-    trim(extract($_POST));
-    //`userid`, `fullname`, `email`, `role`, `password`, `phone`, `token`, `status`, `date_registered`, `pic`
-    $fullname = addslashes($fullname);
-    $sql = $dbh->query("UPDATE users SET fullname = '$fullname', email = '$email', phone = '$phone', role = '$role' WHERE userid = '$userid' ");
-    if ($sql) {
-        $_SESSION['status'] = '<div class="alert alert-success alert-dismissible">
-          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-          <strong>Success!</strong> User Details Updated Successfully.
-        </div>';
-        header("Location: ".SITE_URL.'/users');
-    }else{
-        echo "<script>
-            alert('User Details Update Failed');
-            window.location = '".SITE_URL."/users';
-            </script>";
-    }
-
-}elseif (isset($_POST['submit_banner_details_btn'])) {
-    trim(extract($_POST));
-    //`bid`, `bsmall_title`, `bbig_title`, `bdesc`, `bphoto`, `bdate_added`
-     $filename = trim($_FILES['bphoto']['name']);
-     $chk = rand(1111111111111,9999999999999);
-     $ext = strrchr($filename, ".");
-     $bphoto = $chk.$ext;
-     $target_img = "uploads/".$bphoto;
-     $url = SITE_URL.'/uploads/'.$bphoto;
-     $bsmall_title = addslashes($bsmall_title);
-     $bbig_title = addslashes($bbig_title);
-     $bdesc = addslashes($bdesc);
-    $result = dbCreate("INSERT INTO banner VALUES(NULL,'$bsmall_title','$bbig_title','$bdesc','$url','$today')");
-     if (move_uploaded_file($_FILES['bphoto']['tmp_name'], $target_img)) {
-          $msg ="Image uploaded Successfully";
-          }else{
-            $msg ="There was a problem uploading image";
-          }
-        if($result == 1){
-            $_SESSION['upload_status'] = '<div class="alert alert-success alert-dismissible">
-              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-              <strong>Success!</strong>Banner Uploaded Successfully.
-            </div>';
-            header("Location: ".SITE_URL."/banners");
-        }else{
-            $_SESSION['upload_status'] = '<div class="alert alert-success alert-dismissible">
-              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-              <strong>Failed!</strong>Banner Upload Failed.
-            </div>';
-        }
-
-}elseif (isset($_POST['recover_btn'])) {
-    trim(extract($_POST));
-    $res = $dbh->query("SELECT phone FROM users WHERE (phone='$phone' ) ")->fetchColumn();
-    if(!$res){
-        echo "<script>
-            alert('This phone number is not registered in this system');
-            window.location = '".SITE_URL."/auth-login';
-            </script>";
-     }else{
-        $_SESSION['phone'] = $phone;
-        header("Location: auth-new-password");
-
-    }
-}elseif (isset($_POST['newpassowrd_btn_verification'])) {
-    trim(extract($_POST));
-    // `userid`, `token`, `surname`, `othername`, `gender`, `phone`, `email`, `password`, `country_id`, `branch_id`, `address`, `nin_number`, `date_registered`, `account_status`, `u_type`
-    $password = sha1($new_password);
-    $update_password = $dbh->query("UPDATE users SET password = '$password' WHERE phone = '$phone' ");
-    if ($update_password) {
-        $ro = dbRow("SELECT * FROM users WHERE phone = '$phone' ");
-        $message = "Hi ".$ro->surname.', your New Login details is: Phone '. $phone.' Password: '.$new_password;
-            $nums = array("+256".$phone);
-            {
-            $recipients = "".implode(',', $nums);
-            $message = "GREMBASI INVESTMENTS LTD : ".$message;
-            $gateway    = new AfricasTalkingGateway($username, $apikey);
-            try 
-            { 
-              $results = $gateway->sendMessage($recipients, $message);
-              foreach($results as $result) {
-              echo '';
-              }
-            }
-            catch ( AfricasTalkingGatewayException $e )
-            {
-              echo "Encountered an error while sending: ".$e->getMessage();
-            }
-            }
             echo "<script>
-                alert('Account Login details updated Successfully');
-                window.location = '".SITE_URL."/auth-login';
+                alert('Registration is Successful');
+                window.location = '".HOME_URL."?officers';
                 </script>";
+        }else{
+            //--error , registratio failed. 
+            echo "<script>
+              alert('User registration failed');
+              window.location = '".HOME_URL."?officers';
+              </script>";
+        }
+     }else{
+        //user already exists...
+          echo "<script>
+            alert('Email Adding already registered');
+            window.location = '".HOME_URL."?officers';
+            </script>";
+        }
     }
-}elseif (isset($_POST['update_client_btn'])) {
+}elseif (isset($_POST['add_route_btn_new_user_btn'])) {
+     trim(extract($_POST));
+     // `rid`, `road_id`, `fromm`, `too`, `status`
+    if (count($errors) == 0) {
+        $fromm = addslashes($fromm);
+        $too = addslashes($too);
+        $sql = $dbh->query("INSERT INTO routes VALUES(NULL,'$road_id','$fromm','$too','$status') ");
+        if($sql){
+            echo "<script>
+            alert('Road Name Updated successfully');
+            window.location = '".HOME_URL."?routes';
+            </script>";
+        }else{
+           echo "<script>
+            alert('Road Name Updated failed');
+            window.location = '".HOME_URL."?routes';
+            </script>";
+        }
+    }
+}elseif (isset($_POST['update_road_route_new_user_btn'])) {
     trim(extract($_POST));
-    //`cid`, `fname`, `lname`, `cphone`, `physical_address`, `id_number`, `occupation`, `monthly_salary`
-    $fname = addslashes($fname);
-    $lname = addslashes($lname);
-    $physical_address = addslashes($physical_address);
-    $occupation = addslashes($occupation);
-    $res = $dbh->query("UPDATE clients SET fname = '$fname', lname = '$lname', cphone = '$cphone', physical_address = '$physical_address', id_number = '$id_number', occupation = '$occupation', monthly_salary = '$monthly_salary' WHERE cid = '$cid' ");
-    if ($res) {
-        header("Location: ".SITE_URL.'?clients');
-
-        $_SESSION['status'] = '<div class="alert alert-success alert-dismissible">
-          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-          <strong>Success!</strong> Client details Updated successfully.
-        </div>';
+    // `rid`, `road_id`, `fromm`, `too`, `status`
+    if (count($errors) == 0) {
+        $fromm = addslashes($fromm);
+        $too = addslashes($too);
+        $sql = $dbh->query("UPDATE routes SET fromm = '$fromm', too = '$too' WHERE rid = '$rid' ");
+    
+        if($sql){
+            echo "<script>
+            alert('Road Name Updated successfully');
+            window.location = '".HOME_URL."?routes';
+            </script>";
+        }else{
+           echo "<script>
+            alert('Road Name Updated failed');
+            window.location = '".HOME_URL."?routes';
+            </script>";
+        }
+    }
+}elseif (isset($_POST['update_user_role_new_user_btn'])) {
+    trim(extract($_POST));
+    // userid, role
+    if (count($errors) == 0) {
+        $sql = $dbh->query("UPDATE users SET role = '$role' WHERE userid = '$userid' ");
+        if($sql){
+            echo "<script>
+            alert('User Updated successfully');
+            window.location = '".HOME_URL."?users';
+            </script>";
+        }else{
+           echo "<script>
+            alert('User Update failed');
+            window.location = '".HOME_URL."?users';
+            </script>";
+        }
     }
 }
 
