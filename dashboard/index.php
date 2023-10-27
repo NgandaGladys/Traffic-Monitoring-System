@@ -135,14 +135,14 @@ if ($role == 'admin') {
       <div class="container-fluid">
          <div class="row">
             <div class="main-header">
-               <h4>Road Users</h4>
+               <h4>Road</h4>
             </div>
          </div>
          <!-- 4-blocks row start -->
          <div class="row dashboard-header">
              <div class="card">
                <div class="card-header">
-                  <h5 class="card-header-text">Road Users - <a href="#addroad" data-toggle="modal" class="btn btn-primary">Add Road</a></h5>
+                  <h5 class="card-header-text">Road - <a href="#addroad" data-toggle="modal" class="btn btn-primary">Add Road</a></h5>
                </div>
                <div class="card-block">
                   <div class="row">
@@ -312,8 +312,65 @@ if ($role == 'admin') {
    </div>
 <?php } ?>
 
-<?php }elseif ($role == 'user') { ?>
-   
+<?php }elseif ($role == 'user') { 
+   if (isset($_REQUEST['roads'])) { ?>
+   <div class="content-wrapper">
+      <!-- Container-fluid starts -->
+      <!-- Main content starts -->
+      <div class="container-fluid">
+         <div class="row">
+            <div class="main-header">
+               <h4>Road</h4>
+            </div>
+         </div>
+         <!-- 4-blocks row start -->
+         <div class="row dashboard-header">
+             <div class="card">
+               <div class="card-block">
+                  <div class="row">
+                     <div class="col-sm-12 table-responsive">
+                        <table class="table table-hover">
+                           <thead>
+                              <tr>
+                                 <th>#</th>
+                                 <th>Road Name</th>
+                                 <th>Action</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                           <?php $roads = $dbh->query("SELECT * FROM roads ");
+                           $x = 1; 
+                           while($rx = $roads->fetch(PDO::FETCH_OBJ)){ ?>
+                              <tr>
+                                 <td><?=$x++; ?></td>
+                                 <td><?=$rx->road_name; ?></td>
+                                 <td><a href="#google-map<?=$rx->road_id; ?>" data-toggle="modal" class="btn btn-primary">View Google Map</a></td>
+                              </tr>
+                           <?php include 'google-map.php'; } ?>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </div>            
+         </div>
+         <!-- 4-blocks row end -->
+      </div>
+   </div>
+  <?php }elseif (isset($_REQUEST[''])) { ?>
+    
+   <?php }else{ ?>
+      <div class="content-wrapper">
+      <!-- Container-fluid starts -->
+      <!-- Main content starts -->
+      <div class="container-fluid">
+         <div class="row">
+            <div class="main-header">
+               <h4>Welcome <?=$fullname; ?> !</h4>
+            </div>
+         </div>
+      </div>
+   </div>
+   <?php } ?>
 <?php } ?>
-
 <?php include 'footer.php'; ?>

@@ -177,6 +177,7 @@ if (empty($_SESSION['userid'])) {
                         <i class="icon-speedometer"></i><span> Dashboard</span>
                     </a>                
                 </li>
+               <?php if ($role == 'admin') { ?>
                 <li class="treeview">
                     <a class="waves-effect waves-dark" href="<?=HOME_URL; ?>?officers">
                         <i class="icon-user"></i><span> Officers</span>
@@ -187,6 +188,7 @@ if (empty($_SESSION['userid'])) {
                         <i class="icon-user"></i><span> Users</span>
                     </a>                
                 </li>
+                <?php } ?>
                 <li class="treeview">
                     <a class="waves-effect waves-dark" href="<?=HOME_URL; ?>?roads">
                         <i class="icon-map"></i><span> Roads</span>
