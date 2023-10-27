@@ -157,10 +157,10 @@ if ($role == 'admin') {
                               <tr>
                                  <td><?=$x++; ?></td>
                                  <td><?=$rx->road_name; ?></td>
-                                 <td><a href="" class="btn btn-primary">Edit</a></td>
+                                 <td><a href="#edit-road<?=$rx->road_id; ?>" data-toggle="modal" class="btn btn-primary">Edit</a></td>
                                  <td><a onclick="return confirm('Do you really want to delete this Road?. '); " href="?delete-road=<?=$rx->road_id; ?>" class="btn btn-danger">Delete</a></td>
                               </tr>
-                           <?php } ?>
+                           <?php include 'edit-road.php'; } ?>
                            </tbody>
                         </table>
                      </div>
