@@ -37,9 +37,19 @@ include 'root/process.php';
                     <p>Enter your Email Address to reset password</p>
                     <div class="form-style">
                         <form method="post" action="">
+                         <?php  
+                               if (isset($_SESSION['email_err'])) {
+                                    echo $_SESSION['email_err'];
+                                    unset($_SESSION['email_err']);
+                                }
+                                if (isset($_SESSION['invalid_email_err'])) {
+                                    echo $_SESSION['invalid_email_err'];
+                                    unset($_SESSION['invalid_email_err']);
+                                } 
+                            ?>
                             <div class="form-group pb-3">
                                 <input type="tel" placeholder="Email Address" name="email" class="form-control"
-                                    id="exampleInputPhoneNumber" required>
+                                    id="exampleInputPhoneNumber">
                             </div>
                             <div class="pb-2">
                                 <button type="submit" name="forgot_password_btn" class="btn btn-dark w-100 font-weight-bold mt-2">Continue</button>
