@@ -276,7 +276,7 @@ if ($role == 'admin') {
                   <h2 class="dashboard-total-products"><span><?=number_format($officers); ?></span></h2>
                   <span class="label label-success"><a style="text-decoration: none; color: #FFF; " href="?officers">Officers</a></span>
                   <div class="side-box">
-                     <i class="icon-user text-primary-color"></i>
+                     <i class="icon-user text-warning-color"></i>
                   </div>
                </div>
             </div>
@@ -287,7 +287,7 @@ if ($role == 'admin') {
                   <h2 class="dashboard-total-products"><?=number_format($rds); ?></h2>
                   <span class="label label-primary"><a style="text-decoration: none; color: #FFF; " href="?roads">Roads</a></span>
                   <div class="side-box ">
-                     <i class="icon-map text-primary-color"></i>
+                     <i class="icon-map text-warning-color"></i>
                      <!-- <i class="ti-direction-alt text-primary-color"></i> -->
                   </div>
                </div>
@@ -300,7 +300,7 @@ if ($role == 'admin') {
                   <h2 class="dashboard-total-products"><span><?=number_format($rts); ?></span></h2>
                   <span class="label label-danger"><a style="text-decoration: none; color: #FFF; " href="?routes">Routes</a></span>
                   <div class="side-box">
-                     <i class="ti-rocket text-danger-color"></i>
+                     <i class="ti-rocket text-warning-color"></i>
                   </div>
                </div>
             </div>
