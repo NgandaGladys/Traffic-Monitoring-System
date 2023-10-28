@@ -103,11 +103,11 @@ if (empty($_SESSION['userid'])) {
                      <ul class="dropdown-menu settings-menu">
                         <li><a href="#!"><i class="icon-settings"></i> Settings</a></li>
                         <li><a href="#"><i class="icon-user"></i> Profile</a></li>
-                        <li><a href="#"><i class="icon-envelope-open"></i> My Messages</a></li>
-                        <li class="p-0">
+                        <!-- <li><a href="#"><i class="icon-envelope-open"></i> My Messages</a></li> -->
+                        <!-- <li class="p-0">
                            <div class="dropdown-divider m-0"></div>
-                        </li>
-                        <li><a href="#"><i class="icon-lock"></i> Lock Screen</a></li>
+                        </li> -->
+                        <!-- <li><a href="#"><i class="icon-lock"></i> Lock Screen</a></li> -->
                         <li><a href="<?=SITE_URL; ?>/logout" onclick="return confirm('Do you really want to Logout?. '); "><i class="icon-logout"></i> Logout</a></li>
 
                      </ul>
