@@ -63,7 +63,7 @@ if (empty($_SESSION['userid'])) {
             <div class="navbar-custom-menu f-right">
                <ul class="top-nav">
                   <!--Notification Menu-->
-                  <li class="dropdown notification-menu">
+                 <!--  <li class="dropdown notification-menu">
                      <a href="#!" data-toggle="dropdown" aria-expanded="false" class="dropdown-toggle">
                         <i class="icon-bell"></i>
                         <span class="badge badge-danger header-badge">9</span>
@@ -83,7 +83,7 @@ if (empty($_SESSION['userid'])) {
                            <a href="#!">See all notifications.</a>
                         </li>
                      </ul>
-                  </li>
+                  </li> -->
                   <!-- chat dropdown -->
                  
                   <!-- window screen -->

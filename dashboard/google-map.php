@@ -26,7 +26,8 @@
                             <div class="form-group">
                                 <h1>Location: <?=$location; ?></h1>
                                    <iframe 
-                                   width="600" 
+                                   class="form-control"
+                                   width="100%" 
                                    height="400" 
                                    frameborder="0" 
                                    scrolling="no" 
