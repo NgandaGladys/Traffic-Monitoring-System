@@ -260,10 +260,10 @@ if ($role == 'admin') {
          <div class="row dashboard-header">
             <div class="col-lg-3 col-md-6">
                <div class="card dashboard-product">
-               <?php $users = $dbh->query("SELECT * FROM users ")->rowCount(); ?>
+               <?php $users = $dbh->query("SELECT * FROM users WHERE role = 'user' ")->rowCount(); ?>
                   <span>Users</span>
                   <h2 class="dashboard-total-products"><?=number_format($users); ?></h2>
-                  <span class="label label-warning"><a style="text-decoration: none; color: #FFF; " href="?roads">Road Users</a></span>
+                  <span class="label label-warning"><a style="text-decoration: none; color: #FFF; " href="?roads">Users</a></span>
                   <div class="side-box">
                      <i class="ti-user text-warning-color"></i>
                   </div>
@@ -272,7 +272,7 @@ if ($role == 'admin') {
              <div class="col-lg-3 col-md-6">
                <div class="card dashboard-product">
                   <span>Officers</span>
-                  <?php $officers = $dbh->query("SELECT * FROM users WHERE role = 'officer' ")->rowCount(); ?>
+                  <?php $officers = $dbh->query("SELECT * FROM users WHERE role = 'admin' ")->rowCount(); ?>
                   <h2 class="dashboard-total-products"><span><?=number_format($officers); ?></span></h2>
                   <span class="label label-warning"><a style="text-decoration: none; color: #FFF; " href="?officers">Officers</a></span>
                   <div class="side-box">
