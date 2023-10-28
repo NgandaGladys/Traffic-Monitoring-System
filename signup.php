@@ -46,20 +46,40 @@ include 'root/process.php';
                         ?>
                             <div class="form-group pb-3">
                                 <input type="text" placeholder="Full Name" name="fullname" class="form-control"
-                                    id="exampleInputFullName" required>
+                                    id="exampleInputFullName">
                             </div>
                             <!-- `userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered` -->
                             <div class="form-group pb-3">
                                 <input type="tel" placeholder="Email Address" name="email" class="form-control"
-                                    id="exampleInputPhoneNumber" required>
+                                    id="exampleInputPhoneNumber">
+                                <?php  
+                                   if (isset($_SESSION['email_err'])) {
+                                        echo $_SESSION['email_err'];
+                                        unset($_SESSION['email_err']);
+                                    }
+                                    if (isset($_SESSION['invalid_email_err'])) {
+                                        echo $_SESSION['invalid_email_err'];
+                                        unset($_SESSION['invalid_email_err']);
+                                    } 
+                                ?>
                             </div>
                             <div class="form-group pb-3">
                                 <input type="tel" placeholder="Phone Number" name="phone" class="form-control"
-                                    id="exampleInputPhoneNumber" required>
+                                    id="exampleInputPhoneNumber">
+                                 <?php  
+                                   if (isset($_SESSION['phone_err'])) {
+                                        echo $_SESSION['phone_err'];
+                                        unset($_SESSION['phone_err']);
+                                    } ?>
                             </div>
                             <div class="form-group pb-3">
                                 <input type="password" placeholder="Password" name="password" class="form-control"
-                                    id="exampleInputPassword1" required>
+                                    id="exampleInputPassword1">
+                                 <?php  
+                                   if (isset($_SESSION['password_err'])) {
+                                        echo $_SESSION['password_err'];
+                                        unset($_SESSION['password_err']);
+                                    } ?>
                             </div>
                             <div class="pb-2">
                                 <button type="submit" name="register_btn" class="btn btn-dark w-100 font-weight-bold mt-2">Sign up</button>

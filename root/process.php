@@ -6,6 +6,23 @@ foreach ($errors as $error) {
 
 if (isset($_POST['register_btn'])) {
     trim(extract($_POST));
+    if (empty($email)) {
+    array_push($errors, $_SESSION['email_err'] = '<div class="text-danger text-center">Phone or Emaill Address is Missing</div>');
+    }
+    if (empty($password)) {
+    array_push($errors, $_SESSION['password_err'] = '<div class="text-danger text-center">Password is Missing</div>');
+    }
+    if (empty($phone)) {
+    array_push($errors, $_SESSION['phone_err'] = '<div class="text-danger text-center">Phone number is Missing</div>');
+    }
+
+    function checkemail($str) {
+        return (!preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $str)) ? FALSE : TRUE;
+    }
+    if(!checkemail($email)){
+         array_push($errors, $_SESSION['invalid_email_err'] = '<div class="text-danger text-center">Invalid Email Format. </div>');
+    }
+    else{}
     if (count($errors) == 0) {
         // `userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered`
         $check = $dbh->query("SELECT email FROM users WHERE email='$email' ")->fetchColumn();
@@ -45,6 +62,21 @@ if (isset($_POST['register_btn'])) {
     
 }elseif (isset($_POST['login_btn'])) {
     trim(extract($_POST));
+    if (empty($email)) {
+    array_push($errors, $_SESSION['email_err'] = '<div class="text-danger text-center">Phone or Emaill Address is Missing</div>');
+    }
+    if (empty($password)) {
+    array_push($errors, $_SESSION['password_err'] = '<div class="text-danger text-center">Password is Missing</div>');
+    }
+
+    function checkemail($str) {
+        return (!preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $str)) ? FALSE : TRUE;
+    }
+    if(!checkemail($email)){
+         array_push($errors, $_SESSION['invalid_email_err'] = '<div class="text-danger text-center">Invalid Email Format. </div>');
+    }
+    else{}
+
     if (count($errors) == 0) {
         // `userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered`
         $password = sha1($password);
@@ -69,8 +101,8 @@ if (isset($_POST['register_btn'])) {
         }
 
     }else{
-        $_SESSION['status'] = '<div class=" card card-body alert alert-danger text-center">
-        Wrong Login details </div>';
+        // $_SESSION['status'] = '<div class=" card card-body alert alert-danger text-center">
+        // Wrong Login details </div>';
     }
 }elseif (isset($_POST['verify'])) {
     trim(extract($_POST));

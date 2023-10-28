@@ -23,11 +23,14 @@ include 'root/process.php';
     <div class="overlay">
         <div class="container">
             <div class="row m-5 no-gutters shadow-lg" >
-                <div class="col-md-6 d-none d-md-block" >
+                <div class="col-md-2">
+                     <h4></h4>
+                </div>
+                <div class="col-md-4 d-none d-md-block" >
                     <img src="images/maxim-abramov-GFjyimhomaM-unsplash.jpg"
                         class="img-fluid" style="min-height:100%; border-radius: 10px 0 0 10px; width: 100%;height: 50px;"/>
                 </div>
-                <div class="col-md-6 bg-white p-5" style="border-radius: 0 10px 10px 0;">
+                <div class="col-md-4 bg-white p-5" style="border-radius: 0 10px 10px 0;">
                     <h3 class="pb-3">LOGIN</h3>
                     <div class="form-style">
                         <form method="post" action="">
@@ -43,10 +46,29 @@ include 'root/process.php';
                             }
                         ?>
                             <div class="form-group pb-3">
-                                <input type="tel" placeholder="Email Address" name="email" class="form-control" id="exampleInputPhoneNumber" required>
+                                <input type="tel" placeholder="Email Address" name="email" class="form-control" id="exampleInputPhoneNumber">
+                               <div class="badge badge-danger header-badge">
+                                   <?php  
+                                   if (isset($_SESSION['email_err'])) {
+                                        echo $_SESSION['email_err'];
+                                        unset($_SESSION['email_err']);
+                                    }
+                                    if (isset($_SESSION['invalid_email_err'])) {
+                                        echo $_SESSION['invalid_email_err'];
+                                        unset($_SESSION['invalid_email_err']);
+                                    } 
+                                ?>
+                               </div>
                             </div>
                             <div class="form-group pb-3">
-                                <input type="password" placeholder="Password" name="password" class="form-control" id="exampleInputPassword1" required>
+                                <input type="password" placeholder="Password" name="password" class="form-control" id="exampleInputPassword1">
+                                <div class="badge badge-danger header-badge">
+                                   <?php  
+                                   if (isset($_SESSION['password_err'])) {
+                                        echo $_SESSION['password_err'];
+                                        unset($_SESSION['password_err']);
+                                    } ?>
+                               </div>
                             </div>
                             <div class="d-flex align-items-center justify-content-between" >
                                 <div><a href="forgot-password" >Forget Password?</a></div>
@@ -59,7 +81,9 @@ include 'root/process.php';
                             Don't have an account. <a href="signup">Sign Up</a>
                         </div>
                     </div>
-        
+                </div>
+                <div class="col-md-2">
+                    <h4></h4>
                 </div>
             </div>
         </div>
