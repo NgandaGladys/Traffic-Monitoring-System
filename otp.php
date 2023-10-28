@@ -44,7 +44,6 @@ include 'root/process.php';
                             </div>
                             <button type="submit" class="btn btn-primary submit_btn my-4">Verify</button>
                         </form>
-
                         <!-- <div class="fw-normal text-muted mb-2"> -->
                         <form method="POST" action="">
                             <div class="form-group">

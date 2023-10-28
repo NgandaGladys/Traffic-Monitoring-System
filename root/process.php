@@ -6,23 +6,30 @@ foreach ($errors as $error) {
 
 if (isset($_POST['register_btn'])) {
     trim(extract($_POST));
+    if (empty($fullname)) {
+    array_push($errors, $_SESSION['fullname_err'] = '<div class="text-danger text-center">Name is required</div>');
+    }
     if (empty($email)) {
-    array_push($errors, $_SESSION['email_err'] = '<div class="text-danger text-center">Phone or Emaill Address is Missing</div>');
+    array_push($errors, $_SESSION['email_err'] = '<div class="text-danger text-center">Enter Email Address</div>');
     }
     if (empty($password)) {
-    array_push($errors, $_SESSION['password_err'] = '<div class="text-danger text-center">Password is Missing</div>');
+    array_push($errors, $_SESSION['password_err'] = '<div class="text-danger text-center">Password is required</div>');
     }
     if (empty($phone)) {
-    array_push($errors, $_SESSION['phone_err'] = '<div class="text-danger text-center">Phone number is Missing</div>');
+    array_push($errors, $_SESSION['phone_err'] = '<div class="text-danger text-center">Phone number is required</div>');
     }
 
-    function checkemail($str) {
-        return (!preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $str)) ? FALSE : TRUE;
+    if (empty($email)) {
+        
+    }else{
+        function checkemail($str) {
+            return (!preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $str)) ? FALSE : TRUE;
+        }
+        if(!checkemail($email)){
+             array_push($errors, $_SESSION['invalid_email_err'] = '<div class="text-danger text-center">Invalid Email Format. </div>');
+        }else{}
     }
-    if(!checkemail($email)){
-         array_push($errors, $_SESSION['invalid_email_err'] = '<div class="text-danger text-center">Invalid Email Format. </div>');
-    }
-    else{}
+
     if (count($errors) == 0) {
         // `userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered`
         $check = $dbh->query("SELECT email FROM users WHERE email='$email' ")->fetchColumn();
@@ -104,6 +111,39 @@ if (isset($_POST['register_btn'])) {
         // $_SESSION['status'] = '<div class=" card card-body alert alert-danger text-center">
         // Wrong Login details </div>';
     }
+}elseif (isset($_POST['forgot_password_btn'])) {
+    trim(extract($_POST));
+    if (empty($email)) {
+    array_push($errors, $_SESSION['email_err'] = '<div class="text-danger text-center">Enter Email Address</div>');
+    }
+    if (empty($email)) {   
+    }else{
+        function checkemail($str) {
+            return (!preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $str)) ? FALSE : TRUE;
+        }
+        if(!checkemail($email)){
+             array_push($errors, $_SESSION['invalid_email_err'] = '<div class="text-danger text-center">Invalid Email Format. </div>');
+        }else{}
+    }
+
+    if (count($errors) == 0) {
+        $token = rand(11111,999999);
+        $result = $dbh->query("UPDATE users SET token = '$token' WHERE email = '$email' ");
+        if($result){
+            $_SESSION['email'] = $email;
+            $_SESSION['loader'] = '<center><div class="spinner-border text-dark"></div></center>';
+            $_SESSION['status'] = '<div class="card card-body alert alert-dark text-center">Token sent successfully, Redirecting to OTP Screen ...</div>';
+            header("refresh:3; url =".SITE_URL.'/otp');
+        }else{
+            //--error , registratio failed. 
+            echo "<script>
+              alert('User registration failed');
+              window.location = '".SITE_URL."/reset-password';
+              </script>";
+        }
+    }
+    
+
 }elseif (isset($_POST['verify'])) {
     trim(extract($_POST));
     if (count($errors) == 0) {
@@ -122,10 +162,10 @@ if (isset($_POST['register_btn'])) {
             $_SESSION['status'] = '<div class="card card-body alert alert-dark text-center">
             <strong>Login Successful, Redirecting...</strong></div>';
             header("refresh:3; url=".SITE_URL);
-            }else{
-                $_SESSION['status'] = '<div class="card card-body alert alert-danger text-center">
-                Login failed, please check your login details again</div>';
-            }
+        }else{
+            $_SESSION['status'] = '<div class="card card-body alert alert-danger text-center">
+            Login failed, please check your login details again</div>';
+        }
     }else{
         $_SESSION['status_err'] = '<div class="card card-body alert alert-danger text-center">
                 <strong>Wrong Token inserted</strong></div>';

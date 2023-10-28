@@ -25,11 +25,14 @@ include 'root/process.php';
     <div class="overlay">
         <div class="container">
             <div class="row m-5 no-gutters shadow-lg">
-                <div class="col-md-6 d-none d-md-block">
+                <div class="col-md-2">
+                     <h4></h4>
+                </div>
+                <div class="col-md-4 d-none d-md-block">
                     <img src="images/maxim-abramov-GFjyimhomaM-unsplash.jpg" class="img-fluid"
                         style="min-height:100%; border-radius: 10px 0 0 10px; width: 100%;height: 50px;" />
                 </div>
-                <div class="col-md-6 bg-white p-5" style="border-radius: 0 10px 10px 0;">
+                <div class="col-md-4 bg-white p-5" style="border-radius: 0 10px 10px 0;">
                     <h3 class="pb-3">Forgot Password</h3>
                     <p>Enter your Email Address to reset password</p>
                     <div class="form-style">
@@ -46,7 +49,9 @@ include 'root/process.php';
                             Already have an account. <a href="login">Login</a>
                         </div>
                     </div>
-
+                </div>
+                <div class="col-md-2">
+                     <h4></h4>
                 </div>
             </div>
         </div>

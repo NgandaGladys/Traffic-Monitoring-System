@@ -25,11 +25,14 @@ include 'root/process.php';
     <div class="overlay">
         <div class="container">
             <div class="row m-5 no-gutters shadow-lg">
-                <div class="col-md-6 d-none d-md-block">
+                 <div class="col-md-2">
+                     <h4></h4>
+                </div>
+                <div class="col-md-4 d-none d-md-block">
                     <img src="images/maxim-abramov-GFjyimhomaM-unsplash.jpg" class="img-fluid"
                         style="min-height:100%; border-radius: 10px 0 0 10px; width: 100%;height: 50px;" />
                 </div>
-                <div class="col-md-6 bg-white p-5" style="border-radius: 0 10px 10px 0;">
+                <div class="col-md-4 bg-white p-5" style="border-radius: 0 10px 10px 0;">
                     <h3 class="pb-3">SIGN UP</h3>
                     <div class="form-style">
                         <form method="post" action="">
@@ -47,6 +50,12 @@ include 'root/process.php';
                             <div class="form-group pb-3">
                                 <input type="text" placeholder="Full Name" name="fullname" class="form-control"
                                     id="exampleInputFullName">
+                                <?php 
+                                    if (isset($_SESSION['fullname_err'])) {
+                                        echo $_SESSION['fullname_err'];
+                                        unset($_SESSION['fullname_err']);
+                                    } 
+                                ?>
                             </div>
                             <!-- `userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered` -->
                             <div class="form-group pb-3">
@@ -89,6 +98,9 @@ include 'root/process.php';
                             Already have an account? <a href="login">Login</a>
                         </div>
                     </div>
+                </div>
+                 <div class="col-md-2">
+                     <h4></h4>
                 </div>
             </div>
         </div>
