@@ -263,7 +263,7 @@ if ($role == 'admin') {
                <?php $users = $dbh->query("SELECT * FROM users WHERE role = 'user' ")->rowCount(); ?>
                   <span>Users</span>
                   <h2 class="dashboard-total-products"><?=number_format($users); ?></h2>
-                  <span class="label label-warning"><a style="text-decoration: none; color: #FFF; " href="?roads">Users</a></span>
+                  <span class="label label-warning"><a style="text-decoration: none; color: #FFF; " href="?users">Users</a></span>
                   <div class="side-box">
                      <i class="ti-user text-warning-color"></i>
                   </div>
