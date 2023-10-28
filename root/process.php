@@ -76,40 +76,45 @@ if (isset($_POST['register_btn'])) {
     array_push($errors, $_SESSION['password_err'] = '<div class="text-danger text-center">Password is Missing</div>');
     }
 
-    function checkemail($str) {
+    if (empty($email)) {
+        
+    }else{
+        function checkemail($str) {
         return (!preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $str)) ? FALSE : TRUE;
-    }
-    if(!checkemail($email)){
-         array_push($errors, $_SESSION['invalid_email_err'] = '<div class="text-danger text-center">Invalid Email Format. </div>');
-    }
-    else{}
+        }
+        if(!checkemail($email)){
+             array_push($errors, $_SESSION['invalid_email_err'] = '<div class="text-danger text-center">Invalid Email Format. </div>');
+        }
+        else{}
 
-    if (count($errors) == 0) {
-        // `userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered`
-        $password = sha1($password);
-        $result = $dbh->query("SELECT * FROM users WHERE email = '$email' AND password = '$password' ");
-        if ($result->rowCount() == 1) {
-            //getting the login users..
-            $row = $result->fetch(PDO::FETCH_OBJ);
-            //creating succession for a login user... 
-            //getting user data...
-            $_SESSION['userid'] = $row->userid;
-            $_SESSION['fullname'] = $row->fullname;
-            $_SESSION['phone'] = $row->phone;
-            $_SESSION['email'] = $row->email;
-            $_SESSION['role'] = $row->role;
-            $_SESSION['date_registered'] = $row->date_registered;
-            $_SESSION['loader'] = '<center><div class="spinner-border text-dark"></div></center>';
-            $_SESSION['status'] = '<div class="card card-body alert alert-dark text-center">Account matched, Login Successfully</div>';
-            header("refresh:3; url=".SITE_URL);
+        if (count($errors) == 0) {
+            // `userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered`
+            $password = sha1($password);
+            $result = $dbh->query("SELECT * FROM users WHERE email = '$email' AND password = '$password' ");
+            if ($result->rowCount() == 1) {
+                //getting the login users..
+                $row = $result->fetch(PDO::FETCH_OBJ);
+                //creating succession for a login user... 
+                //getting user data...
+                $_SESSION['userid'] = $row->userid;
+                $_SESSION['fullname'] = $row->fullname;
+                $_SESSION['phone'] = $row->phone;
+                $_SESSION['email'] = $row->email;
+                $_SESSION['role'] = $row->role;
+                $_SESSION['date_registered'] = $row->date_registered;
+                $_SESSION['loader'] = '<center><div class="spinner-border text-dark"></div></center>';
+                $_SESSION['status'] = '<div class="card card-body alert alert-dark text-center">Account matched, Login Successfully</div>';
+                header("refresh:3; url=".SITE_URL);
+            }else{
+                $_SESSION['status'] = '<div class=" card card-body alert alert-danger text-center">
+                Invalid account, Try again.</div>';
+            }
+
         }else{
-            $_SESSION['status'] = '<div class=" card card-body alert alert-danger text-center">
-            Invalid account, Try again.</div>';
+            // $_SESSION['status'] = '<div class=" card card-body alert alert-danger text-center">
+            // Wrong Login details </div>';
         }
 
-    }else{
-        // $_SESSION['status'] = '<div class=" card card-body alert alert-danger text-center">
-        // Wrong Login details </div>';
     }
 }elseif (isset($_POST['forgot_password_btn'])) {
     trim(extract($_POST));

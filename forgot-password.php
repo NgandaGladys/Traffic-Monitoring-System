@@ -1,7 +1,6 @@
 <?php 
 include 'root/config.php'; 
 include 'root/process.php'; 
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
