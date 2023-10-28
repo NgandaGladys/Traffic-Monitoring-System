@@ -274,7 +274,7 @@ if ($role == 'admin') {
                   <span>Officers</span>
                   <?php $officers = $dbh->query("SELECT * FROM users WHERE role = 'officer' ")->rowCount(); ?>
                   <h2 class="dashboard-total-products"><span><?=number_format($officers); ?></span></h2>
-                  <span class="label label-success"><a style="text-decoration: none; color: #FFF; " href="?officers">Officers</a></span>
+                  <span class="label label-warning"><a style="text-decoration: none; color: #FFF; " href="?officers">Officers</a></span>
                   <div class="side-box">
                      <i class="icon-user text-warning-color"></i>
                   </div>
@@ -285,7 +285,7 @@ if ($role == 'admin') {
                   <span>Roads</span>
                   <?php $rds = $dbh->query("SELECT * FROM roads ")->rowCount(); ?>
                   <h2 class="dashboard-total-products"><?=number_format($rds); ?></h2>
-                  <span class="label label-primary"><a style="text-decoration: none; color: #FFF; " href="?roads">Roads</a></span>
+                  <span class="label label-warning"><a style="text-decoration: none; color: #FFF; " href="?roads">Roads</a></span>
                   <div class="side-box ">
                      <i class="icon-map text-warning-color"></i>
                      <!-- <i class="ti-direction-alt text-primary-color"></i> -->
@@ -298,7 +298,7 @@ if ($role == 'admin') {
                   <span>Routes</span>
                   <?php $rts = $dbh->query("SELECT * FROM routes ")->rowCount(); ?>
                   <h2 class="dashboard-total-products"><span><?=number_format($rts); ?></span></h2>
-                  <span class="label label-danger"><a style="text-decoration: none; color: #FFF; " href="?routes">Routes</a></span>
+                  <span class="label label-warning"><a style="text-decoration: none; color: #FFF; " href="?routes">Routes</a></span>
                   <div class="side-box">
                      <i class="ti-rocket text-warning-color"></i>
                   </div>
