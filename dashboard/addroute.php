@@ -3,7 +3,7 @@
         <div class="modal-content">
             <form action="" method="post" enctype="multipart/form-data">
                 <div class="modal-header">
-                    <h5 class="modal-title">Add New Officer / Administrator</h5>
+                    <h5 class="modal-title">Add Route</h5>
                     <button type="button" class="close" data-dismiss="modal">
                         <span aria-hidden="true">&times;</span>
                         <span class="sr-only">Close</span>
