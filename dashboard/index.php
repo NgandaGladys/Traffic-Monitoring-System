@@ -218,8 +218,10 @@ if ($role == 'admin') {
                                  <td><?=$x++; ?></td>
                                  <td><?=$rx->road_name; ?></td>
                                  <td><?=$rx->fromm.' - '.$rx->too; ?></td>
-                                 <td><a href="#edit-route<?=$rx->rid; ?>" data-toggle="modal" class="btn btn-primary">Edit</a></td>
-                                 <td><a onclick="return confirm('Do you really want to delete this Road?. '); " href="?delete-road=<?=$rx->road_id; ?>" class="btn btn-danger">Delete</a></td>
+                                 <td></td>
+                                 <td>
+                                    <a href="#edit-route<?=$rx->rid; ?>" data-toggle="modal" class="btn btn-primary">Edit</a>
+                                    <a onclick="return confirm('Do you really want to delete this Road?. '); " href="?delete-road=<?=$rx->road_id; ?>" class="btn btn-danger">Delete</a></td>
                               </tr>
                            <?php include 'edit-route.php'; } ?>
                            </tbody>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 15, 2023 at 09:58 PM
+-- Generation Time: Oct 30, 2023 at 08:30 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -21,6 +21,56 @@ SET time_zone = "+00:00";
 --
 -- Database: `tms`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roads`
+--
+
+CREATE TABLE `roads` (
+  `road_id` int(11) NOT NULL,
+  `road_name` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `roads`
+--
+
+INSERT INTO `roads` (`road_id`, `road_name`) VALUES
+(2, 'Kampala Road'),
+(4, 'Jinja Road'),
+(5, 'Bombo Road'),
+(6, 'Hoima Road');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `routes`
+--
+
+CREATE TABLE `routes` (
+  `rid` int(11) NOT NULL,
+  `road_id` int(11) NOT NULL,
+  `fromm` varchar(100) NOT NULL,
+  `too` varchar(100) NOT NULL,
+  `status` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `routes`
+--
+
+INSERT INTO `routes` (`rid`, `road_id`, `fromm`, `too`, `status`) VALUES
+(1, 1, 'jok', 'ijij', 'Brown'),
+(2, 2, 'Mapeera', 'Watooto Church', 'Green'),
+(3, 2, 'Mapeera', 'City Square', 'Green'),
+(4, 4, 'Post Office', 'Internal Affairs', 'Brown'),
+(5, 4, 'Bank Of Uganda', 'Nakawa', 'Green'),
+(6, 5, 'Wandegeya', 'Bwaise', 'Green'),
+(7, 5, 'Kubiri', 'Bwaise', 'Green'),
+(8, 6, 'Kampala', 'Nansana', 'Green'),
+(9, 6, 'Nansana', 'Wakiso', 'Green');
 
 -- --------------------------------------------------------
 
@@ -51,6 +101,20 @@ INSERT INTO `users` (`userid`, `fullname`, `phone`, `email`, `password`, `token`
 --
 
 --
+-- Indexes for table `roads`
+--
+ALTER TABLE `roads`
+  ADD PRIMARY KEY (`road_id`),
+  ADD KEY `road_id` (`road_id`,`road_name`);
+
+--
+-- Indexes for table `routes`
+--
+ALTER TABLE `routes`
+  ADD PRIMARY KEY (`rid`),
+  ADD KEY `rid` (`rid`,`road_id`,`fromm`,`too`,`status`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -61,6 +125,18 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `roads`
+--
+ALTER TABLE `roads`
+  MODIFY `road_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `routes`
+--
+ALTER TABLE `routes`
+  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`
