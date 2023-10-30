@@ -359,7 +359,7 @@ if ($role == 'admin') {
          <!-- 4-blocks row end -->
       </div>
    </div>
-  <?php }elseif (isset($_REQUEST[''])) { ?>
+  <?php }elseif (isset($_REQUEST['routes'])) { ?>
     <div class="content-wrapper">
       <!-- Container-fluid starts -->
       <!-- Main content starts -->
