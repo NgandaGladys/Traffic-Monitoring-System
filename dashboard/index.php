@@ -395,6 +395,7 @@ if ($role == 'admin') {
                                  <td><?=$rx->fromm.' - '.$rx->too; ?></td>
                                  <td><?=$rx->status; ?></td>
                               </tr>
+                           <?php } ?>
                            </tbody>
                         </table>
                      </div>
