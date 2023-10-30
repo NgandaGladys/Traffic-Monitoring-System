@@ -9,7 +9,7 @@ include 'root/process.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive OTP Verification Form Using Bootstrap 5</title>
+    <title>OTP Verification</title>
     <!-- Bootstrap 5 CDN Link -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS Link -->
@@ -33,7 +33,7 @@ include 'root/process.php';
                             <a href="login" style="float: left;">←back </a>
                             <h3 class="text-dark fw-bolder fs-4 mb-2">OTP Verification</h3><br>
                             <div class="otp_input text-start mb-2">
-                                <label for="digit">Enter code sent to your phone number</label>
+                                <label for="digit">Enter code sent to your email address</label>
                                 <div class="d-flex align-items-center justify-content-between mt-2">
                                     <input type="text" class="form-control" name="otp1" placeholder="" required maxlength="1">
                                     <input type="text" class="form-control" name="otp2" placeholder="" required maxlength="1">
