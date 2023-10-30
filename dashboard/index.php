@@ -360,7 +360,51 @@ if ($role == 'admin') {
       </div>
    </div>
   <?php }elseif (isset($_REQUEST[''])) { ?>
-    
+    <div class="content-wrapper">
+      <!-- Container-fluid starts -->
+      <!-- Main content starts -->
+      <div class="container-fluid">
+         <div class="row">
+            <div class="main-header">
+               <h4>Routes</h4>
+            </div>
+         </div>
+         <!-- 4-blocks row start -->
+         <div class="row dashboard-header">
+             <div class="card">
+               <div class="card-block">
+                  <div class="row">
+                     <div class="col-sm-12 table-responsive">
+                        <table class="table table-hover">
+                           <thead>
+                              <tr>
+                                 <th>#</th>
+                                 <th>Road Name</th>
+                                 <th>Routes</th>
+                                 <th>Status</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                           <?php $roads_routes = $dbh->query("SELECT * FROM roads r, routes t WHERE r.road_id = t.road_id ");
+                           $x = 1; 
+                           // `rid`, `road_id`, `fromm`, `too`, `status`
+                           while($rx = $roads_routes->fetch(PDO::FETCH_OBJ)){ ?>
+                              <tr>
+                                 <td><?=$x++; ?></td>
+                                 <td><?=$rx->road_name; ?></td>
+                                 <td><?=$rx->fromm.' - '.$rx->too; ?></td>
+                                 <td><?=$rx->status; ?></td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </div>            
+         </div>
+         <!-- 4-blocks row end -->
+      </div>
+   </div>
    <?php }else{ ?>
       <div class="content-wrapper">
       <!-- Container-fluid starts -->
