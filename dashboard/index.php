@@ -8,7 +8,7 @@ if ($role == 'admin') {
       <div class="container-fluid">
          <div class="row">
             <div class="main-header">
-               <h4>Trafic Officers / Admins</h4>
+               <h4>Traffic Officers / Admins</h4>
             </div>
          </div>
          <!-- 4-blocks row start -->
@@ -71,14 +71,14 @@ if ($role == 'admin') {
       <div class="container-fluid">
          <div class="row">
             <div class="main-header">
-               <h4>Road Users</h4>
+               <h4>Non-officers</h4>
             </div>
          </div>
          <!-- 4-blocks row start -->
          <div class="row dashboard-header">
              <div class="card">
                <div class="card-header">
-                  <h5 class="card-header-text">Road Users</h5>
+                  <h5 class="card-header-text">Non-officers</h5>
                </div>
                <div class="card-block">
                   <div class="row">
