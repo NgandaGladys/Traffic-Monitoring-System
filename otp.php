@@ -49,8 +49,8 @@ include 'root/process.php';
                             <div class="form-group">
                                 Didn't receive the code ?
                                 <button type="submit" name="resend_code_btn" class="btn-sm btn-primary my-4" style="
-                                    font-weight:500;background-color: black;
-                                    color: #ffffff;transition: all 200ms ease-in-out; border: none; border-radius: 10px;">Resend</button>
+                                    font-weight:500;background-color: white;
+                                    color: blue;transition: all 200ms ease-in-out; border: none; border-radius: 10px;">Resend</button>
                             </div>
                         </form>
                         <!-- </div> -->
