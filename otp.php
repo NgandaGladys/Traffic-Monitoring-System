@@ -30,7 +30,7 @@ include 'root/process.php';
                 <div class="col-sm-8 offset-sm-2 col-lg-6 offset-lg-3 col-xl-6 offset-xl-3 text-center">
                     <div class="bg-white shadow p-5" style="border-radius:20px">
                         <form method="POST" action="">
-                            <a href="login" style="float: left;">← Back </a>
+                            <a href="login" style="float: left;text-decoration:none"> ← Back </a>
                             <h3 class="text-dark fw-bolder fs-2 mb-2">OTP Verification</h3><br>
                             <div class="otp_input text-start mb-2">
                                 <label for="digit">Enter code sent to your email address</label>
