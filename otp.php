@@ -33,7 +33,7 @@ include 'root/process.php';
                             <a href="login" style="float: left;text-decoration:none"> ← Back </a>
                             <h3 class="text-dark fw-bolder fs-2 mb-2">OTP Verification</h3><br>
                             <div class="otp_input text-start mb-2">
-                                <label for="digit">Enter code sent to your email address</label>
+                                <label for="digit" class="fs-6">Enter code sent to your email address</label>
                                 <div class="d-flex align-items-center justify-content-between mt-2">
                                     <input type="text" class="form-control" name="otp1" placeholder="" required maxlength="1">
                                     <input type="text" class="form-control" name="otp2" placeholder="" required maxlength="1">

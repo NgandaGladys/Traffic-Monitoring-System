@@ -49,7 +49,7 @@ include 'root/process.php';
                             </div>
                         </form>
                         <div class="pt-4 text-center" style="text-align: left!important">
-                            Already have an account <a href="login">Login</a>
+                            Already have an account? <a href="login">Login</a>
                         </div>
                     </div>
                 </div>
