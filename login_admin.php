@@ -106,16 +106,10 @@ include 'root/process.php';
                                     } ?>
                                </div>
                             </div>
-                            <div class="d-flex align-items-center justify-content-between" >
-                                <div><a href="forgot-password" >Forget Password?</a></div>
-                            </div>
                             <div class="pb-2">
-                                <button type="submit" name="user_login_btn" class="btn btn-dark w-100 font-weight-bold mt-2">Submit</button>
+                                <button type="submit" name="admin_login_btn" class="btn btn-dark w-100 font-weight-bold mt-2">Submit</button>
                             </div>
                         </form>
-                        <div class="pt-4 text-center" style="text-align: left!important">
-                            Don't have an account. <a href="signup">Sign Up</a>
-                        </div>
                     </div>
                 </div>
                 <div class="col-md-2">

@@ -50,45 +50,7 @@ File: menu.css
       @include f-s(15px);
    }
    @include pos(relative);
-   // &:before{
-   //    content: "----";
-   //    @include pos(absolute);
-   //    left: 0;
-   //    top: 9px;
-   // }
-   // &:before{
-   //    content: "";
-   //    @include pos(absolute);
-   //    height: 50%;
-   //    width: 50%;
-   //    @include b(1px solid #888,bottom);
-   //    @include b(1px solid #888,left);
-   //    left: 15px;
-   //    bottom: 0;
-   // }
-   // &:after{
-   //    content: "";
-   //    @include pos(absolute);
-   //    height: 1px;
-   //    width: 15px;
-   //    top: 20px;
-   //    left: 0;
-   //    background-color:#888;
-   // }
-   // span{
-   //    @include pos(relative);
-   //    &:after{
-   //       content: "";
-   //       @include pos(absolute);
-   //       height: 5px;
-   //       width: 5px;
-   //       top: 6px;
-   //       left: -28px;
-   //       @include bg-c(#888);
-   //       @include b(50%,radius);
-   //       @include b(1px solid #888);
-   //    }
-   // }
+   
 }
 .sidebar-collapse{
     .nav-level,.icon-arrow-down{

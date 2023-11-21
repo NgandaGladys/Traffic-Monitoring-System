@@ -18,11 +18,47 @@ include 'root/process.php';
             background-size: cover;
             background-repeat: no-repeat;
         }
+        .nav-item{
+            justify-content: space-around;
+            padding: 0 10px 0 0;
+        }
+        .nav-link{
+            color:white;
+        }
+        .nav-link:hover{
+            color:#ff9c02;
+        }
+        .navbar-nav .nav-link.active, .navbar-nav .show>.nav-link {
+            color: #ff9c02;
+            margin-right:920px ;
+        }
     </style>
 </head>
 
 <body>
     <div class="overlay">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark border-body fixed-top" data-bs-theme="dark">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse navbar-brand" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 fs-6">
+                    <li class="nav-item">
+                    <a class="nav-link active " aria-current="page" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="signup">User signup</a>
+                    </li>
+                    <li class="nav-item ">
+                    <a class="nav-link" href="login" role="button">
+                       User login
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link " href="login_admin">Admin Login</a>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </nav>
         <div class="container">
             <div class="row m-5 no-gutters shadow-lg">
                 <div class="col-md-2">
