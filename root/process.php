@@ -94,7 +94,7 @@ if (isset($_POST['register_btn'])) {
         if (count($errors) == 0) {
             // `userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered`
             $password = sha1($password);
-            $result = $dbh->query("SELECT * FROM users WHERE email = '$email' AND password = '$password' ");
+            $result = $dbh->query("SELECT * FROM users WHERE email = '$email' AND password = '$password' And role IN ('officer','user')");
             if ($result->rowCount() == 1) {
                 //getting the login users..
                 $row = $result->fetch(PDO::FETCH_OBJ);
@@ -207,6 +207,7 @@ if (isset($_POST['register_btn'])) {
 }elseif (isset($_POST['verify'])) {//updates required
     trim(extract($_POST));
     if (count($errors) == 0) {
+        $token = $_SESSION['token'];
         $result = $dbh->query("SELECT * FROM users WHERE email = '$email' AND token = '$token' " );
         if ($result->rowCount() == 1) {
         $row = $result->fetch(PDO::FETCH_OBJ);
