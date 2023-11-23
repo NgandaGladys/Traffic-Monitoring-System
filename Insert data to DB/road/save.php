@@ -1,5 +1,5 @@
 <?php
-$connect = mysqli_connect("localhost", "root", "", "traffic_monitoring_system");
+$connect = mysqli_connect("localhost", "root", "", "tms");
 
 if(isset($_POST['ROAD_ID']) && isset($_POST['TP_ID']) && isset($_POST['ROAD_LOCATION'])) {
 $ROAD_ID = $_POST['ROAD_ID'];

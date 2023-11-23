@@ -28,7 +28,7 @@
 	<strong><big>
 
 <?php
-$connect = mysqli_connect("localhost", "root", "", "traffic_monitoring_system");
+$connect = mysqli_connect("localhost", "root", "", "tms");
 
 if(isset($_POST['TP_ID']) && isset($_POST['STATUS'])) {
 $STATUS = $_POST['STATUS'];

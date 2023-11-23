@@ -15,7 +15,7 @@
 <div class="divD">
 <p>Choose the Road to be deleted</p>
 <?php
-$connection = mysqli_connect("localhost", "root", "", "traffic_monitoring_system") or die("Error " . mysqli_error($connection)); // Eastablishing Connection With Server.
+$connection = mysqli_connect("localhost", "root", "", "tms") or die("Error " . mysqli_error($connection)); // Establishing Connection With Server.
 //$db = mysqli_select_connection($connection,"traffic monitoring system"); // Selecting Database From Server.
 if (isset($_GET['usr_id'])) {
 $usr_id = $_GET['usr_id'];
