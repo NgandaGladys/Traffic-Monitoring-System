@@ -61,7 +61,7 @@ CREATE TABLE `routes` (
 -- Dumping data for table `routes`
 --
 
-INSERT INTO `routes` (`rid`, `road_id`, `fromm`, `too`, `status`) VALUES
+INSERT INTO `routes` (`rid`, `road_id`, `fromm`, `too`, `traffic status`) VALUES
 (1, 1, 'jok', 'ijij', 'Brown'),
 (2, 2, 'Mapeera', 'Watooto Church', 'Green'),
 (3, 2, 'Mapeera', 'City Square', 'Green'),
@@ -94,7 +94,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered`) VALUES
-(5, 'osp pro', '0704487563', 'osp123ug@gmail.com', 'bd8da86331934bc695d34a103a42beb18d072dd6', '', 'admin', '2023-10-15 19:05:42 PM');
+(6, ' Tracy Muzaki', '0740909525', 'tracymuzaki12@gmail.com', '109d63fe5e9366a7d3cb9eb58be233648898444c', '', 'admin', '2023-11-24 01:37:15 AM');
+(7, ' Nganda Gladys', '0741395925', 'gladamanda42@gmail.com', '291f2c90d146f0bd94e130dd5d8b7b2ac51e561c', '', 'super admin', '2023-11-24 01:37:58 AM');
+(8, ' Doreen A', '0700382562', 'doreenasiimwe5@gmail.com', 'e453dbf96ac903773262fbd305fd33af23a99593', '', 'officer', '2023-11-24 01:39:07 AM');
+(9, ' Sarah A', '0773805834', 'tracymuzaki23@gmail.com', '291f2c90d146f0bd94e130dd5d8b7b2ac51e561c', '', 'user', '2023-11-24 01:43:06 AM');
+(10, ' Kenneth Waks', '0784675790', 'wakskenneth@gmail.com', '2eaab2fbb032b258b58fdaed26b83ca391ddcd0a', '', 'admin', '2023-11-24 03:07:14 AM');
 
 --
 -- Indexes for dumped tables
@@ -112,7 +116,7 @@ ALTER TABLE `roads`
 --
 ALTER TABLE `routes`
   ADD PRIMARY KEY (`rid`),
-  ADD KEY `rid` (`rid`,`road_id`,`fromm`,`too`,`status`);
+  ADD KEY `rid` (`rid`,`road_id`,`fromm`,`too`,`traffic status`);
 
 --
 -- Indexes for table `users`
