@@ -1,44 +1,45 @@
-<div class="modal fade custom-modal" tabindex="-1" role="dialog" aria-labelledby="modal_add_user" aria-hidden="true" id="addadmin">
+<div class="modal fade custom-modal" tabindex="-1" role="dialog" aria-labelledby="modal_add_user" aria-hidden="true" id="edit-user<?=$rx->userid; ?>">
     <div class="modal-dialog">
         <div class="modal-content">
             <form action="" method="post" enctype="multipart/form-data">
+                <input type="hidden" value="<?=$rx->userid; ?>" name="userid">
                 <div class="modal-header">
-                    <h5 class="modal-title">Add Admin</h5>
+                    <h5 class="modal-title">Edit User details - <b style="box-shadow: 2px 1px #000; padding: 5px; border-radius: 10px;"><?=$rx->fullname; ?></b></h5>
                     <button type="button" class="close" data-dismiss="modal">
                         <span aria-hidden="true">&times;</span>
                         <span class="sr-only">Close</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <!--`userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered` -->
+                <!--`userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered` -->
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label>Full Name (required)</label>
-                                <input class="form-control" name="fullname" type="text" required />
+                                <input class="form-control" name="fullname" value="<?=$rx->fullname; ?>" type="text" required />
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label>Phone Number (required)</label>
-                                <input class="form-control" name="phone" maxlength="10" type="text" required />
+                                <input class="form-control" name="phone" maxlength="10" value="<?=$rx->phone; ?>" type="text" required />
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label>Email (required)</label>
-                                <input class="form-control" name="email" type="email" required />
+                                <input class="form-control" name="email" value="<?=$rx->email; ?>" type="email" required />
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label>Password (required)</label>
-                                <input class="form-control" name="password" type="password" required />
+                                <input class="form-control" name="password" value="<?=$rx->pass; ?>" type="password" required />
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" name="add_new_admin_by_super_admin_btn" class="btn btn-success">Save</button>
+                        <button type="submit" name="'update_user_details_btn'" class="btn btn-success">Save</button>
                     </div>
                 </div>
             </form>
