@@ -3,7 +3,7 @@
         <div class="modal-content">
             <form action="" method="post" enctype="multipart/form-data">
                 <div class="modal-header">
-                    <h5 class="modal-title">Add Officer</h5>
+                    <h5 class="modal-title">Add Admin</h5>
                     <button type="button" class="close" data-dismiss="modal">
                         <span aria-hidden="true">&times;</span>
                         <span class="sr-only">Close</span>
@@ -38,7 +38,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" name="add_new_officer_by_admin_btn" class="btn btn-success">Save</button>
+                        <button type="submit" name="add_new_admin_by_super_admin_btn" class="btn btn-success">Save</button>
                     </div>
                 </div>
             </form>
