@@ -77,8 +77,8 @@ if (empty($_SESSION['userid'])) {
 
                      </a>
                      <ul class="dropdown-menu settings-menu">
-                        <li><a href="#!"><i class="icon-settings"></i> Settings</a></li>
-                        <li><a href="#"><i class="icon-user"></i> Profile</a></li>
+                        <!-- <li><a href="#!"><i class="icon-settings"></i> Settings</a></li> -->
+                        <li><a href="profile"><i class="icon-user"></i> Profile</a></li>
                         <li><a href="<?=SITE_URL; ?>/logout" onclick="return confirm('Do you really want to Logout?. '); "><i class="icon-logout"></i> Logout</a></li>
 
                      </ul>
@@ -97,7 +97,12 @@ if (empty($_SESSION['userid'])) {
                         <i class="icon-speedometer"></i><span> Dashboard</span>
                     </a>                
                 </li>
-               <?php if ($role == 'admin') { ?>
+               <?php if ($role == 'super_admin') { ?>
+                <li class="treeview">
+                    <a class="waves-effect waves-dark" href="<?=HOME_URL; ?>?admins">
+                        <i class="icon-user"></i><span> Admins</span>
+                    </a>                
+                </li>
                 <li class="treeview">
                     <a class="waves-effect waves-dark" href="<?=HOME_URL; ?>?officers">
                         <i class="icon-user"></i><span> Officers</span>
@@ -130,6 +135,7 @@ if (empty($_SESSION['userid'])) {
       </aside>
 <?php 
 include 'addroad.php'; 
+include 'addadmin.php';
 include 'addofficer.php';
 include 'addroute.php';
 ?>

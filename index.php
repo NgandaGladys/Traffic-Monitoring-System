@@ -2,7 +2,7 @@
 include 'root/config.php'; 
 include 'root/process.php';
 if (empty($_SESSION['userid'])) {
-    header("Location: login");
+    header("Location: index.html");
 }else{
     // `userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered`
     $role = $_SESSION['role'];

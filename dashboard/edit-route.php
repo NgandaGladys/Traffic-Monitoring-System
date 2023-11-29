@@ -33,8 +33,13 @@
                         </div>
                          <div class="col-lg-12">
                             <div class="form-group">
-                                <label>Road status (required)</label>
-                                <input class="form-control" name="status" value="<?=$rx->status; ?>" type="text" required />
+                                <label>Traffic Status (required)</label>
+                                <select class="form-control" name="status" required>
+                                    <option value="Clear" <?php echo ($rx->status === 'Clear') ? 'selected' : ''; ?>>Clear</option>
+                                    <option value="Moderate" <?php echo ($rx->status === 'Moderate') ? 'selected' : ''; ?>>Moderate</option>
+                                    <option value="Jam" <?php echo ($rx->status === 'Jam') ? 'selected' : ''; ?>>Jam</option>
+                                    <option value="Unavailable" <?php echo ($rx->status === 'Unavailable') ? 'selected' : ''; ?>>Unavailable</option>
+                                </select>
                             </div>
                         </div>
                     </div>

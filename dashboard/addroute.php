@@ -38,12 +38,13 @@
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label>Road Status (required)</label>
+                                <label>Traffic Status (required)</label>
                                 <select class="form-control" name="status" required>
-                                    <option value="">--select Road Status--</option>
-                                    <option>Green</option>
-                                    <option>Brown</option>
-                                    <option>Red</option>
+                                    <option value="">--Select Traffic Status--</option>
+                                    <option>Clear</option>
+                                    <option>Moderate</option>
+                                    <option>Jam</option>
+                                    <option>Unavailable</option>
                                 </select>
                             </div>
                         </div>
