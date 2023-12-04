@@ -21,7 +21,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" name="update_road_new_user_btn" class="btn btn-success">Save</button>
+                        <button type="submit" name="update_road_btn" class="btn btn-success">Save</button>
                     </div>
                 </div>
             </form>

@@ -38,7 +38,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" name="add_new_officer_by_admin_btn" class="btn btn-success">Save</button>
+                        <button type="submit" name="add_new_officer_btn" class="btn btn-success">Save</button>
                     </div>
                 </div>
             </form>

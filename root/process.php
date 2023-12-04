@@ -259,50 +259,42 @@ if (isset($_POST['register_btn'])) {
             Account Verification Failed., please check your Token and try again.</div>';
         }
     }
-}elseif (isset($_POST['add_road_new_user_btn'])) {//add route
+}elseif (isset($_POST['add_road_btn'])) {//add road
     trim(extract($_POST));
     // `road_id`, `road_name`
     $road_name = addslashes($road_name);
     $sql = dbCreate("INSERT INTO roads VALUES(NULL, '$road_name') ");
     if ($sql ==1) {
-        $_SESSION['loader'] = '<center><div class="spinner-border text-success"></div></center>';
-        $_SESSION['status'] = '<div class="card card-body alert alert-success text-center">Road Name added successfully</div>';
-        // echo "<script>
-        //     alert('Road Name Added successfully');
-        //     window.location = '".HOME_URL."?roads';
-        //     </script>";
+        echo "<script>
+            alert('Road added successfully');
+            window.location = '".HOME_URL."?roads';
+            </script>";
     }else{
-        $_SESSION['loader'] = '<center><div class="spinner-border text-danger"></div></center>';
-        $_SESSION['status'] = '<div class="card card-body alert alert-danger text-center">Failed to add Road Name</div>';
-        // echo "<script>
-        //     alert('Adding Road Failed');
-        //     window.location = '".HOME_URL."?roads';
-        //     </script>";
+        echo "<script>
+            alert('Failed to add road');
+            window.location = '".HOME_URL."?roads';
+            </script>";
     }
 
-}elseif(isset($_POST['update_road_new_user_btn'])){//update road
+}elseif(isset($_POST['update_road_btn'])){//update road
     trim(extract($_POST));
     if (count($errors) == 0) {
         $road_name = addslashes($road_name);
         $sql = $dbh->query("UPDATE roads SET road_name = '$road_name' WHERE road_id = '$road_id' ");
     
         if($sql){
-            $_SESSION['loader'] = '<center><div class="spinner-border text-success"></div></center>';
-            $_SESSION['status'] = '<div class="card card-body alert alert-success text-center">Road Name updated successfully</div>';
-            // echo "<script>
-            // alert('Road Name Updated successfully');
-            // window.location = '".HOME_URL."?roads';
-            // </script>";
+            echo "<script>
+            alert('Road updated successfully');
+            window.location = '".HOME_URL."?roads';
+            </script>";
         }else{
-            $_SESSION['loader'] = '<center><div class="spinner-border text-danger"></div></center>';
-            $_SESSION['status'] = '<div class="card card-body alert alert-danger text-center">Failed to update Road Name</div>';
-        //    echo "<script>
-        //     alert('Road Name Updated failed');
-        //     window.location = '".HOME_URL."?roads';
-        //     </script>";
+           echo "<script>
+            alert('Failed to update road');
+            window.location = '".HOME_URL."?roads';
+            </script>";
         }
     }
-}elseif (isset($_POST['add_new_admin_by_super_admin_btn'])) {//add admin
+}elseif (isset($_POST['add_new_admin_btn'])) {//add admin
     trim(extract($_POST));
     if (count($errors) == 0) {
         // `userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered`
@@ -312,32 +304,25 @@ if (isset($_POST['register_btn'])) {
         $sql = "INSERT INTO users VALUES(NULL,'$fullname','$phone','$email','$pass','','admin','$dtime')";
         $result = dbCreate($sql);
         if($result == 1){
-            $_SESSION['loader'] = '<center><div class="spinner-border text-success"></div></center>';
-            $_SESSION['status'] = '<div class="card card-body alert alert-success text-center">Successfully registered admin</div>';
-            // echo "<script>
-            //     alert('Registration is Successful');
-            //     window.location = '".HOME_URL."?officers';
-            //     </script>";
+            echo "<script>
+                alert('Admin added successfully');
+                window.location = '".HOME_URL."?admins';
+                </script>";
         }else{
             //--error , registration failed. 
-            $_SESSION['loader'] = '<center><div class="spinner-border text-danger"></div></center>';
-            $_SESSION['status'] = '<div class="card card-body alert alert-danger text-center">Failed to register admin</div>';
-            // echo "<script>
-            //   alert('User registration failed');
-            //   window.location = '".HOME_URL."?officers';
-            //   </script>";
+            echo "<script>
+              alert('Failed to add Admin');
+              window.location = '".HOME_URL."?admins';
+              </script>";
         }
      }else{
-        //user already exists...
-        $_SESSION['loader'] = '<center><div class="spinner-border text-danger"></div></center>';
-        $_SESSION['status'] = '<div class="card card-body alert alert-danger text-center">Email already registered</div>';
-        //   echo "<script>
-        //     alert('Email already registered');
-        //     window.location = '".HOME_URL."?officers';
-        //     </script>";
+          echo "<script>
+            alert('Admin email already registered');
+            window.location = '".HOME_URL."?admins';
+            </script>";
         }
     }
-}elseif (isset($_POST['add_new_officer_by_admin_btn'])) {//add officer
+}elseif (isset($_POST['add_new_officer_btn'])) {//add officer
     trim(extract($_POST));
     if (count($errors) == 0) {
         // `userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered`
@@ -347,32 +332,27 @@ if (isset($_POST['register_btn'])) {
         $sql = "INSERT INTO users VALUES(NULL,'$fullname','$phone','$email','$pass','','officer','$dtime')";
         $result = dbCreate($sql);
         if($result == 1){
-            $_SESSION['loader'] = '<center><div class="spinner-border text-success"></div></center>';
-            $_SESSION['status'] = '<div class="card card-body alert alert-success text-center">Successfully registered officer</div>';
-            // echo "<script>
-            //     alert('Registration is Successful');
-            //     window.location = '".HOME_URL."?officers';
-            //     </script>";
+            echo "<script>
+                alert('Officer added successfully');
+                window.location = '".HOME_URL."?officers';
+                </script>";
+                exit;
         }else{
             //--error , registration failed. 
-            $_SESSION['loader'] = '<center><div class="spinner-border text-danger"></div></center>';
-            $_SESSION['status'] = '<div class="card card-body alert alert-danger text-center">Failed to register officer</div>';
-            // echo "<script>
-            //   alert('User registration failed');
-            //   window.location = '".HOME_URL."?officers';
-            //   </script>";
+            echo "<script>
+              alert('Failed to add Officer');
+              window.location = '".HOME_URL."?officers';
+              </script>";
         }
      }else{
         //user already exists...
-        $_SESSION['loader'] = '<center><div class="spinner-border text-danger"></div></center>';
-        $_SESSION['status'] = '<div class="card card-body alert alert-danger text-center">Email already registered</div>';
-        //   echo "<script>
-        //     alert('Email already registered');
-        //     window.location = '".HOME_URL."?officers';
-        //     </script>";
+        echo "<script>
+            alert('Officer email already registered');
+            window.location = '".HOME_URL."?officers';
+            </script>";
         }
     }
-}elseif (isset($_POST['add_route_btn_new_user_btn'])) {//add route
+}elseif (isset($_POST['add_route_btn'])) {//add route
      trim(extract($_POST));
      // `rid`, `road_id`, `fromm`, `too`, `status`
     if (count($errors) == 0) {
@@ -380,22 +360,18 @@ if (isset($_POST['register_btn'])) {
         $too = addslashes($too);
         $sql = $dbh->query("INSERT INTO routes VALUES(NULL,'$road_id','$fromm','$too','$status') ");
         if($sql){
-            $_SESSION['loader'] = '<center><div class="spinner-border text-success"></div></center>';
-            $_SESSION['status'] = '<div class="card card-body alert alert-success text-center">Route added successfully</div>';
-            // echo "<script>
-            // alert('Road Name Updated successfully');
-            // window.location = '".HOME_URL."?routes';
-            // </script>";
+            echo "<script>
+            alert('Route added successfully');
+            window.location = '".HOME_URL."?routes';
+            </script>";
         }else{
-            $_SESSION['loader'] = '<center><div class="spinner-border text-danger"></div></center>';
-            $_SESSION['status'] = '<div class="card card-body alert alert-danger text-center">Failed to add Route</div>';
-        //    echo "<script>
-        //     alert('Road Name Updated failed');
-        //     window.location = '".HOME_URL."?routes';
-        //     </script>";
+           echo "<script>
+            alert('Failed to add route');
+            window.location = '".HOME_URL."?routes';
+            </script>";
         }
     }
-}elseif (isset($_POST['update_road_route_new_user_btn'])) {//update route
+}elseif (isset($_POST['update_route_btn'])) {//update route
     trim(extract($_POST));
     // `rid`, `road_id`, `fromm`, `too`, `status`
     if (count($errors) == 0) {
@@ -404,19 +380,15 @@ if (isset($_POST['register_btn'])) {
         $sql = $dbh->query("UPDATE routes SET fromm = '$fromm', too = '$too', status = '$status' WHERE rid = '$rid' ");
     
         if($sql){
-            $_SESSION['loader'] = '<center><div class="spinner-border text-success"></div></center>';
-            $_SESSION['status'] = '<div class="card card-body alert alert-success text-center">Route successfully updated</div>';
-            // echo "<script>
-            // alert('Road Name Updated successfully');
-            // window.location = '".HOME_URL."?routes';
-            // </script>";
+           echo "<script>
+            alert('Route updated successfully');
+            window.location = '".HOME_URL."?routes';
+            </script>";
         }else{
-            $_SESSION['loader'] = '<center><div class="spinner-border text-danger"></div></center>';
-            $_SESSION['status'] = '<div class="card card-body alert alert-danger text-center">Failed to update Route</div>';
-        //    echo "<script>
-        //     alert('Road Name Updated failed');
-        //     window.location = '".HOME_URL."?routes';
-        //     </script>";
+           echo "<script>
+            alert('Failed to update route');
+            window.location = '".HOME_URL."?routes';
+            </script>";
         }
     }
 }elseif (isset($_POST['update_admin_details_btn'])) {//update admin
@@ -426,19 +398,15 @@ if (isset($_POST['register_btn'])) {
         $pass= sha1($password);
         $sql = $dbh->query("UPDATE users SET fullname ='$fullname',phone ='$phone',email ='$email',password ='$pass',role = 'admin' WHERE userid = '$userid' ");
         if($sql){
-            $_SESSION['loader'] = '<center><div class="spinner-border text-success"></div></center>';
-            $_SESSION['status'] = '<div class="card card-body alert alert-success text-center">User successfully updated</div>';
-            // echo "<script>
-            // alert('User Updated successfully');
-            // window.location = '".HOME_URL."?users';
-            // </script>";
+            echo "<script>
+            alert('Admin details updated successfully');
+            window.location = '".HOME_URL."?admins';
+            </script>";
         }else{
-            $_SESSION['loader'] = '<center><div class="spinner-border text-danger"></div></center>';
-            $_SESSION['status'] = '<div class="card card-body alert alert-danger text-center">Failed to update User</div>';
-        //    echo "<script>
-        //     alert('User Update failed');
-        //     window.location = '".HOME_URL."?users';
-        //     </script>";
+           echo "<script>
+            alert('Failed to update admin details');
+            window.location = '".HOME_URL."?admins';
+            </script>";
         }
     }
 }elseif (isset($_POST['update_officer_details_btn'])) {//update officer
@@ -448,19 +416,15 @@ if (isset($_POST['register_btn'])) {
         $pass= sha1($password);
         $sql = $dbh->query("UPDATE users SET fullname ='$fullname',phone ='$phone',email ='$email',password ='$pass',role = 'officer' WHERE userid = '$userid' ");
         if($sql){
-            $_SESSION['loader'] = '<center><div class="spinner-border text-success"></div></center>';
-            $_SESSION['status'] = '<div class="card card-body alert alert-success text-center">User successfully updated</div>';
-            // echo "<script>
-            // alert('User Updated successfully');
-            // window.location = '".HOME_URL."?users';
-            // </script>";
+            echo "<script>
+            alert('Officer details updated successfully');
+            window.location = '".HOME_URL."?officers';
+            </script>";
         }else{
-            $_SESSION['loader'] = '<center><div class="spinner-border text-danger"></div></center>';
-            $_SESSION['status'] = '<div class="card card-body alert alert-danger text-center">Failed to update User</div>';
-        //    echo "<script>
-        //     alert('User Update failed');
-        //     window.location = '".HOME_URL."?users';
-        //     </script>";
+           echo "<script>
+            alert('Failed to update officer details');
+            window.location = '".HOME_URL."?officers';
+            </script>";
         }
     }
 }
@@ -471,19 +435,15 @@ elseif (isset($_POST['update_user_details_btn'])) {//update user details
         $pass= sha1($password);
         $sql = $dbh->query("UPDATE users SET fullname ='$fullname',phone ='$phone',email ='$email',password ='$pass',role = 'user' WHERE userid = '$userid' ");
         if($sql){
-            $_SESSION['loader'] = '<center><div class="spinner-border text-success"></div></center>';
-            $_SESSION['status'] = '<div class="card card-body alert alert-success text-center">User successfully updated</div>';
-            // echo "<script>
-            // alert('User Updated successfully');
-            // window.location = '".HOME_URL."?users';
-            // </script>";
+            echo "<script>
+            alert('User details updated successfully');
+            window.location = '".HOME_URL."?users';
+            </script>";
         }else{
-            $_SESSION['loader'] = '<center><div class="spinner-border text-danger"></div></center>';
-            $_SESSION['status'] = '<div class="card card-body alert alert-danger text-center">Failed to update User</div>';
-        //    echo "<script>
-        //     alert('User Update failed');
-        //     window.location = '".HOME_URL."?users';
-        //     </script>";
+           echo "<script>
+            alert('Failed to update user details');
+            window.location = '".HOME_URL."?users';
+            </script>";
         }
     }
 }
