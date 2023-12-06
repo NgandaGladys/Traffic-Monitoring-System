@@ -1,10 +1,10 @@
-<div class="modal fade custom-modal" tabindex="-1" role="dialog" aria-labelledby="modal_add_user" aria-hidden="true" id="edit-route<?=$rx->rid; ?>">
+<div class="modal fade custom-modal" tabindex="-1" role="dialog" aria-labelledby="modal_add_user" aria-hidden="true" id="edit-traffic-point<?=$rx->rid; ?>">
     <div class="modal-dialog">
         <div class="modal-content">
             <form action="" method="post" enctype="multipart/form-data">
                 <input type="hidden" value="<?=$rx->rid; ?>" name="rid">
                 <div class="modal-header">
-                    <h5 class="modal-title">Edit Route</h5>
+                    <h5 class="modal-title">Edit Traffic Point</h5>
                     <button type="button" class="close" data-dismiss="modal">
                         <span aria-hidden="true">&times;</span>
                         <span class="sr-only">Close</span>
