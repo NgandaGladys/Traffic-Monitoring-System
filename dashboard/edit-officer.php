@@ -34,7 +34,7 @@
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label>Password (required)</label>
-                                <input class="form-control" name="password" value="<?=$rx->pass; ?>" type="password" required />
+                                <input class="form-control" name="password" value="" type="password" />
                             </div>
                         </div>
                     </div>

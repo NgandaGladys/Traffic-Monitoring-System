@@ -35,7 +35,7 @@ if (isset($_POST['register_btn'])) {
         $check = $dbh->query("SELECT email FROM users WHERE email='$email' ")->fetchColumn();
       if(!$check){
         $pass= sha1($password);
-        $sql = "INSERT INTO users VALUES(NULL,'$fullname','$phone','$email','$pass','','user','$dtime')";
+        $sql = "INSERT INTO users VALUES(NULL,'$fullname','$phone','$email','$location','$pass','','user','$dtime')";
         $result = dbCreate($sql);
         if($result == 1){//activate mailer
             // $subj = "Traffic Monitoring System - Registration Verification";
@@ -104,6 +104,7 @@ if (isset($_POST['register_btn'])) {
                 $_SESSION['fullname'] = $row->fullname;
                 $_SESSION['phone'] = $row->phone;
                 $_SESSION['email'] = $row->email;
+                $_SESSION['location'] = $row->location;
                 $_SESSION['role'] = $row->role;
                 $_SESSION['date_registered'] = $row->date_registered;
                 $_SESSION['loader'] = '<center><div class="spinner-border text-success"></div></center>';
@@ -153,6 +154,7 @@ if (isset($_POST['register_btn'])) {
                 $_SESSION['fullname'] = $row->fullname;
                 $_SESSION['phone'] = $row->phone;
                 $_SESSION['email'] = $row->email;
+                $_SESSION['location'] = $row->location;
                 $_SESSION['role'] = $row->role;
                 $_SESSION['date_registered'] = $row->date_registered;
                 $_SESSION['loader'] = '<center><div class="spinner-border text-success"></div></center>';
@@ -263,7 +265,7 @@ if (isset($_POST['register_btn'])) {
     trim(extract($_POST));
     // `road_id`, `road_name`
     $road_name = addslashes($road_name);
-    $sql = dbCreate("INSERT INTO roads VALUES(NULL, '$road_name') ");
+    $sql = dbCreate("INSERT INTO roads VALUES(NULL, '$road_name','$road_location') ");
     if ($sql ==1) {
         echo "<script>
             alert('Road added successfully');
@@ -280,7 +282,7 @@ if (isset($_POST['register_btn'])) {
     trim(extract($_POST));
     if (count($errors) == 0) {
         $road_name = addslashes($road_name);
-        $sql = $dbh->query("UPDATE roads SET road_name = '$road_name' WHERE road_id = '$road_id' ");
+        $sql = $dbh->query("UPDATE roads SET road_name = '$road_name',road_location = '$road_location' WHERE road_id = '$road_id' ");
     
         if($sql){
             echo "<script>
@@ -297,11 +299,11 @@ if (isset($_POST['register_btn'])) {
 }elseif (isset($_POST['add_new_admin_btn'])) {//add admin
     trim(extract($_POST));
     if (count($errors) == 0) {
-        // `userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered`
+        // `userid`, `fullname`, `phone`, `email`,`location`, `password`, `token`, `role`, `date_registered`
         $check = $dbh->query("SELECT email FROM users WHERE email='$email' ")->fetchColumn();
       if(!$check){
         $pass= sha1($password);
-        $sql = "INSERT INTO users VALUES(NULL,'$fullname','$phone','$email','$pass','','admin','$dtime')";
+        $sql = "INSERT INTO users VALUES(NULL,'$fullname','$phone','$email','$location','$pass','','admin','$dtime')";
         $result = dbCreate($sql);
         if($result == 1){
             echo "<script>
@@ -329,7 +331,67 @@ if (isset($_POST['register_btn'])) {
         $check = $dbh->query("SELECT email FROM users WHERE email='$email' ")->fetchColumn();
       if(!$check){
         $pass= sha1($password);
-        $sql = "INSERT INTO users VALUES(NULL,'$fullname','$phone','$email','$pass','','officer','$dtime')";
+        $sql = "INSERT INTO users VALUES(NULL,'$fullname','$phone','$email','$location','$pass','','officer','$dtime')";
+        $result = dbCreate($sql);
+        if($result == 1){
+            echo "<script>
+                alert('Officer added successfully');
+                window.location = '".HOME_URL."?officers';
+                </script>";
+                exit;
+        }else{
+            //--error , registration failed. 
+            echo "<script>
+              alert('Failed to add Officer');
+              window.location = '".HOME_URL."?officers';
+              </script>";
+        }
+     }else{
+        //user already exists...
+        echo "<script>
+            alert('Officer email already registered');
+            window.location = '".HOME_URL."?officers';
+            </script>";
+        }
+    }
+}elseif (isset($_POST['add_new_officer_btn_one'])) {//add officer
+    trim(extract($_POST));
+    if (count($errors) == 0) {///
+        // `userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered`
+        $check = $dbh->query("SELECT email FROM users WHERE email='$email' ")->fetchColumn();
+      if(!$check){
+        $pass= sha1($password);
+        $sql = "INSERT INTO users VALUES(NULL,'$fullname','$phone','$email','A','$pass','','officer','$dtime')";
+        $result = dbCreate($sql);
+        if($result == 1){
+            echo "<script>
+                alert('Officer added successfully');
+                window.location = '".HOME_URL."?officers';
+                </script>";
+                exit;
+        }else{
+            //--error , registration failed. 
+            echo "<script>
+              alert('Failed to add Officer');
+              window.location = '".HOME_URL."?officers';
+              </script>";
+        }
+     }else{
+        //user already exists...
+        echo "<script>
+            alert('Officer email already registered');
+            window.location = '".HOME_URL."?officers';
+            </script>";
+        }
+    }
+}elseif (isset($_POST['add_new_officer_btn_two'])) {//add officer
+    trim(extract($_POST));
+    if (count($errors) == 0) {
+        // `userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered`
+        $check = $dbh->query("SELECT email FROM users WHERE email='$email' ")->fetchColumn();
+      if(!$check){
+        $pass= sha1($password);
+        $sql = "INSERT INTO users VALUES(NULL,'$fullname','$phone','$email','B','$pass','','officer','$dtime')";
         $result = dbCreate($sql);
         if($result == 1){
             echo "<script>
@@ -396,7 +458,7 @@ if (isset($_POST['register_btn'])) {
     // userid, role
     if (count($errors) == 0) {
         $pass= sha1($password);
-        $sql = $dbh->query("UPDATE users SET fullname ='$fullname',phone ='$phone',email ='$email',password ='$pass',role = 'admin' WHERE userid = '$userid' ");
+        $sql = $dbh->query("UPDATE users SET fullname ='$fullname',phone ='$phone',email ='$email',location='$location' ,password ='$pass',role = 'admin' WHERE userid = '$userid' ");
         if($sql){
             echo "<script>
             alert('Admin details updated successfully');
@@ -414,7 +476,7 @@ if (isset($_POST['register_btn'])) {
     // userid, role
     if (count($errors) == 0) {
         $pass= sha1($password);
-        $sql = $dbh->query("UPDATE users SET fullname ='$fullname',phone ='$phone',email ='$email',password ='$pass',role = 'officer' WHERE userid = '$userid' ");
+        $sql = $dbh->query("UPDATE users SET fullname ='$fullname',phone ='$phone',email ='$email',location ='$location',password ='$pass',role = 'officer' WHERE userid = '$userid' ");
         if($sql){
             echo "<script>
             alert('Officer details updated successfully');
@@ -427,8 +489,43 @@ if (isset($_POST['register_btn'])) {
             </script>";
         }
     }
-}
-elseif (isset($_POST['update_user_details_btn'])) {//update user details
+}elseif (isset($_POST['update_officer_details_btn_one'])) {//update officer
+    trim(extract($_POST));
+    // userid, role
+    if (count($errors) == 0) {
+        $pass= sha1($password);
+        $sql = $dbh->query("UPDATE users SET fullname ='$fullname',phone ='$phone',email ='$email',location ='A',password ='$pass',role = 'officer' WHERE userid = '$userid' ");
+        if($sql){
+            echo "<script>
+            alert('Officer details updated successfully');
+            window.location = '".HOME_URL."?officers';
+            </script>";
+        }else{
+           echo "<script>
+            alert('Failed to update officer details');
+            window.location = '".HOME_URL."?officers';
+            </script>";
+        }
+    }
+}elseif (isset($_POST['update_officer_details_btn_two'])) {//update officer
+    trim(extract($_POST));
+    // userid, role
+    if (count($errors) == 0) {
+        $pass= sha1($password);
+        $sql = $dbh->query("UPDATE users SET fullname ='$fullname',phone ='$phone',email ='$email',location ='B',password ='$pass',role = 'officer' WHERE userid = '$userid' ");
+        if($sql){
+            echo "<script>
+            alert('Officer details updated successfully');
+            window.location = '".HOME_URL."?officers';
+            </script>";
+        }else{
+           echo "<script>
+            alert('Failed to update officer details');
+            window.location = '".HOME_URL."?officers';
+            </script>";
+        }
+    }
+}elseif (isset($_POST['update_user_details_btn'])) {//update user details
     trim(extract($_POST));
     // userid, role
     if (count($errors) == 0) {

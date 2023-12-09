@@ -18,6 +18,12 @@
                                 <input class="form-control" name="road_name" type="text" required />
                             </div>
                         </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label>Road Location (required)</label>
+                                <input class="form-control" name="road_location" type="text" required />
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" name="add_road_btn" class="btn btn-success">Save</button>
