@@ -34,7 +34,7 @@
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label>Password (required)</label>
-                                <input class="form-control" name="password" value="" type="password" />
+                                <input class="form-control" name="password" value="" type="password" required/>
                             </div>
                         </div>
                     </div>
