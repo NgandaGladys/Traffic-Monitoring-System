@@ -530,16 +530,16 @@ if (isset($_POST['register_btn'])) {
     // userid, role
     if (count($errors) == 0) {
         $pass= sha1($password);
-        $sql = $dbh->query("UPDATE users SET fullname ='$fullname',phone ='$phone',email ='$email',password ='$pass',role = 'user' WHERE userid = '$userid' ");
+        $sql = $dbh->query("UPDATE users SET fullname ='$fullname',phone ='$phone',email ='$email',location ='$location',password ='$pass',role = 'user' WHERE email = '$email' ");
         if($sql){
             echo "<script>
             alert('User details updated successfully');
-            window.location = '".HOME_URL."?users';
+            window.location = '".HOME_URL."';
             </script>";
         }else{
            echo "<script>
             alert('Failed to update user details');
-            window.location = '".HOME_URL."?users';
+            window.location = '".HOME_URL."';
             </script>";
         }
     }

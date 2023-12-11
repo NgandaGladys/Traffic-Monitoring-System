@@ -38,7 +38,7 @@ include 'root/process.php';
 <body>
     <div class="overlay">
         <div class="container">
-            <div class="row m-6 no-gutters shadow-lg">
+            <div class="row m-6 no-gutters">
                  <div class="col-md-2">
                      <h4></h4>
                 </div>
