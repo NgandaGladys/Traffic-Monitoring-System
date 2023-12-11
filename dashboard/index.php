@@ -584,10 +584,10 @@ if ($role == 'super_admin') {
                                  <td><?=$rx->fromm.' - '.$rx->too; ?></td>
                                  <td><?=$rx->status; ?></td>
                                  <td>
-                                    <a href="#edit-traffic-point<?=$rx->rid; ?>" data-toggle="modal" class="btn btn-primary">Edit</a>
+                                    <a href="#edit-traffic-point-one<?=$rx->rid; ?>" data-toggle="modal" class="btn btn-primary">Edit</a>
                                     <a onclick="return confirm('Do you really want to delete this Route?. '); " href="?delete-route=<?=$rx->rid; ?>" class="btn btn-danger">Delete</a></td>
                               </tr>
-                           <?php include 'edit-traffic-point.php'; } ?>
+                           <?php include 'edit-traffic-point-one.php'; } ?>
                            </tbody>
                         </table>
                      </div>
