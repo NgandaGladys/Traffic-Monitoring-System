@@ -146,4 +146,5 @@ include 'admin/addofficertwo.php';
 include 'admin/addroadtwo.php';
 include 'addofficerone.php';
 include 'addroadone.php';
+include 'add-traffic-point-one.php';
 ?>

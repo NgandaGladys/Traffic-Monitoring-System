@@ -1,4 +1,4 @@
-<div class="modal fade custom-modal" tabindex="-1" role="dialog" aria-labelledby="modal_add_user" aria-hidden="true" id="add-traffic-point">
+<div class="modal fade custom-modal" tabindex="-1" role="dialog" aria-labelledby="modal_add_user" aria-hidden="true" id="add-traffic-point-one">
     <div class="modal-dialog">
         <div class="modal-content">
             <form action="" method="post" enctype="multipart/form-data">
@@ -17,7 +17,7 @@
                                 <label>Road Name (required)</label>
                                 <select class="form-control" name="road_id" required>
                                     <option value="">--select road name--</option>
-                                    <?php $rad = $dbh->query("SELECT * FROM roads");
+                                    <?php $rad = $dbh->query("SELECT * FROM roads WHERE road_location = 'A'");
                                     while ($rx = $rad->fetch(PDO::FETCH_OBJ)) { ?>
                                         <option value="<?=$rx->road_id; ?>"><?=$rx->road_name; ?></option>
                                     <?php } ?>

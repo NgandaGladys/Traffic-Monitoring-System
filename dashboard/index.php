@@ -558,7 +558,7 @@ if ($role == 'super_admin') {
          <div class="row dashboard-header">
              <div class="card">
                <div class="card-header">
-                  <h5 class="card-header-text"><a href="#add-traffic-point" data-toggle="modal" class="btn btn-primary float-right">Add Traffic Point</a></h5>
+                  <h5 class="card-header-text"><a href="#add-traffic-point-one" data-toggle="modal" class="btn btn-primary float-right">Add Traffic Point</a></h5>
                </div>
                <div class="card-block">
                   <div class="row">
