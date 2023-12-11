@@ -3,8 +3,8 @@ $errors = array();
 foreach ($errors as $error) {
     echo $errors;
 }
-
-if (isset($_POST['register_btn'])) {
+//Forms
+if (isset($_POST['register_btn'])) {//signup
     trim(extract($_POST));
     if (empty($fullname)) {
     array_push($errors, $_SESSION['fullname_err'] = '<div class="text-danger text-start">Name is required</div>');
@@ -71,7 +71,7 @@ if (isset($_POST['register_btn'])) {
         }
     }
     
-}elseif (isset($_POST['user_login_btn'])) {
+}elseif (isset($_POST['user_login_btn'])) {//user login
     trim(extract($_POST));
     if (empty($email)) {
     array_push($errors, $_SESSION['email_err'] = '<div class="text-danger text-start">Email Address is required</div>');
@@ -121,7 +121,7 @@ if (isset($_POST['register_btn'])) {
         }
 
     }
-}elseif (isset($_POST['admin_login_btn'])) {
+}elseif (isset($_POST['admin_login_btn'])) {//admin login
     trim(extract($_POST));
     if (empty($email)) {
     array_push($errors, $_SESSION['email_err'] = '<div class="text-danger text-start">Email Address is required</div>');
@@ -171,7 +171,7 @@ if (isset($_POST['register_btn'])) {
         }
 
     }
-}elseif (isset($_POST['forgot_password_btn'])) {
+}elseif (isset($_POST['forgot_password_btn'])) {//forgot password
     trim(extract($_POST));
     if (empty($email)) {
     array_push($errors, $_SESSION['email_err'] = '<div class="text-danger text-start">Email is required</div>');
@@ -206,7 +206,7 @@ if (isset($_POST['register_btn'])) {
     }
     
 
-}elseif (isset($_POST['verify'])) {//updates required
+}elseif (isset($_POST['verify'])) {//updates required otp 
     trim(extract($_POST));
     if (count($errors) == 0) {
         $token = $_SESSION['token'];
@@ -241,7 +241,7 @@ if (isset($_POST['register_btn'])) {
     }
     }////////////////////////////////////////////////////////////////////////////////////////////
 
-}elseif (isset($_POST['resent_token_btn'])) {
+}elseif (isset($_POST['resent_token_btn'])) {//otp
     trim(extract($_POST));
     if (count($errors) == 0) {
         $result = $dbh->query("SELECT * FROM users WHERE phone = '$phone' " );
@@ -283,6 +283,76 @@ if (isset($_POST['register_btn'])) {
     if (count($errors) == 0) {
         $road_name = addslashes($road_name);
         $sql = $dbh->query("UPDATE roads SET road_name = '$road_name',road_location = '$road_location' WHERE road_id = '$road_id' ");
+    
+        if($sql){
+            echo "<script>
+            alert('Road updated successfully');
+            window.location = '".HOME_URL."?roads';
+            </script>";
+        }else{
+           echo "<script>
+            alert('Failed to update road');
+            window.location = '".HOME_URL."?roads';
+            </script>";
+        }
+    }
+}elseif (isset($_POST['add_road_btn_one'])) {//add road
+    trim(extract($_POST));
+    // `road_id`, `road_name`
+    $road_name = addslashes($road_name);
+    $sql = dbCreate("INSERT INTO roads VALUES(NULL, '$road_name','A') ");
+    if ($sql ==1) {
+        echo "<script>
+            alert('Road added successfully');
+            window.location = '".HOME_URL."?roads';
+            </script>";
+    }else{
+        echo "<script>
+            alert('Failed to add road');
+            window.location = '".HOME_URL."?roads';
+            </script>";
+    }
+
+}elseif(isset($_POST['update_road_btn_one'])){//update road
+    trim(extract($_POST));
+    if (count($errors) == 0) {
+        $road_name = addslashes($road_name);
+        $sql = $dbh->query("UPDATE roads SET road_name = '$road_name',road_location = 'A' WHERE road_id = '$road_id' ");
+    
+        if($sql){
+            echo "<script>
+            alert('Road updated successfully');
+            window.location = '".HOME_URL."?roads';
+            </script>";
+        }else{
+           echo "<script>
+            alert('Failed to update road');
+            window.location = '".HOME_URL."?roads';
+            </script>";
+        }
+    }
+}elseif (isset($_POST['add_road_btn_two'])) {//add road
+    trim(extract($_POST));
+    // `road_id`, `road_name`
+    $road_name = addslashes($road_name);
+    $sql = dbCreate("INSERT INTO roads VALUES(NULL, '$road_name','B') ");
+    if ($sql ==1) {
+        echo "<script>
+            alert('Road added successfully');
+            window.location = '".HOME_URL."?roads';
+            </script>";
+    }else{
+        echo "<script>
+            alert('Failed to add road');
+            window.location = '".HOME_URL."?roads';
+            </script>";
+    }
+
+}elseif(isset($_POST['update_road_btn_two'])){//update road
+    trim(extract($_POST));
+    if (count($errors) == 0) {
+        $road_name = addslashes($road_name);
+        $sql = $dbh->query("UPDATE roads SET road_name = '$road_name',road_location = 'B' WHERE road_id = '$road_id' ");
     
         if($sql){
             echo "<script>

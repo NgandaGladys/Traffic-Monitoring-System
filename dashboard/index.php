@@ -455,11 +455,11 @@ if ($role == 'super_admin') {
                                  <td><?=$rx->role; ?></td>
                                  <td><?=$rx->date_registered; ?></td>
                                  <td>
-                                    <a href="#edit-officer<?=$rx->userid; ?>" data-toggle="modal" class="btn btn-primary">Edit</a>
+                                    <a href="#edit-officer-one<?=$rx->userid; ?>" data-toggle="modal" class="btn btn-primary">Edit</a>
                                     <a onclick="return confirm('Do you really want to delete this officer?. '); " href="?delete-officer=<?=$rx->userid; ?>" class="btn btn-danger">Delete</a>
                                  </td>
                               </tr>
-                           <?php include 'edit-officer.php'; } ?>
+                           <?php include 'edit-officer-one.php'; } ?>
                            </tbody>
                         </table>
                      </div>
@@ -654,7 +654,7 @@ if ($role == 'super_admin') {
             <div class="col-lg-3 col-md-6">
                <div class="card dashboard-product">
                   <h5>Traffic Points</h5>
-                  <?php $rts = $dbh->query("SELECT * FROM routes WHERE road_location = 'A'")->rowCount(); ?>
+                  <?php $rts = $dbh->query("SELECT * FROM roads r, routes t WHERE r.road_location = 'A' AND r.road_id = t.road_id ")->rowCount(); ?>
                   <h2 class="dashboard-total-products"><span><?=number_format($rts); ?></span></h2>
                   <span class="label" style="background-color: #ff9c02; padding:8px;"><a style="text-decoration: none; color: #ffffff; " href="?routes">Traffic Points</a></span>
                   <div class="side-box">
@@ -715,11 +715,11 @@ if ($role == 'super_admin') {
                                  <td><?=$rx->role; ?></td>
                                  <td><?=$rx->date_registered; ?></td>
                                  <td>
-                                    <a href="#edit-officer<?=$rx->userid; ?>" data-toggle="modal" class="btn btn-primary">Edit</a>
+                                    <a href="#edit-officer-two<?=$rx->userid; ?>" data-toggle="modal" class="btn btn-primary">Edit</a>
                                     <a onclick="return confirm('Do you really want to delete this officer?. '); " href="?delete-officer=<?=$rx->userid; ?>" class="btn btn-danger">Delete</a>
                                  </td>
                               </tr>
-                           <?php include 'edit-officer.php'; } ?>
+                           <?php include 'admin/edit-officer-two.php'; } ?>
                            </tbody>
                         </table>
                      </div>
@@ -750,7 +750,7 @@ if ($role == 'super_admin') {
          <div class="row dashboard-header">
              <div class="card">
                <div class="card-header">
-                  <h5 class="card-header-text"><a href="#addroad" data-toggle="modal" class="btn btn-primary float-right">Add Road</a></h5>
+                  <h5 class="card-header-text"><a href="#addroadtwo" data-toggle="modal" class="btn btn-primary float-right">Add Road</a></h5>
                </div>
                <div class="card-block">
                   <div class="row">
@@ -786,10 +786,10 @@ if ($role == 'super_admin') {
                                  <td></td>
                                  <td></td>
                                  <td></td>
-                                 <td><a href="#edit-road<?=$rx->road_id; ?>" data-toggle="modal" class="btn btn-primary">Edit</a>
+                                 <td><a href="#edit-road-two<?=$rx->road_id; ?>" data-toggle="modal" class="btn btn-primary">Edit</a>
                                  <a onclick="return confirm('Do you really want to delete this Road?. '); " href="?delete-road=<?=$rx->road_id; ?>" class="btn btn-danger">Delete</a></td>
                               </tr>
-                           <?php include 'edit-road.php'; } ?>
+                           <?php include 'admin/edit-road-two.php'; } ?>
                            </tbody>
                         </table>
                      </div>

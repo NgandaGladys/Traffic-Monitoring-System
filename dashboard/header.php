@@ -142,4 +142,8 @@ include 'super_admin/addroad.php';
 include 'super_admin/addadmin.php';
 include 'super_admin/addofficer.php';
 include 'super_admin/add-traffic-point.php';
+include 'admin/addofficertwo.php';
+include 'admin/addroadtwo.php';
+include 'addofficerone.php';
+include 'addroadone.php';
 ?>
