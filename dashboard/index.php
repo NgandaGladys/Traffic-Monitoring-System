@@ -490,7 +490,7 @@ if ($role == 'super_admin') {
          <div class="row dashboard-header">
              <div class="card">
                <div class="card-header">
-                  <h5 class="card-header-text"><a href="#addroad" data-toggle="modal" class="btn btn-primary float-right">Add Road</a></h5>
+                  <h5 class="card-header-text"><a href="#addroadone" data-toggle="modal" class="btn btn-primary float-right">Add Road</a></h5>
                </div>
                <div class="card-block">
                   <div class="row">
@@ -526,10 +526,10 @@ if ($role == 'super_admin') {
                                  <td></td>
                                  <td></td>
                                  <td></td>
-                                 <td><a href="#edit-road<?=$rx->road_id; ?>" data-toggle="modal" class="btn btn-primary">Edit</a>
+                                 <td><a href="#edit-road-one<?=$rx->road_id; ?>" data-toggle="modal" class="btn btn-primary">Edit</a>
                                  <a onclick="return confirm('Do you really want to delete this Road?. '); " href="?delete-road=<?=$rx->road_id; ?>" class="btn btn-danger">Delete</a></td>
                               </tr>
-                           <?php include 'edit-road.php'; } ?>
+                           <?php include 'edit-road-one.php'; } ?>
                            </tbody>
                         </table>
                      </div>
