@@ -19,6 +19,17 @@
                                 <input class="form-control" name="road_name" value="<?=$rx->road_name; ?>" type="text" required />
                             </div>
                         </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label>Road Location (required)</label>
+                                <select class="form-control" name="road_location" required>
+                                    <option value="A" <?php echo ($rx->road_location === 'A') ? 'selected' : ''; ?>>A</option>
+                                    <option value="B" <?php echo ($rx->road_location === 'B') ? 'selected' : ''; ?>>B</option>
+                                    <!-- <option value="C" <?php echo ($rx->road_location === 'C') ? 'selected' : ''; ?>>C</option> -->
+                                </select>
+                                <!-- <input class="form-control" name="road_location" value="<?=$rx->road_location; ?>" type="text" required /> -->
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" name="update_road_btn" class="btn btn-success">Save</button>

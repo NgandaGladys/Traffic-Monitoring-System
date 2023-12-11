@@ -10,7 +10,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <!--`userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered` -->
+                    <!--`userid`, `fullname`, `phone`, `email`,`location`, `password`, `token`, `role`, `date_registered` -->
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group">
@@ -28,6 +28,18 @@
                             <div class="form-group">
                                 <label>Email (required)</label>
                                 <input class="form-control" name="email" type="email" required />
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label>Location (required)</label>
+                                <select class="form-control" name="location" required>
+                                    <option value="">Select location</option>
+                                    <option>A</option>
+                                    <option>B</option>
+                                    <!-- <option>C</option>
+                                    <option>D</option> -->
+                                </select>
                             </div>
                         </div>
                         <div class="col-lg-12">

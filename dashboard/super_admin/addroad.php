@@ -21,7 +21,14 @@
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label>Road Location (required)</label>
-                                <input class="form-control" name="road_location" type="text" required />
+                                <select class="form-control" name="road_location" required>
+                                    <option value="">Select road location</option>
+                                    <option>A</option>
+                                    <option>B</option>
+                                    <!-- <option>C</option>
+                                    <option>D</option> -->
+                                </select>
+                                <!-- <input class="form-control" name="road_location" type="text" required /> -->
                             </div>
                         </div>
                     </div>

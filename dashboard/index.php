@@ -5,7 +5,7 @@ if ($role == 'super_admin') {
    <div class="content-wrapper">
       <!-- Container-fluid starts -->
       <!-- Main content starts -->
-      <div class="container-fluid">
+      <div class="container-fluid" style="background-color:#e5e5e5">
          <div class="row">
             <div class="main-header">
                <h4>Traffic Admins</h4>
@@ -27,7 +27,8 @@ if ($role == 'super_admin') {
                                  <th>FullName</th>
                                  <th>Phone</th>
                                  <th>Email</th>
-                                 <th>Role</th>
+                                 <!-- <th>Role</th> -->
+                                 <th>Location</th>
                                  <th>Date Registered</th>
                                  <th>Action</th>
                               </tr>
@@ -42,14 +43,15 @@ if ($role == 'super_admin') {
                                  <td><?=$rx->fullname; ?></td>
                                  <td><?=$rx->phone; ?></td>
                                  <td><?=$rx->email; ?></td>
-                                 <td><?=$rx->role; ?></td>
+                                 <!-- <td><?=$rx->role; ?></td> -->
+                                 <td><?=$rx->location; ?></td>
                                  <td><?=$rx->date_registered; ?></td>
                                  <td>
                                     <a href="#edit-admin<?=$rx->userid; ?>" data-toggle="modal" class="btn btn-primary">Edit</a>
-                                    <a onclick="return confirm('Do you really want to delete this admin?. '); " href="?delete-admin=<?=$rx->userid; ?>" class="btn btn-danger">Delete</a>
+                                    <a onclick="return confirm('Do you really want to delete this admin? '); " href="?delete-admin=<?=$rx->userid; ?>" class="btn btn-danger">Delete</a>
                                  </td>
                               </tr>
-                           <?php include 'edit-admin.php'; } ?>
+                           <?php include 'super_admin/edit-admin.php'; } ?>
                            </tbody>
                         </table>
                      </div>
@@ -71,7 +73,7 @@ if ($role == 'super_admin') {
    <div class="content-wrapper">
       <!-- Container-fluid starts -->
       <!-- Main content starts -->
-      <div class="container-fluid">
+      <div class="container-fluid" style="background-color:#e5e5e5">
          <div class="row">
             <div class="main-header">
                <h4>Traffic Officers</h4>
@@ -93,9 +95,10 @@ if ($role == 'super_admin') {
                                  <th>FullName</th>
                                  <th>Phone</th>
                                  <th>Email</th>
-                                 <th>Role</th>
+                                 <th>Location</th>
+                                 <!-- <th>Role</th> -->
                                  <th>Date Registered</th>
-                                 <!-- <th>Action</th> -->
+                                 <th>Action</th>
                               </tr>
                            </thead>
                            <!-- `userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered` -->
@@ -108,14 +111,15 @@ if ($role == 'super_admin') {
                                  <td><?=$rx->fullname; ?></td>
                                  <td><?=$rx->phone; ?></td>
                                  <td><?=$rx->email; ?></td>
-                                 <td><?=$rx->role; ?></td>
+                                 <td><?=$rx->location; ?></td>
+                                 <!-- <td><?=$rx->role; ?></td> -->
                                  <td><?=$rx->date_registered; ?></td>
                                  <td>
                                     <a href="#edit-officer<?=$rx->userid; ?>" data-toggle="modal" class="btn btn-primary">Edit</a>
-                                    <a onclick="return confirm('Do you really want to delete this officer?. '); " href="?delete-officer=<?=$rx->userid; ?>" class="btn btn-danger">Delete</a>
+                                    <a onclick="return confirm('Do you really want to delete this officer? '); " href="?delete-officer=<?=$rx->userid; ?>" class="btn btn-danger">Delete</a>
                                  </td>
                               </tr>
-                           <?php include 'edit-officer.php'; } ?>
+                           <?php include 'super_admin/edit-officer.php'; } ?>
                            </tbody>
                         </table>
                      </div>
@@ -137,10 +141,10 @@ if ($role == 'super_admin') {
    <div class="content-wrapper">
       <!-- Container-fluid starts -->
       <!-- Main content starts -->
-      <div class="container-fluid">
+      <div class="container-fluid" style="background-color:#e5e5e5">
          <div class="row">
             <div class="main-header">
-               <h4>Non-officers</h4>
+               <h4>Users</h4>
             </div>
          </div>
          <!-- 4-blocks row start -->
@@ -156,9 +160,9 @@ if ($role == 'super_admin') {
                                  <th>FullName</th>
                                  <th>Phone</th>
                                  <th>Email</th>
-                                 <th>Role</th>
+                                 <th>Location</th>
+                                 <!-- <th>Role</th> -->
                                  <th>Date Registered</th>
-                                 <!-- <th>Action</th> -->
                               </tr>
                            </thead>
                            <!-- `userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered` -->
@@ -171,7 +175,8 @@ if ($role == 'super_admin') {
                                  <td><?=$rx->fullname; ?></td>
                                  <td><?=$rx->phone; ?></td>
                                  <td><?=$rx->email; ?></td>
-                                 <td><?=$rx->role; ?></td>
+                                 <td><?=$rx->location; ?></td>
+                                 <!-- <td><?=$rx->role; ?></td> -->
                                  <td><?=$rx->date_registered; ?></td>
                               </tr>
                            <?php } ?>
@@ -191,7 +196,7 @@ if ($role == 'super_admin') {
    <div class="content-wrapper">
       <!-- Container-fluid starts -->
       <!-- Main content starts -->
-      <div class="container-fluid">
+      <div class="container-fluid" style="background-color:#e5e5e5">
          <div class="row">
             <div class="main-header">
                <h4>Roads</h4>
@@ -201,7 +206,7 @@ if ($role == 'super_admin') {
          <div class="row dashboard-header">
              <div class="card">
                <div class="card-header">
-                  <h5 class="card-header-text">Road <a href="#addroad" data-toggle="modal" class="btn btn-primary float-right">Add Road</a></h5>
+                  <h5 class="card-header-text"><a href="#addroad" data-toggle="modal" class="btn btn-primary float-right">Add Road</a></h5>
                </div>
                <div class="card-block">
                   <div class="row">
@@ -211,7 +216,15 @@ if ($role == 'super_admin') {
                               <tr>
                                  <th>id</th>
                                  <th>Road Name</th>
-                                 <!-- <th>Action</th> -->
+                                 <th>Road Location</th>
+                                 <th></th>
+                                 <th></th>
+                                 <th></th>
+                                 <th></th>
+                                 <th></th>
+                                 <th></th>
+                                 <th></th>
+                                 <th>Action</th>
                               </tr>
                            </thead>
                            <tbody>
@@ -221,17 +234,7 @@ if ($role == 'super_admin') {
                               <tr>
                                  <td><?=$x++; ?></td>
                                  <td><?=$rx->road_name; ?></td>
-                                 <td></td>
-                                 <td></td>
-                                 <td></td>
-                                 <td></td>
-                                 <td></td>
-                                 <td></td>
-                                 <td></td>
-                                 <td></td>
-                                 <td></td>
-                                 <td></td>
-                                 <td></td>
+                                 <td><?=$rx->road_location; ?></td>
                                  <td></td>
                                  <td></td>
                                  <td></td>
@@ -240,9 +243,9 @@ if ($role == 'super_admin') {
                                  <td></td>
                                  <td></td>
                                  <td><a href="#edit-road<?=$rx->road_id; ?>" data-toggle="modal" class="btn btn-primary">Edit</a>
-                                 <a onclick="return confirm('Do you really want to delete this Road?. '); " href="?delete-road=<?=$rx->road_id; ?>" class="btn btn-danger">Delete</a></td>
+                                 <a onclick="return confirm('Do you really want to delete this Road? '); " href="?delete-road=<?=$rx->road_id; ?>" class="btn btn-danger">Delete</a></td>
                               </tr>
-                           <?php include 'edit-road.php'; } ?>
+                           <?php include 'super_admin/edit-road.php'; } ?>
                            </tbody>
                         </table>
                      </div>
@@ -261,17 +264,17 @@ if ($role == 'super_admin') {
    <div class="content-wrapper">
       <!-- Container-fluid starts -->
       <!-- Main content starts -->
-      <div class="container-fluid">
+      <div class="container-fluid" style="background-color:#e5e5e5">
          <div class="row">
             <div class="main-header">
-               <h4>Routes</h4>
+               <h4>Traffic Points</h4>
             </div>
          </div>
          <!-- 4-blocks row start -->
          <div class="row dashboard-header">
              <div class="card">
                <div class="card-header">
-                  <h5 class="card-header-text">Routes <a href="#addroute" data-toggle="modal" class="btn btn-primary float-right">Add Route</a></h5>
+                  <h5 class="card-header-text"><a href="#add-traffic-point" data-toggle="modal" class="btn btn-primary float-right">Add Traffic Point</a></h5>
                </div>
                <div class="card-block">
                   <div class="row">
@@ -281,9 +284,10 @@ if ($role == 'super_admin') {
                               <tr>
                                  <th>id</th>
                                  <th>Road Name</th>
-                                 <th>Routes</th>
-                                 <th>Status</th>
-                                 <!-- <th>Action</th> -->
+                                 <th>Road Location</th>
+                                 <th>Traffic Point</th>
+                                 <th>Traffic Status</th>
+                                 <th>Action</th>
                               </tr>
                            </thead>
                            <tbody>
@@ -294,13 +298,14 @@ if ($role == 'super_admin') {
                               <tr>
                                  <td><?=$x++; ?></td>
                                  <td><?=$rx->road_name; ?></td>
+                                 <td><?=$rx->road_location; ?></td>
                                  <td><?=$rx->fromm.' - '.$rx->too; ?></td>
                                  <td><?=$rx->status; ?></td>
                                  <td>
-                                    <a href="#edit-route<?=$rx->rid; ?>" data-toggle="modal" class="btn btn-primary">Edit</a>
-                                    <a onclick="return confirm('Do you really want to delete this Route?. '); " href="?delete-route=<?=$rx->rid; ?>" class="btn btn-danger">Delete</a></td>
+                                    <a href="#edit-traffic-point<?=$rx->rid; ?>" data-toggle="modal" class="btn btn-primary">Edit</a>
+                                    <a onclick="return confirm('Do you really want to delete this Route? '); " href="?delete-route=<?=$rx->rid; ?>" class="btn btn-danger">Delete</a></td>
                               </tr>
-                           <?php include 'edit-route.php'; } ?>
+                           <?php include 'super_admin/edit-traffic-point.php'; } ?>
                            </tbody>
                         </table>
                      </div>
@@ -388,10 +393,688 @@ if ($role == 'super_admin') {
            
             <div class="col-lg-3 col-md-6">
                <div class="card dashboard-product">
-                  <h5>Routes</h5>
+                  <h5>Traffic Points</h5>
                   <?php $rts = $dbh->query("SELECT * FROM routes ")->rowCount(); ?>
                   <h2 class="dashboard-total-products"><span><?=number_format($rts); ?></span></h2>
-                  <span class="label" style="background-color: #ff9c02; padding:8px;"><a style="text-decoration: none; color: #ffffff; " href="?routes">Routes</a></span>
+                  <span class="label" style="background-color: #ff9c02; padding:8px;"><a style="text-decoration: none; color: #ffffff; " href="?routes">Traffic Points</a></span>
+                  <div class="side-box">
+                     <i class="icon-map text-warning-color"></i>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- 4-blocks row end -->
+      </div>
+      <!-- Main content ends -->
+      <!-- Container-fluid ends -->
+   </div>
+<?php } ?>
+<?php }elseif ($role == 'admin' && $location == 'A') { 
+   if (isset($_REQUEST['officers'])) { ?>
+     <!-- Hover effect table starts -->
+   <div class="content-wrapper">
+      <!-- Container-fluid starts -->
+      <!-- Main content starts -->
+      <div class="container-fluid" style="background-color:#e5e5e5">
+         <div class="row">
+            <div class="main-header">
+               <h4>Traffic Officers</h4>
+            </div>
+         </div>
+         <!-- 4-blocks row start -->
+         <div class="row dashboard-header">
+             <div class="card">
+               <div class="card-header">
+                  <h5 class="card-header-text"><a href="#addofficerone" class="btn btn-primary float-right" data-toggle="modal">Add Officer</a></h5>
+               </div>
+               <div class="card-block">
+                  <div class="row">
+                     <div class="col-sm-12 table-responsive">
+                        <table class="table table-hover">
+                           <thead>
+                              <tr>
+                                 <th>id</th>
+                                 <th>FullName</th>
+                                 <th>Phone</th>
+                                 <th>Email</th>
+                                 <th>Role</th>
+                                 <th>Date Registered</th>
+                                 <th>Action</th>
+                              </tr>
+                           </thead>
+                           <!-- `userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered` -->
+                           <tbody>
+                           <?php $users = $dbh->query("SELECT * FROM users WHERE role ='officer' AND location = 'A' ORDER BY userid DESC ");
+                           $x = 1;
+                           while($rx = $users->fetch(PDO::FETCH_OBJ)){ ?>
+                              <tr>
+                                 <td><?=$x++; ?></td>
+                                 <td><?=$rx->fullname; ?></td>
+                                 <td><?=$rx->phone; ?></td>
+                                 <td><?=$rx->email; ?></td>
+                                 <td><?=$rx->role; ?></td>
+                                 <td><?=$rx->date_registered; ?></td>
+                                 <td>
+                                    <a href="#edit-officer<?=$rx->userid; ?>" data-toggle="modal" class="btn btn-primary">Edit</a>
+                                    <a onclick="return confirm('Do you really want to delete this officer?. '); " href="?delete-officer=<?=$rx->userid; ?>" class="btn btn-danger">Delete</a>
+                                 </td>
+                              </tr>
+                           <?php include 'edit-officer.php'; } ?>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </div>            
+         </div>
+         <!-- 4-blocks row end -->
+      </div>
+      <!-- Main content ends -->
+      <!-- Container-fluid ends -->
+   </div>
+   <?php }elseif (isset($_REQUEST['delete-officer'])) { 
+      dbDelete('users','userid',$_REQUEST['delete-officer']);
+      redirect_page('?officers'); ?>
+   <!-- Hover effect table ends -->
+   <?php }elseif (isset($_REQUEST['roads'])) { ?>
+   <div class="content-wrapper">
+      <!-- Container-fluid starts -->
+      <!-- Main content starts -->
+      <div class="container-fluid" style="background-color:#e5e5e5">
+         <div class="row">
+            <div class="main-header">
+               <h4>Roads</h4>
+            </div>
+         </div>
+         <!-- 4-blocks row start -->
+         <div class="row dashboard-header">
+             <div class="card">
+               <div class="card-header">
+                  <h5 class="card-header-text"><a href="#addroad" data-toggle="modal" class="btn btn-primary float-right">Add Road</a></h5>
+               </div>
+               <div class="card-block">
+                  <div class="row">
+                     <div class="col-sm-12 table-responsive">
+                        <table class="table table-hover">
+                           <thead>
+                              <tr>
+                                 <th>id</th>
+                                 <th>Road Name</th>
+                                 <th></th>
+                                 <th></th>
+                                 <th></th>
+                                 <th></th>
+                                 <th></th>
+                                 <th></th>
+                                 <th></th>
+                                 <th></th>
+                                 <th>Action</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                           <?php $roads = $dbh->query("SELECT * FROM roads WHERE road_location = 'A' ");
+                           $x = 1; 
+                           while($rx = $roads->fetch(PDO::FETCH_OBJ)){ ?>
+                              <tr>
+                                 <td><?=$x++; ?></td>
+                                 <td><?=$rx->road_name; ?></td>
+                                 <td></td>
+                                 <td></td>
+                                 <td></td>
+                                 <td></td>
+                                 <td></td>
+                                 <td></td>
+                                 <td></td>
+                                 <td></td>
+                                 <td><a href="#edit-road<?=$rx->road_id; ?>" data-toggle="modal" class="btn btn-primary">Edit</a>
+                                 <a onclick="return confirm('Do you really want to delete this Road?. '); " href="?delete-road=<?=$rx->road_id; ?>" class="btn btn-danger">Delete</a></td>
+                              </tr>
+                           <?php include 'edit-road.php'; } ?>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </div>            
+         </div>
+         <!-- 4-blocks row end -->
+      </div>
+   </div>
+   <?php }elseif (isset($_REQUEST['delete-road'])) { 
+      dbDelete('roads','road_id',$_REQUEST['delete-road']);
+      redirect_page('?roads'); ?>
+
+   <?php }elseif (isset($_REQUEST['routes'])) { ?>
+   <div class="content-wrapper">
+      <!-- Container-fluid starts -->
+      <!-- Main content starts -->
+      <div class="container-fluid" style="background-color:#e5e5e5">
+         <div class="row">
+            <div class="main-header">
+               <h4>Traffic Points</h4>
+            </div>
+         </div>
+         <!-- 4-blocks row start -->
+         <div class="row dashboard-header">
+             <div class="card">
+               <div class="card-header">
+                  <h5 class="card-header-text"><a href="#add-traffic-point" data-toggle="modal" class="btn btn-primary float-right">Add Traffic Point</a></h5>
+               </div>
+               <div class="card-block">
+                  <div class="row">
+                     <div class="col-sm-12 table-responsive">
+                        <table class="table table-hover">
+                           <thead>
+                              <tr>
+                                 <th>id</th>
+                                 <th>Road Name</th>
+                                 <th>Traffic Point</th>
+                                 <th>Traffic Status</th>
+                                 <th>Action</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                           <?php $roads_routes = $dbh->query("SELECT * FROM roads r, routes t WHERE r.road_location = 'A' AND r.road_id = t.road_id ");
+                           $x = 1; 
+                           // `rid`, `road_id`, `fromm`, `too`, `status`
+                           while($rx = $roads_routes->fetch(PDO::FETCH_OBJ)){ ?>
+                              <tr>
+                                 <td><?=$x++; ?></td>
+                                 <td><?=$rx->road_name; ?></td>
+                                 <td><?=$rx->fromm.' - '.$rx->too; ?></td>
+                                 <td><?=$rx->status; ?></td>
+                                 <td>
+                                    <a href="#edit-traffic-point<?=$rx->rid; ?>" data-toggle="modal" class="btn btn-primary">Edit</a>
+                                    <a onclick="return confirm('Do you really want to delete this Route?. '); " href="?delete-route=<?=$rx->rid; ?>" class="btn btn-danger">Delete</a></td>
+                              </tr>
+                           <?php include 'edit-traffic-point.php'; } ?>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </div>            
+         </div>
+         <!-- 4-blocks row end -->
+      </div>
+   </div>
+   <?php }elseif (isset($_REQUEST['delete-route'])) { 
+      dbDelete('routes','rid',$_REQUEST['delete-route']);
+      redirect_page('?routes'); ?>
+   <?php }elseif (isset($_REQUEST[''])) { ?>
+
+   <?php }elseif (isset($_REQUEST[''])) { ?>
+
+   <?php }elseif (isset($_REQUEST[''])) { ?>
+
+   <?php }elseif (isset($_REQUEST[''])) { ?>
+
+   <?php }elseif (isset($_REQUEST[''])) { ?>
+
+   <?php }elseif (isset($_REQUEST[''])) { ?>
+
+   <?php }else { ?>
+  
+   <!-- Sidebar chat end-->
+   <div class="content-wrapper">
+      <!-- Container-fluid starts -->
+      <!-- Main content starts -->
+      <div class="container-fluid" style="background-color:#e5e5e5">
+         <div class="row">
+            <div class="main-header">
+               <h4>Dashboard</h4>
+            </div>
+         </div>
+         <!-- 4-blocks row start -->
+         <div class="row dashboard-header">
+            <div class="col-lg-3 col-md-6">
+               <div class="card dashboard-product">
+                  <h5>Officers</h5>
+                  <?php $officers = $dbh->query("SELECT * FROM users WHERE role = 'officer' AND location = 'A'")->rowCount(); ?>
+                  <h2 class="dashboard-total-products"><span><?=number_format($officers); ?></span></h2>
+                  <span class="label" style="background-color: #ff9c02; padding:8px;"><a style="text-decoration: none; color: #ffffff; " href="?officers">Officers</a></span>
+                  <div class="side-box">
+                     <i class="icon-user text-warning-color"></i>
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+               <div class="card dashboard-product">
+                  <h5>Roads</h5>
+                  <?php $rds = $dbh->query("SELECT * FROM roads WHERE road_location = 'A' ")->rowCount(); ?>
+                  <h2 class="dashboard-total-products"><?=number_format($rds); ?></h2>
+                  <span class="label" style="background-color: #ff9c02; padding:8px;"><a style="text-decoration: none; color: #ffffff; " href="?roads">Roads</a></span>
+                  <div class="side-box ">
+                     <i class="icon-map text-warning-color"></i>
+                     <!-- <i class="ti-direction-alt text-primary-color"></i> -->
+                  </div>
+               </div>
+            </div>
+           
+            <div class="col-lg-3 col-md-6">
+               <div class="card dashboard-product">
+                  <h5>Traffic Points</h5>
+                  <?php $rts = $dbh->query("SELECT * FROM routes WHERE road_location = 'A'")->rowCount(); ?>
+                  <h2 class="dashboard-total-products"><span><?=number_format($rts); ?></span></h2>
+                  <span class="label" style="background-color: #ff9c02; padding:8px;"><a style="text-decoration: none; color: #ffffff; " href="?routes">Traffic Points</a></span>
+                  <div class="side-box">
+                     <i class="icon-map text-warning-color"></i>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- 4-blocks row end -->
+      </div>
+      <!-- Main content ends -->
+      <!-- Container-fluid ends -->
+   </div>
+<?php } ?>
+<?php }elseif ($role == 'admin' && $location == 'B') { 
+   if (isset($_REQUEST['officers'])) { ?>
+     <!-- Hover effect table starts -->
+   <div class="content-wrapper">
+      <!-- Container-fluid starts -->
+      <!-- Main content starts -->
+      <div class="container-fluid" style="background-color:#e5e5e5">
+         <div class="row">
+            <div class="main-header">
+               <h4>Traffic Officers</h4>
+            </div>
+         </div>
+         <!-- 4-blocks row start -->
+         <div class="row dashboard-header">
+             <div class="card">
+               <div class="card-header">
+                  <h5 class="card-header-text"><a href="#addofficertwo" class="btn btn-primary float-right" data-toggle="modal">Add Officer</a></h5>
+               </div>
+               <div class="card-block">
+                  <div class="row">
+                     <div class="col-sm-12 table-responsive">
+                        <table class="table table-hover">
+                           <thead>
+                              <tr>
+                                 <th>id</th>
+                                 <th>FullName</th>
+                                 <th>Phone</th>
+                                 <th>Email</th>
+                                 <th>Role</th>
+                                 <th>Date Registered</th>
+                                 <th>Action</th>
+                              </tr>
+                           </thead>
+                           <!-- `userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered` -->
+                           <tbody>
+                           <?php $users = $dbh->query("SELECT * FROM users WHERE role ='officer' AND location = 'B' ORDER BY userid DESC ");
+                           $x = 1;
+                           while($rx = $users->fetch(PDO::FETCH_OBJ)){ ?>
+                              <tr>
+                                 <td><?=$x++; ?></td>
+                                 <td><?=$rx->fullname; ?></td>
+                                 <td><?=$rx->phone; ?></td>
+                                 <td><?=$rx->email; ?></td>
+                                 <td><?=$rx->role; ?></td>
+                                 <td><?=$rx->date_registered; ?></td>
+                                 <td>
+                                    <a href="#edit-officer<?=$rx->userid; ?>" data-toggle="modal" class="btn btn-primary">Edit</a>
+                                    <a onclick="return confirm('Do you really want to delete this officer?. '); " href="?delete-officer=<?=$rx->userid; ?>" class="btn btn-danger">Delete</a>
+                                 </td>
+                              </tr>
+                           <?php include 'edit-officer.php'; } ?>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </div>            
+         </div>
+         <!-- 4-blocks row end -->
+      </div>
+      <!-- Main content ends -->
+      <!-- Container-fluid ends -->
+   </div>
+   <?php }elseif (isset($_REQUEST['delete-officer'])) { 
+      dbDelete('users','userid',$_REQUEST['delete-officer']);
+      redirect_page('?officers'); ?>
+   <!-- Hover effect table ends -->
+   <?php }elseif (isset($_REQUEST['roads'])) { ?>
+   <div class="content-wrapper">
+      <!-- Container-fluid starts -->
+      <!-- Main content starts -->
+      <div class="container-fluid" style="background-color:#e5e5e5">
+         <div class="row">
+            <div class="main-header">
+               <h4>Roads</h4>
+            </div>
+         </div>
+         <!-- 4-blocks row start -->
+         <div class="row dashboard-header">
+             <div class="card">
+               <div class="card-header">
+                  <h5 class="card-header-text"><a href="#addroad" data-toggle="modal" class="btn btn-primary float-right">Add Road</a></h5>
+               </div>
+               <div class="card-block">
+                  <div class="row">
+                     <div class="col-sm-12 table-responsive">
+                        <table class="table table-hover">
+                           <thead>
+                              <tr>
+                                 <th>id</th>
+                                 <th>Road Name</th>
+                                 <th></th>
+                                 <th></th>
+                                 <th></th>
+                                 <th></th>
+                                 <th></th>
+                                 <th></th>
+                                 <th></th>
+                                 <th></th>
+                                 <th>Action</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                           <?php $roads = $dbh->query("SELECT * FROM roads WHERE road_location = 'B' ");
+                           $x = 1; 
+                           while($rx = $roads->fetch(PDO::FETCH_OBJ)){ ?>
+                              <tr>
+                                 <td><?=$x++; ?></td>
+                                 <td><?=$rx->road_name; ?></td>
+                                 <td></td>
+                                 <td></td>
+                                 <td></td>
+                                 <td></td>
+                                 <td></td>
+                                 <td></td>
+                                 <td></td>
+                                 <td></td>
+                                 <td><a href="#edit-road<?=$rx->road_id; ?>" data-toggle="modal" class="btn btn-primary">Edit</a>
+                                 <a onclick="return confirm('Do you really want to delete this Road?. '); " href="?delete-road=<?=$rx->road_id; ?>" class="btn btn-danger">Delete</a></td>
+                              </tr>
+                           <?php include 'edit-road.php'; } ?>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </div>            
+         </div>
+         <!-- 4-blocks row end -->
+      </div>
+   </div>
+   <?php }elseif (isset($_REQUEST['delete-road'])) { 
+      dbDelete('roads','road_id',$_REQUEST['delete-road']);
+      redirect_page('?roads'); ?>
+
+   <?php }elseif (isset($_REQUEST['routes'])) { ?>
+   <div class="content-wrapper">
+      <!-- Container-fluid starts -->
+      <!-- Main content starts -->
+      <div class="container-fluid" style="background-color:#e5e5e5">
+         <div class="row">
+            <div class="main-header">
+               <h4>Traffic Points</h4>
+            </div>
+         </div>
+         <!-- 4-blocks row start -->
+         <div class="row dashboard-header">
+             <div class="card">
+               <div class="card-header">
+                  <h5 class="card-header-text"><a href="#add-traffic-point" data-toggle="modal" class="btn btn-primary float-right">Add Traffic Point</a></h5>
+               </div>
+               <div class="card-block">
+                  <div class="row">
+                     <div class="col-sm-12 table-responsive">
+                        <table class="table table-hover">
+                           <thead>
+                              <tr>
+                                 <th>id</th>
+                                 <th>Road Name</th>
+                                 <th>Traffic Point</th>
+                                 <th>Traffic Status</th>
+                                 <th>Action</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                           <?php $roads_routes = $dbh->query("SELECT * FROM roads r, routes t WHERE r.road_location = 'B' AND r.road_id = t.road_id ");
+                           $x = 1; 
+                           // `rid`, `road_id`, `fromm`, `too`, `status`
+                           while($rx = $roads_routes->fetch(PDO::FETCH_OBJ)){ ?>
+                              <tr>
+                                 <td><?=$x++; ?></td>
+                                 <td><?=$rx->road_name; ?></td>
+                                 <td><?=$rx->fromm.' - '.$rx->too; ?></td>
+                                 <td><?=$rx->status; ?></td>
+                                 <td>
+                                    <a href="#edit-traffic-point<?=$rx->rid; ?>" data-toggle="modal" class="btn btn-primary">Edit</a>
+                                    <a onclick="return confirm('Do you really want to delete this Route?. '); " href="?delete-route=<?=$rx->rid; ?>" class="btn btn-danger">Delete</a></td>
+                              </tr>
+                           <?php include 'edit-traffic-point.php'; } ?>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </div>            
+         </div>
+         <!-- 4-blocks row end -->
+      </div>
+   </div>
+   <?php }elseif (isset($_REQUEST['delete-route'])) { 
+      dbDelete('routes','rid',$_REQUEST['delete-route']);
+      redirect_page('?routes'); ?>
+   <?php }elseif (isset($_REQUEST[''])) { ?>
+
+   <?php }elseif (isset($_REQUEST[''])) { ?>
+
+   <?php }elseif (isset($_REQUEST[''])) { ?>
+
+   <?php }elseif (isset($_REQUEST[''])) { ?>
+
+   <?php }elseif (isset($_REQUEST[''])) { ?>
+
+   <?php }elseif (isset($_REQUEST[''])) { ?>
+
+   <?php }else { ?>
+  
+   <!-- Sidebar chat end-->
+   <div class="content-wrapper">
+      <!-- Container-fluid starts -->
+      <!-- Main content starts -->
+      <div class="container-fluid" style="background-color:#e5e5e5">
+         <div class="row">
+            <div class="main-header">
+               <h4>Dashboard</h4>
+            </div>
+         </div>
+         <!-- 4-blocks row start -->
+         <div class="row dashboard-header">
+            <div class="col-lg-3 col-md-6">
+               <div class="card dashboard-product">
+                  <h5>Officers</h5>
+                  <?php $officers = $dbh->query("SELECT * FROM users WHERE role = 'officer' AND location = 'B'")->rowCount(); ?>
+                  <h2 class="dashboard-total-products"><span><?=number_format($officers); ?></span></h2>
+                  <span class="label" style="background-color: #ff9c02; padding:8px;"><a style="text-decoration: none; color: #ffffff; " href="?officers">Officers</a></span>
+                  <div class="side-box">
+                     <i class="icon-user text-warning-color"></i>
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+               <div class="card dashboard-product">
+                  <h5>Roads</h5>
+                  <?php $rds = $dbh->query("SELECT * FROM roads WHERE road_location = 'B' ")->rowCount(); ?>
+                  <h2 class="dashboard-total-products"><?=number_format($rds); ?></h2>
+                  <span class="label" style="background-color: #ff9c02; padding:8px;"><a style="text-decoration: none; color: #ffffff; " href="?roads">Roads</a></span>
+                  <div class="side-box ">
+                     <i class="icon-map text-warning-color"></i>
+                     <!-- <i class="ti-direction-alt text-primary-color"></i> -->
+                  </div>
+               </div>
+            </div>
+           
+            <div class="col-lg-3 col-md-6">
+               <div class="card dashboard-product">
+                  <h5>Traffic Points</h5>
+                  <?php $rts = $dbh->query("SELECT * FROM roads r, routes t WHERE r.road_location = 'B' AND r.road_id = t.road_id ")->rowCount(); ?>
+                  <h2 class="dashboard-total-products"><span><?=number_format($rts); ?></span></h2>
+                  <span class="label" style="background-color: #ff9c02; padding:8px;"><a style="text-decoration: none; color: #ffffff; " href="?routes">Traffic Points</a></span>
+                  <div class="side-box">
+                     <i class="icon-map text-warning-color"></i>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- 4-blocks row end -->
+      </div>
+      <!-- Main content ends -->
+      <!-- Container-fluid ends -->
+   </div>
+<?php } ?>
+<?php }elseif ($role == 'officer') { 
+   if (isset($_REQUEST['roads'])) { ?>
+   <div class="content-wrapper">
+      <!-- Container-fluid starts -->
+      <!-- Main content starts -->
+      <div class="container-fluid" style="background-color:#e5e5e5">
+         <div class="row">
+            <div class="main-header">
+               <h4>Roads</h4>
+            </div>
+         </div>
+         <!-- 4-blocks row start -->
+         <div class="row dashboard-header">
+             <div class="card">
+               <div class="card-block">
+                  <div class="row">
+                     <div class="col-sm-12 table-responsive">
+                        <table class="table table-hover">
+                           <thead>
+                              <tr>
+                                 <!-- <th>id</th> -->
+                                 <th>Road Name</th>
+                                 <!-- <th>Road Location</th> -->
+                                 <th></th>
+                                 <th></th>
+                                 <th></th>
+                                 <th></th>
+                                 <th></th>
+                                 <th></th>
+                                 <th></th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                           <?php $roads = $dbh->query("SELECT * FROM roads WHERE road_location = 'A'");
+                           $x = 1; 
+                           while($rx = $roads->fetch(PDO::FETCH_OBJ)){ ?>
+                              <tr>
+                                 <!-- <td><?=$x++; ?></td> -->
+                                 <td><?=$rx->road_name; ?></td>
+                                 <!-- <td><?=$rx->road_location; ?></td> -->
+                                 <td></td>
+                                 <td></td>
+                                 <td></td>
+                                 <td></td>
+                                 <td></td>
+                                 <td></td>
+                                 <td></td>
+                              </tr>
+                           <?php } ?>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </div>            
+         </div>
+         <!-- 4-blocks row end -->
+      </div>
+   </div>
+   <?php }elseif (isset($_REQUEST['routes'])) { ?>
+   <div class="content-wrapper">
+      <!-- Container-fluid starts -->
+      <!-- Main content starts -->
+      <div class="container-fluid" style="background-color:#e5e5e5">
+         <div class="row">
+            <div class="main-header">
+               <h4>Traffic Points</h4>
+            </div>
+         </div>
+         <!-- 4-blocks row start -->
+         <div class="row dashboard-header">
+             <div class="card">
+               <div class="card-header">
+                  <h5 class="card-header-text"><a href="#add-traffic-point" data-toggle="modal" class="btn btn-primary float-right">Add Traffic Point</a></h5>
+               </div>
+               <div class="card-block">
+                  <div class="row">
+                     <div class="col-sm-12 table-responsive">
+                        <table class="table table-hover">
+                           <thead>
+                              <tr>
+                                 <!-- <th>id</th> -->
+                                 <th>Road Name</th>
+                                 <!-- <th>Road Location</th> -->
+                                 <th>Traffic Point</th>
+                                 <th>Traffic Status</th>
+                                 <th>Action</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                           <?php $roads_routes = $dbh->query("SELECT * FROM roads r, routes t WHERE r.road_location = 'B' AND r.road_id = t.road_id ");
+                           $x = 1; 
+                           // `rid`, `road_id`, `fromm`, `too`, `status`
+                           while($rx = $roads_routes->fetch(PDO::FETCH_OBJ)){ ?>
+                              <tr>
+                                 <!-- <td><?=$x++; ?></td> -->
+                                 <td><?=$rx->road_name; ?></td>
+                                 <!-- <td><?=$rx->road_location; ?></td> -->
+                                 <td><?=$rx->fromm.' - '.$rx->too; ?></td>
+                                 <td><?=$rx->status; ?></td>
+                                 <td>
+                                    <a href="#edit-traffic-point<?=$rx->rid; ?>" data-toggle="modal" class="btn btn-primary">Edit</a>
+                              </tr>
+                           <?php include 'edit-traffic-point.php'; } ?>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </div>            
+         </div>
+         <!-- 4-blocks row end -->
+      </div>
+   </div>
+   <?php }elseif (isset($_REQUEST[''])) { ?>
+
+   <?php }elseif (isset($_REQUEST[''])) { ?>
+
+   <?php }elseif (isset($_REQUEST[''])) { ?>
+
+   <?php }elseif (isset($_REQUEST[''])) { ?>
+
+   <?php }elseif (isset($_REQUEST[''])) { ?>
+
+   <?php }elseif (isset($_REQUEST[''])) { ?>
+
+   <?php }else { ?>
+  
+   <!-- Sidebar chat end-->
+   <div class="content-wrapper">
+      <!-- Container-fluid starts -->
+      <!-- Main content starts -->
+      <div class="container-fluid" style="background-color:#e5e5e5">
+         <div class="row">
+            <div class="main-header">
+               <h4>Dashboard</h4>
+            </div>
+         </div>
+         <!-- 4-blocks row start -->
+         <div class="row dashboard-header"> 
+            <div class="col-lg-3 col-md-6">
+               <div class="card dashboard-product">
+                  <h5>Traffic Points</h5>
+                  <?php $rts = $dbh->query("SELECT * FROM routes ")->rowCount(); ?>
+                  <h2 class="dashboard-total-products"><span><?=number_format($rts); ?></span></h2>
+                  <span class="label" style="background-color: #ff9c02; padding:8px;"><a style="text-decoration: none; color: #ffffff; " href="?routes">Traffic Points</a></span>
                   <div class="side-box">
                      <i class="icon-map text-warning-color"></i>
                   </div>
@@ -405,59 +1088,14 @@ if ($role == 'super_admin') {
    </div>
 <?php } ?>
 <?php }elseif ($role == 'user') { 
-   if (isset($_REQUEST['roads'])) { ?>
-   <div class="content-wrapper">
-      <!-- Container-fluid starts -->
-      <!-- Main content starts -->
-      <div class="container-fluid">
-         <div class="row">
-            <div class="main-header">
-               <h4>Road</h4>
-            </div>
-         </div>
-         <!-- 4-blocks row start -->
-         <div class="row dashboard-header">
-             <div class="card">
-               <div class="card-block">
-                  <div class="row">
-                     <div class="col-sm-12 table-responsive">
-                        <table class="table table-hover">
-                           <thead>
-                              <tr>
-                                 <th>#</th>
-                                 <th>Road Name</th>
-                                 <th>Action</th>
-                              </tr>
-                           </thead>
-                           <tbody>
-                           <?php $roads = $dbh->query("SELECT * FROM roads ");
-                           $x = 1; 
-                           while($rx = $roads->fetch(PDO::FETCH_OBJ)){ ?>
-                              <tr>
-                                 <td><?=$x++; ?></td>
-                                 <td><?=$rx->road_name; ?></td>
-                                 <td><a href="#google-map<?=$rx->road_id; ?>" data-toggle="modal" class="btn btn-primary">View in Google Map</a></td>
-                              </tr>
-                           <?php include 'google-map.php'; } ?>
-                           </tbody>
-                        </table>
-                     </div>
-                  </div>
-               </div>
-            </div>            
-         </div>
-         <!-- 4-blocks row end -->
-      </div>
-   </div>
-  <?php }else
   if (isset($_REQUEST['routes'])) { ?>
     <div class="content-wrapper">
       <!-- Container-fluid starts -->
       <!-- Main content starts -->
-      <div class="container-fluid">
+      <div class="container-fluid" style="background-color:#e5e5e5">
          <div class="row">
             <div class="main-header">
-               <h4>Routes</h4>
+               <h4>Traffic Points</h4>
             </div>
          </div>
          <!-- 4-blocks row start -->
@@ -471,7 +1109,7 @@ if ($role == 'super_admin') {
                               <tr>
                                  <th>id</th>
                                  <th>Road</th>
-                                 <th>Routes</th>
+                                 <th>Traffic Point</th>
                                  <th>Traffic Status</th>
                               </tr>
                            </thead>
@@ -501,10 +1139,23 @@ if ($role == 'super_admin') {
       <div class="content-wrapper">
       <!-- Container-fluid starts -->
       <!-- Main content starts -->
-      <div class="container-fluid">
+      <div class="container-fluid" style="background-color:#e5e5e5">
          <div class="row">
             <div class="main-header">
                <h4>Welcome <?=$fullname; ?> !</h4>
+            </div>
+         </div>
+         <div class="row dashboard-header"> 
+            <div class="col-lg-3 col-md-6">
+               <div class="card dashboard-product">
+                  <h5>Traffic Points</h5>
+                  <?php $rts = $dbh->query("SELECT * FROM routes ")->rowCount(); ?>
+                  <h2 class="dashboard-total-products"><span><?=number_format($rts); ?></span></h2>
+                  <span class="label" style="background-color: #ff9c02; padding:8px;"><a style="text-decoration: none; color: #ffffff; " href="?routes">Traffic Points</a></span>
+                  <div class="side-box">
+                     <i class="icon-map text-warning-color"></i>
+                  </div>
+               </div>
             </div>
          </div>
       </div>

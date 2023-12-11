@@ -1,4 +1,4 @@
-<div class="modal fade custom-modal" tabindex="-1" role="dialog" aria-labelledby="modal_add_user" aria-hidden="true" id="edit-admin<?=$rx->userid; ?>">
+<div class="modal fade custom-modal" tabindex="-1" role="dialog" aria-labelledby="modal_add_user" aria-hidden="true" id="edit-officer<?=$rx->userid; ?>">
     <div class="modal-dialog">
         <div class="modal-content">
             <form action="" method="post" enctype="multipart/form-data">
@@ -33,13 +33,23 @@
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
+                                <label>Location (required)</label>
+                                <select class="form-control" name="location" required>
+                                    <option value="A" <?php echo ($rx->location === 'A') ? 'selected' : ''; ?>>A</option>
+                                    <option value="B" <?php echo ($rx->location === 'B') ? 'selected' : ''; ?>>B</option>
+                                    <!-- <option value="C" <?php echo ($rx->location === 'C') ? 'selected' : ''; ?>>C</option> -->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
                                 <label>Password (required)</label>
-                                <input class="form-control" name="password" value="<?=$rx->pass; ?>" type="password" required />
+                                <input class="form-control" name="password" value="" type="password" />
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" name="update_admin_details_btn" class="btn btn-success">Save</button>
+                        <button type="submit" name="update_officer_details_btn" class="btn btn-success">Save</button>
                     </div>
                 </div>
             </form>

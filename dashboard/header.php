@@ -1,19 +1,25 @@
 <?php 
 include '../root/config.php'; 
-include '../root/process.php';
-if (empty($_SESSION['userid'])) {
-    header("Location: ".SITE_URL.'/login');
-}else{
-    // `userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered`
-    $role = $_SESSION['role'];
-    $fullname   = $_SESSION['fullname'];
-    $phone   = $_SESSION['phone'];
-    $email   = $_SESSION['email'];
-    $userid = $_SESSION['userid'];
-    $date_registered = $_SESSION['date_registered'];
-} 
+include '../root/process.php'; 
+if (session_status() == PHP_SESSION_NONE) {
+    // Start the session only if it hasn't been started already
+    session_start();
+}
+$role = $_SESSION['role'];
+$fullname   = $_SESSION['fullname'];
+$phone   = $_SESSION['phone'];
+$email   = $_SESSION['email'];
+$location = $_SESSION['location']; 
+$userid = $_SESSION['userid'];
+$date_registered = $_SESSION['date_registered'];  
 
+$stmt = $dbh->prepare("SELECT * FROM users WHERE email= :email");
+$stmt->bindParam(':email', $email,);
+$stmt->execute();
+
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,24 +69,23 @@ if (empty($_SESSION['userid'])) {
             <div class="navbar-custom-menu f-right">
                <ul class="top-nav">          
                   <!-- window screen -->
-                  <li class="pc-rheader-submenu">
+                  <!-- <li class="pc-rheader-submenu">
                      <a href="#!" class="drop icon-circle" onclick="javascript:toggleFullScreen()">
                         <i class="icon-size-fullscreen"></i>
                      </a>
 
-                  </li>
+                  </li> -->
                   <!-- User Menu-->
                   <li class="dropdown">
                      <a href="#!" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle drop icon-circle drop-image">
                         <span><img class="img-circle " src="../images/avatar.png" style="width:40px;" alt="User Image"></span>
-                        <span><b><?=ucwords($fullname); ?></b> <i class=" icofont icofont-simple-down"></i></span>
+                        <span><b><?php echo ucwords($user['fullname']); ?></b> <i class=" icofont icofont-simple-down"></i></span>
 
                      </a>
                      <ul class="dropdown-menu settings-menu">
                         <!-- <li><a href="#!"><i class="icon-settings"></i> Settings</a></li> -->
-                        <li><a href="profile"><i class="icon-user"></i> Profile</a></li>
-                        <li><a href="<?=SITE_URL; ?>/logout" onclick="return confirm('Do you really want to Logout?. '); "><i class="icon-logout"></i> Logout</a></li>
-
+                        <a href="profile" style="color:gray;"><li><i class="icon-user"></i> Profile</li></a>
+                        <a href="<?=SITE_URL; ?>/logout" onclick="return confirm('Do you really want to Logout?. '); " style="color:gray;"><li><i class="icon-logout"></i> Logout</li></a>
                      </ul>
                   </li>
                </ul>
@@ -104,16 +109,16 @@ if (empty($_SESSION['userid'])) {
                     </a>                
                 </li>
                 <li class="treeview">
-                    <a class="waves-effect waves-dark" href="<?=HOME_URL; ?>?officers">
-                        <i class="icon-user"></i><span> Officers</span>
-                    </a>                
-                </li>
-                <li class="treeview">
                     <a class="waves-effect waves-dark" href="<?=HOME_URL; ?>?users">
                         <i class="icon-user"></i><span> Users</span>
                     </a>                
                 </li>
                 <?php } ?>
+                 <li class="treeview">
+                    <a class="waves-effect waves-dark" href="<?=HOME_URL; ?>?officers">
+                        <i class="icon-user"></i><span> Officers</span>
+                    </a>                
+                </li>
                 <li class="treeview">
                     <a class="waves-effect waves-dark" href="<?=HOME_URL; ?>?roads">
                         <i class="icon-map"></i><span> Roads</span>
@@ -121,7 +126,7 @@ if (empty($_SESSION['userid'])) {
                 </li>
                 <li class="treeview">
                     <a class="waves-effect waves-dark" href="<?=HOME_URL; ?>?routes">
-                        <i class="icon-map"></i><span> Routes</span>
+                        <i class="icon-map"></i><span> Traffic Points</span>
                     </a>                
                 </li>
                 <li class="treeview">
@@ -129,13 +134,12 @@ if (empty($_SESSION['userid'])) {
                         <i class="icon-power"></i><span> Logout</span>
                     </a>                
                 </li>
-
             </ul>
          </section>
       </aside>
 <?php 
-include 'addroad.php'; 
-include 'addadmin.php';
-include 'addofficer.php';
-include 'addroute.php';
+include 'super_admin/addroad.php'; 
+include 'super_admin/addadmin.php';
+include 'super_admin/addofficer.php';
+include 'super_admin/add-traffic-point.php';
 ?>

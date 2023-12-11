@@ -32,6 +32,18 @@
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
+                                <label>Location (required)</label>
+                                <select class="form-control" name="location" required>
+                                    <option value="">Select location</option>
+                                    <option>A</option>
+                                    <option>B</option>
+                                    <!-- <option>C</option>
+                                    <option>D</option> -->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
                                 <label>Password (required)</label>
                                 <input class="form-control" name="password" type="password" required />
                             </div>

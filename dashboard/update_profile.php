@@ -5,8 +5,13 @@ if (session_status() == PHP_SESSION_NONE) {
     // Start the session only if it hasn't been started already
     session_start();
 }
-
-$email = $_SESSION['email'];
+$role = $_SESSION['role'];
+$fullname   = $_SESSION['fullname'];
+$phone   = $_SESSION['phone'];
+$email   = $_SESSION['email'];
+$location = $_SESSION['location']; 
+$userid = $_SESSION['userid'];
+$date_registered = $_SESSION['date_registered'];  
 
 $stmt = $dbh->prepare("SELECT * FROM users WHERE email= :email");
 $stmt->bindParam(':email', $email);
@@ -85,7 +90,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label>Password: </label>
-                                            <input class="form-control" name="password" value="" type="password" />
+                                            <input class="form-control" name="password" value="" type="password" required/>
                                         </div>
                                     </div>
                                 </div>

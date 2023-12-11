@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 29, 2023 at 08:44 PM
+-- Generation Time: Dec 11, 2023 at 03:11 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -29,18 +29,20 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `roads` (
   `road_id` int(11) NOT NULL,
-  `road_name` varchar(200) NOT NULL
+  `road_name` varchar(200) NOT NULL,
+  `road_location` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `roads`
 --
 
-INSERT INTO `roads` (`road_id`, `road_name`) VALUES
-(4, 'Jinja Road'),
-(5, 'Bombo Road'),
-(6, 'Hoima Road'),
-(8, 'Kampala Road');
+INSERT INTO `roads` (`road_id`, `road_name`, `road_location`) VALUES
+(4, 'Jinja Road', 'A'),
+(5, 'Bombo Road', 'B'),
+(6, 'Hoima Road', 'A'),
+(8, 'Kampala Road', 'B'),
+(10, 'Kira Road', 'A');
 
 -- --------------------------------------------------------
 
@@ -82,6 +84,7 @@ CREATE TABLE `users` (
   `fullname` varchar(200) NOT NULL,
   `phone` varchar(200) NOT NULL,
   `email` varchar(200) NOT NULL,
+  `location` varchar(200) NOT NULL,
   `password` varchar(200) NOT NULL,
   `token` varchar(200) NOT NULL,
   `role` varchar(100) NOT NULL,
@@ -92,12 +95,15 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered`) VALUES
-(5, 'Tracy Muzaki', '0740909525', 'tracymuzaki12@gmail.com', '109d63fe5e9366a7d3cb9eb58be233648898444c', '', 'super_admin', '2023-10-15 19:05:42 PM'),
-(6, 'Doreen A', '0704487563', 'doreenasiimwe5@gmail.com', 'e453dbf96ac903773262fbd305fd33af23a99593', '', 'user', '2023-11-28 10:50:09 AM'),
-(13, 'Sarah A', '0773805834', 'tracymuzaki23@gmail.com', '9447c4dbc86c3bb33129986f9ad1a669bfd7e8ea', '', 'officer', '2023-11-29 17:46:16 PM'),
-(14, 'Kenneth Waks', '0784675790', 'wakskenneth@gmail.com', '2eaab2fbb032b258b58fdaed26b83ca391ddcd0a', '', 'admin', '2023-11-29 18:09:07 PM'),
-(15, 'Nganda Gladys', '0741395925', 'gladamanda42@gmail.com', '291f2c90d146f0bd94e130dd5d8b7b2ac51e561c', '', 'admin', '2023-11-29 18:12:04 PM');
+INSERT INTO `users` (`userid`, `fullname`, `phone`, `email`, `location`, `password`, `token`, `role`, `date_registered`) VALUES
+(6, 'Doreen Asiimwe', '0704487563', 'doreenasiimwe5@gmail.com', 'A', 'e453dbf96ac903773262fbd305fd33af23a99593', '', 'officer', '2023-11-28 10:50:09 AM'),
+(14, 'Kenneth Waks', '0784675790', 'wakskenneth@gmail.com', 'A', '2eaab2fbb032b258b58fdaed26b83ca391ddcd0a', '', 'admin', '2023-11-29 18:09:07 PM'),
+(21, 'Sarah Atim', '0773805834', 'tracymuzaki23@gmail.com', 'B', 'e2d41471b6665e4d8b0085f9f1049c45a9291877', '', 'officer', '2023-11-30 14:29:56 PM'),
+(31, 'Flavia N', '0777788888', 'flavia@gmail.com', 'B', 'a58843087c6951df6f8f931968c6919fa562ff37', '', 'officer', '2023-12-04 16:50:29 PM'),
+(32, 'Kenneth Waks', '0784675790', 'wakskenneth1@gmail.com', 'A', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', '', 'officer', '2023-12-06 17:07:43 PM'),
+(44, 'Tracy Muzaki', '0740909525', 'tracymuzaki12@gmail.com', 'A', '109d63fe5e9366a7d3cb9eb58be233648898444c', '', 'super_admin', '2023-12-11 17:04:19 PM'),
+(45, 'Nganda Gladys', '0741395925', 'gladamanda42@gmail.com', 'B', '291f2c90d146f0bd94e130dd5d8b7b2ac51e561c', '', 'admin', '2023-12-11 17:08:16 PM'),
+(46, 'Peruth A', '0777788899', 'peruth@gmail.com', 'B', '7a9aed90b0688c4eb2e3a1b6a7e1fc93418467ec', '', 'user', '2023-12-11 17:10:32 PM');
 
 --
 -- Indexes for dumped tables
@@ -133,19 +139,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `roads`
 --
 ALTER TABLE `roads`
-  MODIFY `road_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `road_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `routes`
 --
 ALTER TABLE `routes`
-  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
