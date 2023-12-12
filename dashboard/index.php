@@ -1068,7 +1068,19 @@ if ($role == 'super_admin') {
             </div>
          </div>
          <!-- 4-blocks row start -->
-         <div class="row dashboard-header"> 
+         <div class="row dashboard-header">
+            <div class="col-lg-3 col-md-6">
+               <div class="card dashboard-product">
+                  <h5>Roads</h5>
+                  <?php $rds = $dbh->query("SELECT * FROM roads WHERE road_location = 'A' ")->rowCount(); ?>
+                  <h2 class="dashboard-total-products"><?=number_format($rds); ?></h2>
+                  <span class="label" style="background-color: #ff9c02; padding:8px;"><a style="text-decoration: none; color: #ffffff; " href="?roads">Roads</a></span>
+                  <div class="side-box ">
+                     <i class="icon-map text-warning-color"></i>
+                     <!-- <i class="ti-direction-alt text-primary-color"></i> -->
+                  </div>
+               </div>
+            </div> 
             <div class="col-lg-3 col-md-6">
                <div class="card dashboard-product">
                   <h5>Traffic Points</h5>
@@ -1227,6 +1239,18 @@ if ($role == 'super_admin') {
          </div>
          <!-- 4-blocks row start -->
          <div class="row dashboard-header"> 
+            <div class="col-lg-3 col-md-6">
+               <div class="card dashboard-product">
+                  <h5>Roads</h5>
+                  <?php $rds = $dbh->query("SELECT * FROM roads WHERE road_location = 'B' ")->rowCount(); ?>
+                  <h2 class="dashboard-total-products"><?=number_format($rds); ?></h2>
+                  <span class="label" style="background-color: #ff9c02; padding:8px;"><a style="text-decoration: none; color: #ffffff; " href="?roads">Roads</a></span>
+                  <div class="side-box ">
+                     <i class="icon-map text-warning-color"></i>
+                     <!-- <i class="ti-direction-alt text-primary-color"></i> -->
+                  </div>
+               </div>
+            </div>
             <div class="col-lg-3 col-md-6">
                <div class="card dashboard-product">
                   <h5>Traffic Points</h5>

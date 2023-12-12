@@ -113,12 +113,13 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
                         <i class="icon-user"></i><span> Users</span>
                     </a>                
                 </li>
-                <?php } ?>
-                 <li class="treeview">
+                <?php } elseif ($role == 'admin') { ?>
+                <li class="treeview">
                     <a class="waves-effect waves-dark" href="<?=HOME_URL; ?>?officers">
                         <i class="icon-user"></i><span> Officers</span>
                     </a>                
                 </li>
+                <?php } ?>
                 <li class="treeview">
                     <a class="waves-effect waves-dark" href="<?=HOME_URL; ?>?roads">
                         <i class="icon-map"></i><span> Roads</span>
@@ -151,3 +152,66 @@ include 'add-traffic-point-one.php';
 include 'officer/add-traffic-point-three.php';
 include 'add-traffic-point-four.php';
 ?>
+
+<aside class="main-sidebar hidden-print">
+    <section class="sidebar" id="sidebar-scroll">
+        <!-- Sidebar Menu-->
+        <ul class="sidebar-menu">
+            <li class="active treeview">
+                <a class="waves-effect waves-dark" href="<?=HOME_URL; ?>">
+                    <i class="icon-speedometer"></i><span> Dashboard</span>
+                </a>                
+            </li>
+            <?php if ($role == 'super_admin') { ?>
+                <li class="treeview">
+                    <a class="waves-effect waves-dark" href="<?=HOME_URL; ?>?admins">
+                        <i class="icon-user"></i><span> Admins</span>
+                    </a>                
+                </li>
+                <li class="treeview">
+                    <a class="waves-effect waves-dark" href="<?=HOME_URL; ?>?users">
+                        <i class="icon-user"></i><span> Users</span>
+                    </a>                
+                </li>
+                <li class="treeview">
+                    <a class="waves-effect waves-dark" href="<?=HOME_URL; ?>?officers">
+                        <i class="icon-user"></i><span> Officers</span>
+                    </a>                
+                </li>
+                <li class="treeview">
+                    <a class="waves-effect waves-dark" href="<?=HOME_URL; ?>?roads">
+                        <i class="icon-map"></i><span> Roads</span>
+                    </a>                
+                </li>
+            <?php } elseif ($role == 'admin') { ?>
+                <li class="treeview">
+                    <a class="waves-effect waves-dark" href="<?=HOME_URL; ?>?officers">
+                        <i class="icon-user"></i><span> Officers</span>
+                    </a>                
+                </li>
+                <li class="treeview">
+                    <a class="waves-effect waves-dark" href="<?=HOME_URL; ?>?roads">
+                        <i class="icon-map"></i><span> Roads</span>
+                    </a>                
+                </li>
+            <?php } elseif ($role == 'officer') { ?>
+                <li class="treeview">
+                    <a class="waves-effect waves-dark" href="<?=HOME_URL; ?>?roads">
+                        <i class="icon-map"></i><span> Roads</span>
+                    </a>                
+                </li>
+            <?php } ?>
+            <li class="treeview">
+                <a class="waves-effect waves-dark" href="<?=HOME_URL; ?>?traffic_points">
+                    <i class="icon-map"></i><span> Traffic Points</span>
+                </a>                
+            </li>
+            <li class="treeview">
+                <a class="waves-effect waves-dark" onclick="return confirm('Do you really want to Logout?. '); " href="<?=SITE_URL; ?>/logout">
+                    <i class="icon-power"></i><span> Logout</span>
+                </a>                
+            </li>
+        </ul>
+    </section>
+</aside>
+
