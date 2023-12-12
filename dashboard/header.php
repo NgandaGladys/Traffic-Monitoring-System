@@ -148,4 +148,6 @@ include 'admin/add-traffic-point-two.php';
 include 'addroadone.php';
 include 'addofficerone.php';
 include 'add-traffic-point-one.php';
+include 'officer/add-traffic-point-three.php';
+include 'add-traffic-point-four.php';
 ?>

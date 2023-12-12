@@ -929,7 +929,7 @@ if ($role == 'super_admin') {
       <!-- Container-fluid ends -->
    </div>
 <?php } ?>
-<?php }elseif ($role == 'officer') { 
+<?php }elseif ($role == 'officer' && $location == 'A') { 
    if (isset($_REQUEST['roads'])) { ?>
    <div class="content-wrapper">
       <!-- Container-fluid starts -->
@@ -1002,7 +1002,7 @@ if ($role == 'super_admin') {
          <div class="row dashboard-header">
              <div class="card">
                <div class="card-header">
-                  <h5 class="card-header-text"><a href="#add-traffic-point" data-toggle="modal" class="btn btn-primary float-right">Add Traffic Point</a></h5>
+                  <h5 class="card-header-text"><a href="#add-traffic-point-three" data-toggle="modal" class="btn btn-primary float-right">Add Traffic Point</a></h5>
                </div>
                <div class="card-block">
                   <div class="row">
@@ -1019,7 +1019,7 @@ if ($role == 'super_admin') {
                               </tr>
                            </thead>
                            <tbody>
-                           <?php $roads_routes = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.road_location = 'B' AND r.road_id = t.road_id ");
+                           <?php $roads_routes = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.road_location = 'A' AND r.road_id = t.road_id ");
                            $x = 1; 
                            // `rid`, `road_id`, `fromm`, `too`, `status`
                            while($rx = $roads_routes->fetch(PDO::FETCH_OBJ)){ ?>
@@ -1030,9 +1030,9 @@ if ($role == 'super_admin') {
                                  <td><?=$rx->fromm.' - '.$rx->too; ?></td>
                                  <td><?=$rx->status; ?></td>
                                  <td>
-                                    <a href="#edit-traffic-point<?=$rx->rid; ?>" data-toggle="modal" class="btn btn-primary">Edit</a>
+                                    <a href="#edit-traffic-point-three<?=$rx->rid; ?>" data-toggle="modal" class="btn btn-primary">Edit</a>
                               </tr>
-                           <?php include 'edit-traffic-point.php'; } ?>
+                           <?php include 'officer/edit-traffic-point-three.php'; } ?>
                            </tbody>
                         </table>
                      </div>
@@ -1072,7 +1072,165 @@ if ($role == 'super_admin') {
             <div class="col-lg-3 col-md-6">
                <div class="card dashboard-product">
                   <h5>Traffic Points</h5>
-                  <?php $rts = $dbh->query("SELECT * FROM traffic_points ")->rowCount(); ?>
+                  <?php $rts = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.road_location = 'A' AND r.road_id = t.road_id ")->rowCount(); ?>
+                  <h2 class="dashboard-total-products"><span><?=number_format($rts); ?></span></h2>
+                  <span class="label" style="background-color: #ff9c02; padding:8px;"><a style="text-decoration: none; color: #ffffff; " href="?traffic_points">Traffic Points</a></span>
+                  <div class="side-box">
+                     <i class="icon-map text-warning-color"></i>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- 4-blocks row end -->
+      </div>
+      <!-- Main content ends -->
+      <!-- Container-fluid ends -->
+   </div>
+<?php } ?>
+<?php }elseif ($role == 'officer' && $location == 'B') { 
+   if (isset($_REQUEST['roads'])) { ?>
+   <div class="content-wrapper">
+      <!-- Container-fluid starts -->
+      <!-- Main content starts -->
+      <div class="container-fluid" style="background-color:#e5e5e5">
+         <div class="row">
+            <div class="main-header">
+               <h4>Roads</h4>
+            </div>
+         </div>
+         <!-- 4-blocks row start -->
+         <div class="row dashboard-header">
+             <div class="card">
+               <div class="card-block">
+                  <div class="row">
+                     <div class="col-sm-12 table-responsive">
+                        <table class="table table-hover">
+                           <thead>
+                              <tr>
+                                 <!-- <th>id</th> -->
+                                 <th>Road Name</th>
+                                 <!-- <th>Road Location</th> -->
+                                 <th></th>
+                                 <th></th>
+                                 <th></th>
+                                 <th></th>
+                                 <th></th>
+                                 <th></th>
+                                 <th></th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                           <?php $roads = $dbh->query("SELECT * FROM roads WHERE road_location = 'B'");
+                           $x = 1; 
+                           while($rx = $roads->fetch(PDO::FETCH_OBJ)){ ?>
+                              <tr>
+                                 <!-- <td><?=$x++; ?></td> -->
+                                 <td><?=$rx->road_name; ?></td>
+                                 <!-- <td><?=$rx->road_location; ?></td> -->
+                                 <td></td>
+                                 <td></td>
+                                 <td></td>
+                                 <td></td>
+                                 <td></td>
+                                 <td></td>
+                                 <td></td>
+                              </tr>
+                           <?php } ?>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </div>            
+         </div>
+         <!-- 4-blocks row end -->
+      </div>
+   </div>
+   <?php }elseif (isset($_REQUEST['traffic_points'])) { ?>
+   <div class="content-wrapper">
+      <!-- Container-fluid starts -->
+      <!-- Main content starts -->
+      <div class="container-fluid" style="background-color:#e5e5e5">
+         <div class="row">
+            <div class="main-header">
+               <h4>Traffic Points</h4>
+            </div>
+         </div>
+         <!-- 4-blocks row start -->
+         <div class="row dashboard-header">
+             <div class="card">
+               <div class="card-header">
+                  <h5 class="card-header-text"><a href="#add-traffic-point-four" data-toggle="modal" class="btn btn-primary float-right">Add Traffic Point</a></h5>
+               </div>
+               <div class="card-block">
+                  <div class="row">
+                     <div class="col-sm-12 table-responsive">
+                        <table class="table table-hover">
+                           <thead>
+                              <tr>
+                                 <!-- <th>id</th> -->
+                                 <th>Road Name</th>
+                                 <!-- <th>Road Location</th> -->
+                                 <th>Traffic Point</th>
+                                 <th>Traffic Status</th>
+                                 <th>Action</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                           <?php $roads_routes = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.road_location = 'B' AND r.road_id = t.road_id ");
+                           $x = 1; 
+                           // `rid`, `road_id`, `fromm`, `too`, `status`
+                           while($rx = $roads_routes->fetch(PDO::FETCH_OBJ)){ ?>
+                              <tr>
+                                 <!-- <td><?=$x++; ?></td> -->
+                                 <td><?=$rx->road_name; ?></td>
+                                 <!-- <td><?=$rx->road_location; ?></td> -->
+                                 <td><?=$rx->fromm.' - '.$rx->too; ?></td>
+                                 <td><?=$rx->status; ?></td>
+                                 <td>
+                                    <a href="#edit-traffic-point-four<?=$rx->rid; ?>" data-toggle="modal" class="btn btn-primary">Edit</a>
+                              </tr>
+                           <?php include 'edit-traffic-point-four.php'; } ?>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </div>            
+         </div>
+         <!-- 4-blocks row end -->
+      </div>
+   </div>
+   <?php }elseif (isset($_REQUEST[''])) { ?>
+
+   <?php }elseif (isset($_REQUEST[''])) { ?>
+
+   <?php }elseif (isset($_REQUEST[''])) { ?>
+
+   <?php }elseif (isset($_REQUEST[''])) { ?>
+
+   <?php }elseif (isset($_REQUEST[''])) { ?>
+
+   <?php }elseif (isset($_REQUEST[''])) { ?>
+
+   <?php }else { ?>
+  
+   <!-- Sidebar chat end-->
+   <div class="content-wrapper">
+      <!-- Container-fluid starts -->
+      <!-- Main content starts -->
+      <div class="container-fluid" style="background-color:#e5e5e5">
+         <div class="row">
+            <div class="main-header">
+               <h4>Dashboard</h4>
+            </div>
+         </div>
+         <!-- 4-blocks row start -->
+         <div class="row dashboard-header"> 
+            <div class="col-lg-3 col-md-6">
+               <div class="card dashboard-product">
+                  <h5>Traffic Points</h5>
+                  <?php $rts = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.road_location = 'B' AND r.road_id = t.road_id ")->rowCount(); ?>
                   <h2 class="dashboard-total-products"><span><?=number_format($rts); ?></span></h2>
                   <span class="label" style="background-color: #ff9c02; padding:8px;"><a style="text-decoration: none; color: #ffffff; " href="?traffic_points">Traffic Points</a></span>
                   <div class="side-box">

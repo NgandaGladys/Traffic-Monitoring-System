@@ -494,12 +494,12 @@ if (isset($_POST['register_btn'])) {//signup
         if($sql){
             echo "<script>
             alert('Traffic point added successfully');
-            window.location = '".HOME_URL."?routes';
+            window.location = '".HOME_URL."?traffic_points';
             </script>";
         }else{
            echo "<script>
             alert('Failed to add traffic point');
-            window.location = '".HOME_URL."?routes';
+            window.location = '".HOME_URL."?traffic_points';
             </script>";
         }
     }
