@@ -17,20 +17,6 @@ include '../root/process.php';
                 background-size: cover;
                 background-repeat: no-repeat;
             }
-            .nav-item{
-                justify-content: space-around;
-                padding: 0 10px 0 0;
-            }
-            .nav-link{
-                color:white;
-            }
-            .nav-link:hover{
-                color:#ff9c02;
-            }
-            .navbar-nav .nav-link.active, .navbar-nav .show>.nav-link {
-                color: #ff9c02;
-                margin-right:920px ;
-            }
         </style>
 </head>
 <body>
