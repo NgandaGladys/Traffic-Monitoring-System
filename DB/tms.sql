@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 11, 2023 at 03:11 PM
+-- Generation Time: Dec 12, 2023 at 01:01 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -50,7 +50,7 @@ INSERT INTO `roads` (`road_id`, `road_name`, `road_location`) VALUES
 -- Table structure for table `routes`
 --
 
-CREATE TABLE `routes` (
+CREATE TABLE `traffic_points` (
   `rid` int(11) NOT NULL,
   `road_id` int(11) NOT NULL,
   `fromm` varchar(100) NOT NULL,
@@ -62,7 +62,7 @@ CREATE TABLE `routes` (
 -- Dumping data for table `routes`
 --
 
-INSERT INTO `routes` (`rid`, `road_id`, `fromm`, `too`, `status`) VALUES
+INSERT INTO `traffic_points` (`rid`, `road_id`, `fromm`, `too`, `status`) VALUES
 (1, 1, 'jok', 'ijij', 'Clear'),
 (2, 2, 'Mapeera', 'Watooto Church', 'Moderate'),
 (3, 2, 'Mapeera', 'City Square', 'Jam'),
@@ -98,12 +98,12 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`userid`, `fullname`, `phone`, `email`, `location`, `password`, `token`, `role`, `date_registered`) VALUES
 (6, 'Doreen Asiimwe', '0704487563', 'doreenasiimwe5@gmail.com', 'A', 'e453dbf96ac903773262fbd305fd33af23a99593', '', 'officer', '2023-11-28 10:50:09 AM'),
 (14, 'Kenneth Waks', '0784675790', 'wakskenneth@gmail.com', 'A', '2eaab2fbb032b258b58fdaed26b83ca391ddcd0a', '', 'admin', '2023-11-29 18:09:07 PM'),
-(21, 'Sarah Atim', '0773805834', 'tracymuzaki23@gmail.com', 'B', 'e2d41471b6665e4d8b0085f9f1049c45a9291877', '', 'officer', '2023-11-30 14:29:56 PM'),
+(21, 'Sarah A', '0773805834', 'tracymuzaki23@gmail.com', 'B', 'e2d41471b6665e4d8b0085f9f1049c45a9291877', '', 'officer', '2023-11-30 14:29:56 PM'),
 (31, 'Flavia N', '0777788888', 'flavia@gmail.com', 'B', 'a58843087c6951df6f8f931968c6919fa562ff37', '', 'officer', '2023-12-04 16:50:29 PM'),
 (32, 'Kenneth Waks', '0784675790', 'wakskenneth1@gmail.com', 'A', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', '', 'officer', '2023-12-06 17:07:43 PM'),
 (44, 'Tracy Muzaki', '0740909525', 'tracymuzaki12@gmail.com', 'A', '109d63fe5e9366a7d3cb9eb58be233648898444c', '', 'super_admin', '2023-12-11 17:04:19 PM'),
 (45, 'Nganda Gladys', '0741395925', 'gladamanda42@gmail.com', 'B', '291f2c90d146f0bd94e130dd5d8b7b2ac51e561c', '', 'admin', '2023-12-11 17:08:16 PM'),
-(46, 'Peruth A', '0777788899', 'peruth@gmail.com', 'B', '7a9aed90b0688c4eb2e3a1b6a7e1fc93418467ec', '', 'user', '2023-12-11 17:10:32 PM');
+(46, 'Peruth A', '0777788899', 'peruth@gmail.com', 'A', '7a9aed90b0688c4eb2e3a1b6a7e1fc93418467ec', '', 'user', '2023-12-11 17:10:32 PM');
 
 --
 -- Indexes for dumped tables
@@ -119,7 +119,7 @@ ALTER TABLE `roads`
 --
 -- Indexes for table `routes`
 --
-ALTER TABLE `routes`
+ALTER TABLE `traffic_points`
   ADD PRIMARY KEY (`rid`),
   ADD KEY `rid` (`rid`,`road_id`,`fromm`,`too`,`status`);
 
@@ -139,19 +139,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `roads`
 --
 ALTER TABLE `roads`
-  MODIFY `road_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `road_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `routes`
 --
-ALTER TABLE `routes`
-  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+ALTER TABLE `traffic_points`
+  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

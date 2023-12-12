@@ -490,15 +490,15 @@ if (isset($_POST['register_btn'])) {//signup
     if (count($errors) == 0) {
         $fromm = addslashes($fromm);
         $too = addslashes($too);
-        $sql = $dbh->query("INSERT INTO routes VALUES(NULL,'$road_id','$fromm','$too','$status') ");
+        $sql = $dbh->query("INSERT INTO traffic_points VALUES(NULL,'$road_id','$fromm','$too','$status') ");
         if($sql){
             echo "<script>
-            alert('Route added successfully');
+            alert('Traffic point added successfully');
             window.location = '".HOME_URL."?routes';
             </script>";
         }else{
            echo "<script>
-            alert('Failed to add route');
+            alert('Failed to add traffic point');
             window.location = '".HOME_URL."?routes';
             </script>";
         }
@@ -509,17 +509,17 @@ if (isset($_POST['register_btn'])) {//signup
     if (count($errors) == 0) {
         $fromm = addslashes($fromm);
         $too = addslashes($too);
-        $sql = $dbh->query("UPDATE routes SET fromm = '$fromm', too = '$too', status = '$status' WHERE rid = '$rid' ");
+        $sql = $dbh->query("UPDATE traffic_points SET fromm = '$fromm', too = '$too', status = '$status' WHERE rid = '$rid' ");
     
         if($sql){
            echo "<script>
-            alert('Route updated successfully');
-            window.location = '".HOME_URL."?routes';
+            alert('Traffic point updated successfully');
+            window.location = '".HOME_URL."?traffic_points';
             </script>";
         }else{
            echo "<script>
-            alert('Failed to update route');
-            window.location = '".HOME_URL."?routes';
+            alert('Failed to update traffic point');
+            window.location = '".HOME_URL."?traffic_points';
             </script>";
         }
     }
@@ -603,12 +603,12 @@ if (isset($_POST['register_btn'])) {//signup
         $sql = $dbh->query("UPDATE users SET fullname ='$fullname',phone ='$phone',email ='$email',location ='$location',password ='$pass' WHERE email = '$email' ");
         if($sql){
             echo "<script>
-            alert('User details updated successfully');
+            alert('Profile updated successfully');
             window.location = '".SITE_URL."';
             </script>";
         }else{
            echo "<script>
-            alert('Failed to update user details');
+            alert('Failed to update profile');
             window.location = '".SITE_URL."';
             </script>";
         }

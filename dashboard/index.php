@@ -544,7 +544,7 @@ if ($role == 'super_admin') {
       dbDelete('roads','road_id',$_REQUEST['delete-road']);
       redirect_page('?roads'); ?>
 
-   <?php }elseif (isset($_REQUEST['routes'])) { ?>
+   <?php }elseif (isset($_REQUEST['traffic_points'])) { ?>
    <div class="content-wrapper">
       <!-- Container-fluid starts -->
       <!-- Main content starts -->
@@ -574,7 +574,7 @@ if ($role == 'super_admin') {
                               </tr>
                            </thead>
                            <tbody>
-                           <?php $roads_routes = $dbh->query("SELECT * FROM roads r, routes t WHERE r.road_location = 'A' AND r.road_id = t.road_id ");
+                           <?php $roads_routes = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.road_location = 'A' AND r.road_id = t.road_id ");
                            $x = 1; 
                            // `rid`, `road_id`, `fromm`, `too`, `status`
                            while($rx = $roads_routes->fetch(PDO::FETCH_OBJ)){ ?>
@@ -599,7 +599,7 @@ if ($role == 'super_admin') {
       </div>
    </div>
    <?php }elseif (isset($_REQUEST['delete-route'])) { 
-      dbDelete('routes','rid',$_REQUEST['delete-route']);
+      dbDelete('traffic_points','rid',$_REQUEST['delete-route']);
       redirect_page('?routes'); ?>
    <?php }elseif (isset($_REQUEST[''])) { ?>
 
@@ -654,7 +654,7 @@ if ($role == 'super_admin') {
             <div class="col-lg-3 col-md-6">
                <div class="card dashboard-product">
                   <h5>Traffic Points</h5>
-                  <?php $rts = $dbh->query("SELECT * FROM roads r, routes t WHERE r.road_location = 'A' AND r.road_id = t.road_id ")->rowCount(); ?>
+                  <?php $rts = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.road_location = 'A' AND r.road_id = t.road_id ")->rowCount(); ?>
                   <h2 class="dashboard-total-products"><span><?=number_format($rts); ?></span></h2>
                   <span class="label" style="background-color: #ff9c02; padding:8px;"><a style="text-decoration: none; color: #ffffff; " href="?routes">Traffic Points</a></span>
                   <div class="side-box">
@@ -804,7 +804,7 @@ if ($role == 'super_admin') {
       dbDelete('roads','road_id',$_REQUEST['delete-road']);
       redirect_page('?roads'); ?>
 
-   <?php }elseif (isset($_REQUEST['routes'])) { ?>
+   <?php }elseif (isset($_REQUEST['traffic_points'])) { ?>
    <div class="content-wrapper">
       <!-- Container-fluid starts -->
       <!-- Main content starts -->
@@ -818,7 +818,7 @@ if ($role == 'super_admin') {
          <div class="row dashboard-header">
              <div class="card">
                <div class="card-header">
-                  <h5 class="card-header-text"><a href="#add-traffic-point" data-toggle="modal" class="btn btn-primary float-right">Add Traffic Point</a></h5>
+                  <h5 class="card-header-text"><a href="#add-traffic-point-two" data-toggle="modal" class="btn btn-primary float-right">Add Traffic Point</a></h5>
                </div>
                <div class="card-block">
                   <div class="row">
@@ -834,7 +834,7 @@ if ($role == 'super_admin') {
                               </tr>
                            </thead>
                            <tbody>
-                           <?php $roads_routes = $dbh->query("SELECT * FROM roads r, routes t WHERE r.road_location = 'B' AND r.road_id = t.road_id ");
+                           <?php $roads_routes = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.road_location = 'B' AND r.road_id = t.road_id ");
                            $x = 1; 
                            // `rid`, `road_id`, `fromm`, `too`, `status`
                            while($rx = $roads_routes->fetch(PDO::FETCH_OBJ)){ ?>
@@ -844,10 +844,10 @@ if ($role == 'super_admin') {
                                  <td><?=$rx->fromm.' - '.$rx->too; ?></td>
                                  <td><?=$rx->status; ?></td>
                                  <td>
-                                    <a href="#edit-traffic-point<?=$rx->rid; ?>" data-toggle="modal" class="btn btn-primary">Edit</a>
+                                    <a href="#edit-traffic-point-two<?=$rx->rid; ?>" data-toggle="modal" class="btn btn-primary">Edit</a>
                                     <a onclick="return confirm('Do you really want to delete this Route?. '); " href="?delete-route=<?=$rx->rid; ?>" class="btn btn-danger">Delete</a></td>
                               </tr>
-                           <?php include 'edit-traffic-point.php'; } ?>
+                           <?php include 'admin/edit-traffic-point-two.php'; } ?>
                            </tbody>
                         </table>
                      </div>
@@ -859,7 +859,7 @@ if ($role == 'super_admin') {
       </div>
    </div>
    <?php }elseif (isset($_REQUEST['delete-route'])) { 
-      dbDelete('routes','rid',$_REQUEST['delete-route']);
+      dbDelete('traffic_points','rid',$_REQUEST['delete-route']);
       redirect_page('?routes'); ?>
    <?php }elseif (isset($_REQUEST[''])) { ?>
 
@@ -914,7 +914,7 @@ if ($role == 'super_admin') {
             <div class="col-lg-3 col-md-6">
                <div class="card dashboard-product">
                   <h5>Traffic Points</h5>
-                  <?php $rts = $dbh->query("SELECT * FROM roads r, routes t WHERE r.road_location = 'B' AND r.road_id = t.road_id ")->rowCount(); ?>
+                  <?php $rts = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.road_location = 'B' AND r.road_id = t.road_id ")->rowCount(); ?>
                   <h2 class="dashboard-total-products"><span><?=number_format($rts); ?></span></h2>
                   <span class="label" style="background-color: #ff9c02; padding:8px;"><a style="text-decoration: none; color: #ffffff; " href="?routes">Traffic Points</a></span>
                   <div class="side-box">
@@ -988,7 +988,7 @@ if ($role == 'super_admin') {
          <!-- 4-blocks row end -->
       </div>
    </div>
-   <?php }elseif (isset($_REQUEST['routes'])) { ?>
+   <?php }elseif (isset($_REQUEST['traffic_points'])) { ?>
    <div class="content-wrapper">
       <!-- Container-fluid starts -->
       <!-- Main content starts -->
@@ -1019,7 +1019,7 @@ if ($role == 'super_admin') {
                               </tr>
                            </thead>
                            <tbody>
-                           <?php $roads_routes = $dbh->query("SELECT * FROM roads r, routes t WHERE r.road_location = 'B' AND r.road_id = t.road_id ");
+                           <?php $roads_routes = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.road_location = 'B' AND r.road_id = t.road_id ");
                            $x = 1; 
                            // `rid`, `road_id`, `fromm`, `too`, `status`
                            while($rx = $roads_routes->fetch(PDO::FETCH_OBJ)){ ?>
@@ -1072,7 +1072,7 @@ if ($role == 'super_admin') {
             <div class="col-lg-3 col-md-6">
                <div class="card dashboard-product">
                   <h5>Traffic Points</h5>
-                  <?php $rts = $dbh->query("SELECT * FROM routes ")->rowCount(); ?>
+                  <?php $rts = $dbh->query("SELECT * FROM traffic_points ")->rowCount(); ?>
                   <h2 class="dashboard-total-products"><span><?=number_format($rts); ?></span></h2>
                   <span class="label" style="background-color: #ff9c02; padding:8px;"><a style="text-decoration: none; color: #ffffff; " href="?routes">Traffic Points</a></span>
                   <div class="side-box">
@@ -1088,7 +1088,7 @@ if ($role == 'super_admin') {
    </div>
 <?php } ?>
 <?php }elseif ($role == 'user') { 
-  if (isset($_REQUEST['routes'])) { ?>
+  if (isset($_REQUEST['traffic_points'])) { ?>
     <div class="content-wrapper">
       <!-- Container-fluid starts -->
       <!-- Main content starts -->
@@ -1114,7 +1114,7 @@ if ($role == 'super_admin') {
                               </tr>
                            </thead>
                            <tbody>
-                           <?php $roads_routes = $dbh->query("SELECT * FROM roads r, routes t WHERE r.road_id = t.road_id ");
+                           <?php $roads_routes = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.road_id = t.road_id ");
                            $x = 1; 
                            // `rid`, `road_id`, `fromm`, `too`, `status`
                            while($rx = $roads_routes->fetch(PDO::FETCH_OBJ)){ ?>
@@ -1149,7 +1149,7 @@ if ($role == 'super_admin') {
             <div class="col-lg-3 col-md-6">
                <div class="card dashboard-product">
                   <h5>Traffic Points</h5>
-                  <?php $rts = $dbh->query("SELECT * FROM routes ")->rowCount(); ?>
+                  <?php $rts = $dbh->query("SELECT * FROM traffic_points ")->rowCount(); ?>
                   <h2 class="dashboard-total-products"><span><?=number_format($rts); ?></span></h2>
                   <span class="label" style="background-color: #ff9c02; padding:8px;"><a style="text-decoration: none; color: #ffffff; " href="?routes">Traffic Points</a></span>
                   <div class="side-box">

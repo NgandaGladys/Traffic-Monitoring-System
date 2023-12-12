@@ -125,7 +125,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
                     </a>                
                 </li>
                 <li class="treeview">
-                    <a class="waves-effect waves-dark" href="<?=HOME_URL; ?>?routes">
+                    <a class="waves-effect waves-dark" href="<?=HOME_URL; ?>?traffic_points">
                         <i class="icon-map"></i><span> Traffic Points</span>
                     </a>                
                 </li>
@@ -142,9 +142,10 @@ include 'super_admin/addroad.php';
 include 'super_admin/addadmin.php';
 include 'super_admin/addofficer.php';
 include 'super_admin/add-traffic-point.php';
-include 'admin/addofficertwo.php';
 include 'admin/addroadtwo.php';
-include 'addofficerone.php';
+include 'admin/addofficertwo.php';
+include 'admin/add-traffic-point-two.php';
 include 'addroadone.php';
+include 'addofficerone.php';
 include 'add-traffic-point-one.php';
 ?>
