@@ -15,25 +15,25 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label>Road Name (required)</label>
+                                <label>Road Name</label>
                                 <input class="form-control" readonly name="road_name" value="<?=$rx->road_name; ?>" type="text" required />
                             </div>
                         </div>
                          <div class="col-lg-12">
                             <div class="form-group">
-                                <label>Road From (required)</label>
+                                <label>Road From</label>
                                 <input class="form-control" name="fromm" value="<?=$rx->fromm; ?>" type="text" required />
                             </div>
                         </div>
                          <div class="col-lg-12">
                             <div class="form-group">
-                                <label>Road too (required)</label>
+                                <label>Road to</label>
                                 <input class="form-control" name="too" value="<?=$rx->too; ?>" type="text" required />
                             </div>
                         </div>
                          <div class="col-lg-12">
                             <div class="form-group">
-                                <label>Traffic Status (required)</label>
+                                <label>Traffic Status</label>
                                 <select class="form-control" name="status" required>
                                     <option value="Clear" <?php echo ($rx->status === 'Clear') ? 'selected' : ''; ?>>Clear</option>
                                     <option value="Moderate" <?php echo ($rx->status === 'Moderate') ? 'selected' : ''; ?>>Moderate</option>
