@@ -14,19 +14,19 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label>Road Name (required)</label>
+                                <label>Road Name</label>
                                 <input class="form-control" name="road_name" type="text" required />
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label>Road Location (required)</label>
+                                <label>Location</label>
                                 <select class="form-control" name="road_location" required>
-                                    <option value="">Select road location</option>
-                                    <option>A</option>
-                                    <option>B</option>
-                                    <!-- <option>C</option>
-                                    <option>D</option> -->
+                                    <option value="">Select location</option>
+                                    <option>Jinja Road Main Station</option>
+                                    <option>Mukono Police Station</option>
+                                    <option>Bweyogerere Police Station</option>
+                                    <!-- <option>D</option> -->
                                 </select>
                                 <!-- <input class="form-control" name="road_location" type="text" required /> -->
                             </div>

@@ -15,35 +15,35 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label>Full Name (required)</label>
+                                <label>Full Name </label>
                                 <input class="form-control" name="fullname" value="<?=$rx->fullname; ?>" type="text" required />
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label>Phone Number (required)</label>
+                                <label>Phone Number </label>
                                 <input class="form-control" name="phone" maxlength="10" value="<?=$rx->phone; ?>" type="text" required />
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label>Email (required)</label>
+                                <label>Email </label>
                                 <input class="form-control" name="email" value="<?=$rx->email; ?>" type="email" required />
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label>Location (required)</label>
+                                <label>Location </label>
                                 <select class="form-control" name="location" required>
-                                    <option value="A" <?php echo ($rx->location === 'A') ? 'selected' : ''; ?>>A</option>
-                                    <option value="B" <?php echo ($rx->location === 'B') ? 'selected' : ''; ?>>B</option>
-                                    <!-- <option value="C" <?php echo ($rx->location === 'C') ? 'selected' : ''; ?>>C</option> -->
+                                    <option value="Jinja Road Main Station" <?php echo ($rx->location === 'Jinja Road Main Station') ? 'selected' : ''; ?>>Jinja Road Main Station</option>
+                                    <option value="Mukono Police Station" <?php echo ($rx->location === 'Mukono Police Station') ? 'selected' : ''; ?>>Mukono Police Station</option>
+                                    <option value="Bweyogerere Police Station" <?php echo ($rx->location === 'Bweyogerere Police Station') ? 'selected' : ''; ?>>Bweyogerere Police Station</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label>Password (required)</label>
+                                <label>Password </label>
                                 <input class="form-control" name="password" value="" type="password" required/>
                             </div>
                         </div>
