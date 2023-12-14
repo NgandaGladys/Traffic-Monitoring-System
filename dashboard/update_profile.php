@@ -36,9 +36,12 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
             background-size: cover;
             background-repeat: no-repeat;
         }
-
-        h3 {
-           text-align:center;
+        h3{
+            text-align:center;
+        }
+        select[readonly] {
+            pointer-events: none;
+            background-color: #eee; 
         }
 
         .form-group label{
@@ -52,7 +55,8 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
     <div class="overlay">
         <div class="container">
             <div class="row m-6 no-gutters">
-                <div class="col-md-5 bg-white p-5" style="border-radius: 10px; border: 1px solid #ccc; display:block; margin:0 auto;">
+                <div class="col-md-5 bg-white p-4" style="border-radius: 10px; border: 1px solid #ccc; display:block; margin:0 auto;">
+                    <a href="javascript:history.back('profile.php')" class="text-secondary fs-3" style="text-decoration:none;"><span aria-hidden="true" >&times;</span></a>    
                     <h3>Update User Profile</h3>
                     <div class="modal-content">
                         <form action="" method="post" enctype="multipart/form-data" class="form-style">
@@ -79,7 +83,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label>Location: </label>
-                                            <select class="form-control" name="location" required>
+                                            <select class="form-control" readonly name="location" required>
                                                 <option value="A" <?php echo $user['location'] === 'A' ? 'selected' : ''; ?>>A</option>
                                                 <option value="B" <?php echo $user['location'] === 'B' ? 'selected' : ''; ?>>B</option>
                                                 <!-- <option value="C" <?php echo $user['location'] === 'C' ? 'selected' : ''; ?>>C</option> -->
@@ -95,8 +99,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
                                     </div>
                                 </div>
                                 <div class="pb-2">
-                                    <button type="submit" name="update_user_details_btn" class="btn btn-success w-100 font-weight-bold mt-3">Save updates</button>
-                                <!-- <a href="login"><button class="btn btn-dark w-100 font-weight-bold mt-2">Update Profile</button></a> -->
+                                    <button type="submit" name="update_user_details_btn" class="btn btn-success w-100 h-28 font-weight-bold mt-3 fs-5">Save</button>
                                 </div>
                             </div>
                         </form>

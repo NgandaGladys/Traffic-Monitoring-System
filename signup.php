@@ -46,7 +46,7 @@ include 'root/process.php';
                     <img src="images/maxim-abramov-GFjyimhomaM-unsplash.jpg" class="img-fluid"
                         style="min-height:100%; border-radius: 10px 0 0 10px; width: 100%;height: 50px;" />
                 </div>
-                <div class="col-md-4 bg-white p-5" style="border-radius: 0 10px 10px 0;">
+                <div class="col-md-4 bg-white p-4" style="border-radius: 0 10px 10px 0;">
                     <h3 class="pb-3">SIGN UP</h3>
                     <div class="form-style">
                         <form method="post" action="">

@@ -18,6 +18,7 @@ $stmt->bindParam(':email', $email);
 $stmt->execute();
 
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
@@ -25,63 +26,89 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
+    <title>User Profile</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="../src/style.css">
-    <style type="text/css">
-        body{
+    <style>
+        body {
             background-image: url('../images/pexels-pixabay-210182.jpg');
             background-size: cover;
             background-repeat: no-repeat;
         }
-        h3 {
-           text-align:center;
+        h3{
+            text-align:center;
         }
-        .form p {
-            font-weight:normal;
-            color: black;
-            font-size:18px;
-            line-height: 20px;
+        select[readonly] {
+            pointer-events: none; 
+            background-color: none;
+            border:none;
         }
-        .form #s1{
-            margin-left:65px;
+        .form-group label{
+            /* text-align: center; */
+            margin-top:4px;
+            font-size: 18px;
+            display: inline;
+            border:none;
         }
-        .form #s2{
-            margin-left:72px;
+        .form-group input{
+            cursor: default;
+            /* text-align: center; */
+            margin-top:4px;
+            font-size: 18px;
+            display: inline;
+            border:none;
         }
-        .form #s3{
-            margin-left:47px;
+        .form-group input:focus {
+            border-bottom:none;
+            box-shadow: none;
+            outline: 0;
+            background-color: white;
+            border-radius: none;
         }
-        .form #s4{
-            margin-left:67px;
-        }
+
     </style>
 </head>
-
 <body>
     <div class="overlay">
         <div class="container">
-            <div class="row m-5 no-gutters">
-                <div class="col-md-6 bg-white p-5" style="border-radius: 10px; border: 1px solid #ccc; display:block; margin:0 auto;">
-                    <h3 class="pb-3">User Profile</h3>
-                    <div class="form-style form">
-                        <form method="post" action="">
-                            <div class="form-group pb-3">
-                                <p>Name: <span id="s1"><?php echo $user['fullname']; ?></span></p>
-                            </div>
-                            <div class="form-group pb-3">
-                                <p>Email: <span id="s2"><?php echo $user['email']; ?></span></p>
-                            </div>
-                            <div class="form-group pb-3">
-                                <p>Location: <span id="s3"><?php echo $user['location']; ?></span></p>
-                            </div>
-                            <div class="form-group pb-3">
-                                <p>Phone: <span id="s4"><?php echo $user['phone']; ?></span></p>
-                            </div>
-                            <div class="pb-2">
-                                <a class="btn btn-warning w-100 font-weight-bold mt-2" href="update_profile.php" style="text-decoration:none; color:white;">Update Profile</a>
-                                <!-- <a href="login"><button class="btn btn-dark w-100 font-weight-bold mt-2">Update Profile</button></a> -->
+            <div class="row m-6 no-gutters">
+                <div class="col-md-5 bg-white p-5" style="border-radius: 10px; border: 1px solid #ccc; display:block; margin:0 auto;">
+                    <a href="javascript:history.back('dashboard')" class="text-secondary fs-3" style="text-decoration:none;"><span aria-hidden="true" >&times;</span></a>
+                    <h3>User Profile</h3>
+                    <div class="modal-content">
+                        <form action="" method="post" enctype="multipart/form-data" class="form-style">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <input class="form-control" readonly name="fullname" value="Full Name: <?php echo $user['fullname']; ?>" type="text" required />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <input class="form-control" readonly name="phone" maxlength="10" value="Phone Number: <?php echo $user['phone']; ?>" type="text" required />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <input class="form-control" readonly name="email" value="Email: <?php echo $user['email']; ?>" type="email" required />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <!-- <select class="form-control" readonly name="location" required>
+                                                <option value="A" <?php echo $user['location'] === 'A' ? 'selected' : ''; ?>>A</option>
+                                                <option value="B" <?php echo $user['location'] === 'B' ? 'selected' : ''; ?>>B</option>
+                                                <option value="C" <?php echo $user['location'] === 'C' ? 'selected' : ''; ?>>C</option> -->
+                                            <!-- </select> -->
+                                            <input class="form-control" readonly name="location" value="Location: <?php echo $user['location']; ?>" type="text" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pb-2">
+                                    <a class="btn btn-warning w-100 font-weight-bold mt-2" href="update_profile.php" style="text-decoration:none; color:white;margin-right:45px">Update Profile</a>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -91,4 +118,5 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
     </div>
     <script src="https://use.fontawesome.com/f59bcd8580.js"></script>
 </body>
-</html>
+</html> 
+
