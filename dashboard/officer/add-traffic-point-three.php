@@ -14,7 +14,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label>Road Name (required)</label>
+                                <label>Road Name </label>
                                 <select class="form-control" name="road_id" required>
                                     <option value="">--select road name--</option>
                                     <?php $rad = $dbh->query("SELECT * FROM roads WHERE road_location = 'A'");
@@ -26,19 +26,19 @@
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label>From (required)</label>
+                                <label>Road From </label>
                                 <input class="form-control" name="fromm" type="text" required />
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label>To (required)</label>
+                                <label>Road To </label>
                                 <input class="form-control" name="too" type="text" required />
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label>Traffic Status (required)</label>
+                                <label>Traffic Status </label>
                                 <select class="form-control" name="status" required>
                                     <option value="">--Select Traffic Status--</option>
                                     <option>Clear</option>
