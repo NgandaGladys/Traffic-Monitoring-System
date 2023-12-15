@@ -15,14 +15,14 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label>Road Name (required)</label>
+                                <label>Road Name </label>
                                 <input class="form-control" name="road_name" value="<?=$rx->road_name; ?>" type="text" required />
                             </div>
                         </div>
                         <!-- <div class="col-lg-12">
                             <div class="form-group">
-                                <label>Road Location (required)</label>
-                                <input class="form-control" name="road_location" value="<?=$rx->road_location; ?>" type="text" required />
+                                <label>Location (required)</label>
+                                <input class="form-control" name="location" value="<?=$rx->location; ?>" type="text" required />
                             </div>
                         </div> -->
                     </div>

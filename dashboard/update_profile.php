@@ -84,9 +84,9 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
                                         <div class="form-group">
                                             <label>Location: </label>
                                             <select class="form-control" readonly name="location" required>
-                                                <option value="A" <?php echo $user['location'] === 'A' ? 'selected' : ''; ?>>A</option>
-                                                <option value="B" <?php echo $user['location'] === 'B' ? 'selected' : ''; ?>>B</option>
-                                                <!-- <option value="C" <?php echo $user['location'] === 'C' ? 'selected' : ''; ?>>C</option> -->
+                                                <option value="Jinja Road Main Station" <?php echo $user['location'] === 'Jinja Road Main Station' ? 'selected' : ''; ?>>Jinja Road Main Station</option>
+                                                <option value="Mukono Police Station" <?php echo $user['location'] === 'Mukono Police Station' ? 'selected' : ''; ?>>Mukono Police Station</option>
+                                                <option value="Bweyogerere Police Station" <?php echo $user['location'] === 'Bweyogerere Police Station' ? 'selected' : ''; ?>>Bweyogerere Police Station</option>
                                             </select>
                                             <!-- <input class="form-control" name="location" value="<?php echo $user['location']; ?>" type="text" /> -->
                                         </div>

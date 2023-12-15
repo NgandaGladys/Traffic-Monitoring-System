@@ -17,7 +17,7 @@
                                 <label>Road Name </label>
                                 <select class="form-control" name="road_id" required>
                                     <option value="">--select road name--</option>
-                                    <?php $rad = $dbh->query("SELECT * FROM roads WHERE road_location = 'A'");
+                                    <?php $rad = $dbh->query("SELECT * FROM roads WHERE location = 'Jinja Road Main Station'");
                                     while ($rx = $rad->fetch(PDO::FETCH_OBJ)) { ?>
                                         <option value="<?=$rx->road_id; ?>"><?=$rx->road_name; ?></option>
                                     <?php } ?>

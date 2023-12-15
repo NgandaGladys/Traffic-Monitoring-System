@@ -15,25 +15,25 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label>Full Name (required)</label>
+                                <label>Full Name </label>
                                 <input class="form-control" name="fullname" value="<?=$rx->fullname; ?>" type="text" required />
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label>Phone Number (required)</label>
+                                <label>Phone Number </label>
                                 <input class="form-control" name="phone" maxlength="10" value="<?=$rx->phone; ?>" type="text" required />
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label>Email (required)</label>
+                                <label>Email </label>
                                 <input class="form-control" name="email" value="<?=$rx->email; ?>" type="email" required />
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label>Password (required)</label>
+                                <label>Password </label>
                                 <input class="form-control" name="password" value="" type="password" />
                             </div>
                         </div>
