@@ -170,7 +170,10 @@ include 'addroadone.php';
 include 'addofficerone.php';
 include 'add-traffic-point-one.php';
 include 'officer/add-traffic-point-three.php';
+include 'addofficerfive.php';
+include 'addroadfive.php';
 include 'add-traffic-point-four.php';
+include 'add-traffic-point-five.php';
 ?>
 
 

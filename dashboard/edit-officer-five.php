@@ -1,4 +1,4 @@
-<div class="modal fade custom-modal" tabindex="-1" role="dialog" aria-labelledby="modal_add_user" aria-hidden="true" id="edit-officer-two<?=$rx->userid; ?>">
+<div class="modal fade custom-modal" tabindex="-1" role="dialog" aria-labelledby="modal_add_user" aria-hidden="true" id="edit-officer-five<?=$rx->userid; ?>">
     <div class="modal-dialog">
         <div class="modal-content">
             <form action="" method="post" enctype="multipart/form-data">
@@ -39,7 +39,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" name="update_officer_details_btn_two" class="btn btn-success">Save</button>
+                        <button type="submit" name="update_officer_details_btn_three" class="btn btn-success">Save</button>
                     </div>
                 </div>
             </form>

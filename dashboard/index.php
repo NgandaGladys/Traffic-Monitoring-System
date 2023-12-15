@@ -945,7 +945,7 @@ if ($role == 'super_admin') {
          <div class="row dashboard-header">
              <div class="card">
                <div class="card-header">
-                  <h5 class="card-header-text"><a href="#addofficertwo" class="btn btn-primary float-right" data-toggle="modal">Add Officer</a></h5>
+                  <h5 class="card-header-text"><a href="#addofficerfive" class="btn btn-primary float-right" data-toggle="modal">Add Officer</a></h5>
                </div>
                <div class="card-block">
                   <div class="row">
@@ -975,11 +975,11 @@ if ($role == 'super_admin') {
                                  <td><?=$rx->role; ?></td>
                                  <td><?=$rx->date_registered; ?></td>
                                  <td>
-                                    <a href="#edit-officer-two<?=$rx->userid; ?>" data-toggle="modal" class="btn btn-primary">Edit</a>
+                                    <a href="#edit-officer-five<?=$rx->userid; ?>" data-toggle="modal" class="btn btn-primary">Edit</a>
                                     <a onclick="return confirm('Do you really want to delete this officer?. '); " href="?delete-officer=<?=$rx->userid; ?>" class="btn btn-danger">Delete</a>
                                  </td>
                               </tr>
-                           <?php include 'admin/edit-officer-two.php'; } ?>
+                           <?php include 'edit-officer-five.php'; } ?>
                            </tbody>
                         </table>
                      </div>
@@ -1010,7 +1010,7 @@ if ($role == 'super_admin') {
          <div class="row dashboard-header">
              <div class="card">
                <div class="card-header">
-                  <h5 class="card-header-text"><a href="#addroadtwo" data-toggle="modal" class="btn btn-primary float-right">Add Road</a></h5>
+                  <h5 class="card-header-text"><a href="#addroadfive" data-toggle="modal" class="btn btn-primary float-right">Add Road</a></h5>
                </div>
                <div class="card-block">
                   <div class="row">
@@ -1046,10 +1046,10 @@ if ($role == 'super_admin') {
                                  <td></td>
                                  <td></td>
                                  <td></td>
-                                 <td><a href="#edit-road-two<?=$rx->road_id; ?>" data-toggle="modal" class="btn btn-primary">Edit</a>
+                                 <td><a href="#edit-road-five<?=$rx->road_id; ?>" data-toggle="modal" class="btn btn-primary">Edit</a>
                                  <a onclick="return confirm('Do you really want to delete this Road?. '); " href="?delete-road=<?=$rx->road_id; ?>" class="btn btn-danger">Delete</a></td>
                               </tr>
-                           <?php include 'admin/edit-road-two.php'; } ?>
+                           <?php include 'edit-road-five.php'; } ?>
                            </tbody>
                         </table>
                      </div>
@@ -1078,7 +1078,7 @@ if ($role == 'super_admin') {
          <div class="row dashboard-header">
              <div class="card">
                <div class="card-header">
-                  <h5 class="card-header-text"><a href="#add-traffic-point-two" data-toggle="modal" class="btn btn-primary float-right">Add Traffic Point</a></h5>
+                  <h5 class="card-header-text"><a href="#add-traffic-point-five" data-toggle="modal" class="btn btn-primary float-right">Add Traffic Point</a></h5>
                </div>
                <div class="card-block">
                   <div class="row">
@@ -1104,10 +1104,10 @@ if ($role == 'super_admin') {
                                  <td><?=$rx->fromm.' - '.$rx->too; ?></td>
                                  <td><?=$rx->status; ?></td>
                                  <td>
-                                    <a href="#edit-traffic-point-two<?=$rx->rid; ?>" data-toggle="modal" class="btn btn-primary">Edit</a>
+                                    <a href="#edit-traffic-point-five<?=$rx->rid; ?>" data-toggle="modal" class="btn btn-primary">Edit</a>
                                     <a onclick="return confirm('Do you really want to delete this traffic point?. '); " href="?delete-traffic-point=<?=$rx->rid; ?>" class="btn btn-danger">Delete</a></td>
                               </tr>
-                           <?php include 'admin/edit-traffic-point-two.php'; } ?>
+                           <?php include 'edit-traffic-point-five.php'; } ?>
                            </tbody>
                         </table>
                      </div>
@@ -1602,7 +1602,7 @@ if ($role == 'super_admin') {
          <div class="row dashboard-header">
              <div class="card">
                <div class="card-header">
-                  <h5 class="card-header-text"><a href="#add-traffic-point-four" data-toggle="modal" class="btn btn-primary float-right">Add Traffic Point</a></h5>
+                  <h5 class="card-header-text"><a href="#add-traffic-point-five" data-toggle="modal" class="btn btn-primary float-right">Add Traffic Point</a></h5>
                </div>
                <div class="card-block">
                   <div class="row">
@@ -1630,9 +1630,9 @@ if ($role == 'super_admin') {
                                  <td><?=$rx->fromm.' - '.$rx->too; ?></td>
                                  <td><?=$rx->status; ?></td>
                                  <td>
-                                    <a href="#edit-traffic-point-four<?=$rx->rid; ?>" data-toggle="modal" class="btn btn-primary">Edit</a>
+                                    <a href="#edit-traffic-point-five<?=$rx->rid; ?>" data-toggle="modal" class="btn btn-primary">Edit</a>
                               </tr>
-                           <?php include 'edit-traffic-point-four.php'; } ?>
+                           <?php include 'edit-traffic-point-five.php'; } ?>
                            </tbody>
                         </table>
                      </div>

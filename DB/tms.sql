@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 12, 2023 at 01:01 AM
+-- Generation Time: Dec 15, 2023 at 02:00 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -30,24 +30,29 @@ SET time_zone = "+00:00";
 CREATE TABLE `roads` (
   `road_id` int(11) NOT NULL,
   `road_name` varchar(200) NOT NULL,
-  `road_location` varchar(200) NOT NULL
+  `location` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `roads`
 --
 
-INSERT INTO `roads` (`road_id`, `road_name`, `road_location`) VALUES
-(4, 'Jinja Road', 'A'),
-(5, 'Bombo Road', 'B'),
-(6, 'Hoima Road', 'A'),
-(8, 'Kampala Road', 'B'),
-(10, 'Kira Road', 'A');
+INSERT INTO `roads` (`road_id`, `road_name`, `location`) VALUES
+(4, 'Jinja Road', 'Jinja Road Main Station'),
+(5, 'Bombo Road', 'Mukono Police Station'),
+(6, 'Hoima Road', 'Mukono Police Station'),
+(8, 'Entebbe Road', 'Jinja Road Main Station'),
+(10, 'Kira Road', 'Jinja Road Main Station'),
+(16, 'Gayaza Road', 'Bweyogerere Police Station'),
+(17, 'Ggaba Road', 'Bweyogerere Police Station'),
+(18, 'Kampala Road', 'Mukono Police Station'),
+(19, 'Yusufu Lule Road', 'Bweyogerere Police Station'),
+(20, 'Wampewo Road', 'Jinja Road Main Station');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `routes`
+-- Table structure for table `traffic_points`
 --
 
 CREATE TABLE `traffic_points` (
@@ -59,7 +64,7 @@ CREATE TABLE `traffic_points` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `routes`
+-- Dumping data for table `traffic_points`
 --
 
 INSERT INTO `traffic_points` (`rid`, `road_id`, `fromm`, `too`, `status`) VALUES
@@ -71,7 +76,9 @@ INSERT INTO `traffic_points` (`rid`, `road_id`, `fromm`, `too`, `status`) VALUES
 (6, 5, 'Wandegeya', 'Bwaise', 'Jam'),
 (7, 5, 'Kubiri', 'Bwaise', 'Moderate'),
 (8, 6, 'Kampala', 'Nansana', 'Clear'),
-(9, 6, 'Nansana', 'Wakiso', 'Unavailable');
+(9, 6, 'Nansana', 'Wakiso', 'Unavailable'),
+(25, 15, 'Rubis', 'Kira Traffic Lights', 'Moderate'),
+(26, 6, 'Wandegeya', 'Kalerwe', 'Moderate');
 
 -- --------------------------------------------------------
 
@@ -96,14 +103,17 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`userid`, `fullname`, `phone`, `email`, `location`, `password`, `token`, `role`, `date_registered`) VALUES
-(6, 'Doreen Asiimwe', '0704487563', 'doreenasiimwe5@gmail.com', 'A', 'e453dbf96ac903773262fbd305fd33af23a99593', '', 'officer', '2023-11-28 10:50:09 AM'),
-(14, 'Kenneth Waks', '0784675790', 'wakskenneth@gmail.com', 'A', '2eaab2fbb032b258b58fdaed26b83ca391ddcd0a', '', 'admin', '2023-11-29 18:09:07 PM'),
-(21, 'Sarah A', '0773805834', 'tracymuzaki23@gmail.com', 'B', 'e2d41471b6665e4d8b0085f9f1049c45a9291877', '', 'officer', '2023-11-30 14:29:56 PM'),
-(31, 'Flavia N', '0777788888', 'flavia@gmail.com', 'B', 'a58843087c6951df6f8f931968c6919fa562ff37', '', 'officer', '2023-12-04 16:50:29 PM'),
-(32, 'Kenneth Waks', '0784675790', 'wakskenneth1@gmail.com', 'A', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', '', 'officer', '2023-12-06 17:07:43 PM'),
-(44, 'Tracy Muzaki', '0740909525', 'tracymuzaki12@gmail.com', 'A', '109d63fe5e9366a7d3cb9eb58be233648898444c', '', 'super_admin', '2023-12-11 17:04:19 PM'),
-(45, 'Nganda Gladys', '0741395925', 'gladamanda42@gmail.com', 'B', '291f2c90d146f0bd94e130dd5d8b7b2ac51e561c', '', 'admin', '2023-12-11 17:08:16 PM'),
-(46, 'Peruth A', '0777788899', 'peruth@gmail.com', 'A', '7a9aed90b0688c4eb2e3a1b6a7e1fc93418467ec', '', 'user', '2023-12-11 17:10:32 PM');
+(6, 'Doreen Asiimwe', '0704487563', 'doreenasiimwe5@gmail.com', 'Jinja Road Main Station', 'e453dbf96ac903773262fbd305fd33af23a99593', '', 'officer', '2023-11-28 10:50:09 AM'),
+(14, 'Kenneth Waks', '0784675790', 'wakskenneth@gmail.com', 'Jinja Road Main Station', '2eaab2fbb032b258b58fdaed26b83ca391ddcd0a', '', 'admin', '2023-11-29 18:09:07 PM'),
+(21, 'Sarah A', '0773805834', 'tracymuzaki23@gmail.com', 'Mukono Police Station', 'e2d41471b6665e4d8b0085f9f1049c45a9291877', '', 'officer', '2023-11-30 14:29:56 PM'),
+(31, 'Flavia N', '0777788888', 'flavia@gmail.com', 'Mukono Police Station', 'a58843087c6951df6f8f931968c6919fa562ff37', '', 'officer', '2023-12-04 16:50:29 PM'),
+(32, 'Kenneth Waks', '0784675790', 'wakskenneth1@gmail.com', 'Jinja Road Main Station', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', '', 'officer', '2023-12-06 17:07:43 PM'),
+(44, 'Tracy Muzaki', '0740909525', 'tracymuzaki12@gmail.com', 'Jinja Road Main Station', '109d63fe5e9366a7d3cb9eb58be233648898444c', '', 'super_admin', '2023-12-11 17:04:19 PM'),
+(45, 'Nganda Gladys', '0741395925', 'gladamanda42@gmail.com', 'Mukono Police Station', '291f2c90d146f0bd94e130dd5d8b7b2ac51e561c', '', 'admin', '2023-12-11 17:08:16 PM'),
+(46, 'Peruth A', '0777788899', 'peruth@gmail.com', 'Jinja Road Main Station', '7a9aed90b0688c4eb2e3a1b6a7e1fc93418467ec', '', 'user', '2023-12-11 17:10:32 PM'),
+(53, 'Annet B', '0775123411', 'annet@gmail.com', 'Mukono Police Station', '6effafa1d5074748533d5cdd618ddd4d3b858174', '', 'user', '2023-12-12 03:16:55 AM'),
+(54, 'Kenneth Waks', '0784675790', 'kenneth@gmail.com', 'Jinja Road Main Station', '20eabe5d64b0e216796e834f52d61fd0b70332fc', '', 'officer', '2023-12-13 15:32:20 PM'),
+(55, 'winnie', '0777788888', 'admin@gmail.com', 'Bweyogerere Police Station', '35a232cb688dfcbe8d456f72c8441dd4ff51ea4d', '', 'admin', '2023-12-15 03:33:25 AM');
 
 --
 -- Indexes for dumped tables
@@ -117,7 +127,7 @@ ALTER TABLE `roads`
   ADD KEY `road_id` (`road_id`,`road_name`);
 
 --
--- Indexes for table `routes`
+-- Indexes for table `traffic_points`
 --
 ALTER TABLE `traffic_points`
   ADD PRIMARY KEY (`rid`),
@@ -139,19 +149,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `roads`
 --
 ALTER TABLE `roads`
-  MODIFY `road_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `road_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
--- AUTO_INCREMENT for table `routes`
+-- AUTO_INCREMENT for table `traffic_points`
 --
 ALTER TABLE `traffic_points`
-  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
