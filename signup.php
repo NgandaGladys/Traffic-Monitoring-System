@@ -89,8 +89,9 @@ include 'root/process.php';
                             <div class="form-group pb-3">
                                 <select class="form-control" id="location" name="location" required >
                                     <option value="">Select your location</option>
-                                    <option>A</option>
-                                    <option>B</option>
+                                    <option>Jinja Road Main Station</option>
+                                    <option>Mukono Police Station</option>
+                                    <option>Bweyogerere Police Station</option>
                                 </select>
                             </div>
                             <div class="form-group pb-3">

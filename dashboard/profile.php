@@ -44,6 +44,9 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
             background-color: none;
             border:none;
         }
+        .container{
+            padding:80px 0 0;
+        }
         .form-group label{
             /* text-align: center; */
             margin-top:4px;
