@@ -58,10 +58,10 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
    <div class="wrapper">
       <!-- Navbar-->
         <header class="main-header-top hidden-print">
-            <a href="<?=HOME_URL; ?>" class="logo">
+            <h2 class="logo" style="cursor:default;">
                 <!-- <img class="img-fluid able-logo" src="assets/images/tms-logo.png" alt="Theme-logo"> -->
                 Traffic Monitoring System
-            </a>
+            </h2>
             <nav class="navbar navbar-static-top">
                 <!-- Sidebar toggle button-->
                 <a href="#!" data-toggle="offcanvas" class="sidebar-toggle"></a>
@@ -97,12 +97,12 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
             <section class="sidebar" id="sidebar-scroll">
                 <!-- Sidebar Menu-->
                 <ul class="sidebar-menu">
-                    <li class="active treeview">
-                        <a class="waves-effect waves-dark" href="<?=HOME_URL; ?>">
-                            <i class="icon-speedometer"></i><span> Dashboard</span>
-                        </a>                
-                    </li>
                     <?php if ($role == 'super_admin') { ?>
+                        <li class="active treeview">
+                            <a class="waves-effect waves-dark" href="<?=HOME_URL; ?>">
+                                <i class="icon-speedometer"></i><span> Dashboard</span>
+                            </a>                
+                        </li>
                         <li class="treeview">
                             <a class="waves-effect waves-dark" href="<?=HOME_URL; ?>?admins">
                                 <i class="icon-user"></i><span> Admins</span>
@@ -123,7 +123,22 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
                                 <i class="icon-map"></i><span> Roads</span>
                             </a>                
                         </li>
+                        <li class="treeview">
+                        <a class="waves-effect waves-dark" href="<?=HOME_URL; ?>?traffic_points">
+                            <i class="icon-map"></i><span> Traffic Points</span>
+                        </a>                
+                        </li>
+                        <li class="treeview">
+                            <a class="waves-effect waves-dark" onclick="return confirm('Do you really want to Logout?. '); " href="<?=SITE_URL; ?>/logout">
+                                <i class="icon-power"></i><span> Logout</span>
+                            </a>                
+                        </li>
                     <?php } elseif ($role == 'admin') { ?>
+                        <li class="active treeview">
+                            <a class="waves-effect waves-dark" href="<?=HOME_URL; ?>">
+                                <i class="icon-speedometer"></i><span> Dashboard</span>
+                            </a>                
+                        </li>
                         <li class="treeview">
                             <a class="waves-effect waves-dark" href="<?=HOME_URL; ?>?officers">
                                 <i class="icon-user"></i><span> Officers</span>
@@ -134,16 +149,46 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
                                 <i class="icon-map"></i><span> Roads</span>
                             </a>                
                         </li>
+                        <li class="treeview">
+                        <a class="waves-effect waves-dark" href="<?=HOME_URL; ?>?traffic_points">
+                            <i class="icon-map"></i><span> Traffic Points</span>
+                        </a>                
+                        </li>
+                        <li class="treeview">
+                            <a class="waves-effect waves-dark" onclick="return confirm('Do you really want to Logout?. '); " href="<?=SITE_URL; ?>/logout">
+                                <i class="icon-power"></i><span> Logout</span>
+                            </a>                
+                        </li>
                     <?php } elseif ($role == 'officer') { ?>
+                        <li class="active treeview">
+                            <a class="waves-effect waves-dark" href="<?=HOME_URL; ?>">
+                                <i class="icon-speedometer"></i><span> Dashboard</span>
+                            </a>                
+                        </li>
                         <li class="treeview">
                             <a class="waves-effect waves-dark" href="<?=HOME_URL; ?>?roads">
                                 <i class="icon-map"></i><span> Roads</span>
                             </a>                
                         </li>
-                    <?php } ?>
-                    <li class="treeview">
+                        <li class="treeview">
                         <a class="waves-effect waves-dark" href="<?=HOME_URL; ?>?traffic_points">
                             <i class="icon-map"></i><span> Traffic Points</span>
+                        </a>                
+                        </li>
+                        <li class="treeview">
+                            <a class="waves-effect waves-dark" onclick="return confirm('Do you really want to Logout?. '); " href="<?=SITE_URL; ?>/logout">
+                                <i class="icon-power"></i><span> Logout</span>
+                            </a>                
+                        </li>
+                    <?php } elseif ($role == 'user') { ?>
+                    <li class="treeview">
+                            <a class="waves-effect waves-dark" href="<?=HOME_URL; ?>">
+                                <i class="icon-map"></i><span> Your Location </span>
+                            </a>                
+                        </li>
+                    <li class="treeview">
+                        <a class="waves-effect waves-dark" href="<?=HOME_URL; ?>?traffic_points">
+                            <i class="icon-map"></i><span>All Locations</span>
                         </a>                
                     </li>
                     <li class="treeview">
@@ -151,6 +196,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
                             <i class="icon-power"></i><span> Logout</span>
                         </a>                
                     </li>
+                    <?php }?>
                 </ul>
             </section>
         </aside>

@@ -1707,12 +1707,59 @@ if ($role == 'super_admin') {
       <div class="container-fluid" style="background-color:#e5e5e5">
          <div class="row">
             <div class="main-header">
-               <h4>Traffic Points</h4>
+               <h4>Traffic points in all locations</h4>
             </div>
          </div>
          <!-- 4-blocks row start -->
          <div class="row dashboard-header">
              <div class="card">
+               <div class="card-block">
+                  <div class="row">
+                     <div class="col-sm-12 table-responsive">
+                        <table class="table table-hover">
+                           <thead>
+                              <tr>
+                                 <!-- <th>id</th> -->
+                                 <th>Road</th>
+                                 <th>Traffic Point</th>
+                                 <th>Traffic Status</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                           <?php $roads_routes = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.road_id = t.road_id");
+                           $x = 1; 
+                           // `rid`, `road_id`, `fromm`, `too`, `status`
+                           while($rx = $roads_routes->fetch(PDO::FETCH_OBJ)){ ?>
+                              <tr>
+                                 <!-- <td><?=$x++; ?></td> -->
+                                 <td><?=$rx->road_name; ?></td>
+                                 <td><?=$rx->fromm.' - '.$rx->too; ?></td>
+                                 <td><?=$rx->status; ?></td>
+                              </tr>
+                           <?php } ?>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </div>            
+         </div>
+         <!-- 4-blocks row end -->
+      </div>
+   </div>
+   <?php }else{ ?>
+      <div class="content-wrapper">
+      <!-- Container-fluid starts -->
+      <!-- Main content starts -->
+      <div class="container-fluid" style="background-color:#e5e5e5">
+         <div class="row">
+            <div class="main-header">
+               <h3 style="text-align:center;">Welcome <?=$fullname; ?> !</h3><br/>
+               <h4>Traffic points in your location</h4>
+            </div>
+         </div>
+         <div class="row dashboard-header"> 
+            <div class="card">
                <div class="card-block">
                   <div class="row">
                      <div class="col-sm-12 table-responsive">
@@ -1742,33 +1789,7 @@ if ($role == 'super_admin') {
                      </div>
                   </div>
                </div>
-            </div>            
-         </div>
-         <!-- 4-blocks row end -->
-      </div>
-   </div>
-   <?php }else{ ?>
-      <div class="content-wrapper">
-      <!-- Container-fluid starts -->
-      <!-- Main content starts -->
-      <div class="container-fluid" style="background-color:#e5e5e5">
-         <div class="row">
-            <div class="main-header">
-               <h4>Welcome <?=$fullname; ?> !</h4>
-            </div>
-         </div>
-         <div class="row dashboard-header"> 
-            <div class="col-lg-3 col-md-6">
-               <div class="card dashboard-product">
-                  <h5>Traffic Points</h5>
-                  <?php $rts = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.location = 'Jinja Road Main Station' AND r.road_id = t.road_id ")->rowCount(); ?>
-                  <h2 class="dashboard-total-products"><span><?=number_format($rts); ?></span></h2>
-                  <span class="label" style="background-color: #ff9c02; padding:8px;"><a style="text-decoration: none; color: #ffffff; " href="?traffic_points">Traffic Points</a></span>
-                  <div class="side-box">
-                     <i class="icon-map text-warning-color"></i>
-                  </div>
-               </div>
-            </div>
+            </div>   
          </div>
       </div>
    </div>
@@ -1781,12 +1802,59 @@ if ($role == 'super_admin') {
       <div class="container-fluid" style="background-color:#e5e5e5">
          <div class="row">
             <div class="main-header">
-               <h4>Traffic Points</h4>
+               <h4>Traffic points in all locations</h4>
             </div>
          </div>
          <!-- 4-blocks row start -->
          <div class="row dashboard-header">
              <div class="card">
+               <div class="card-block">
+                  <div class="row">
+                     <div class="col-sm-12 table-responsive">
+                        <table class="table table-hover">
+                           <thead>
+                              <tr>
+                                 <!-- <th>id</th> -->
+                                 <th>Road</th>
+                                 <th>Traffic Point</th>
+                                 <th>Traffic Status</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                           <?php $roads_routes = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.road_id = t.road_id");
+                           $x = 1; 
+                           // `rid`, `road_id`, `fromm`, `too`, `status`
+                           while($rx = $roads_routes->fetch(PDO::FETCH_OBJ)){ ?>
+                              <tr>
+                                 <!-- <td><?=$x++; ?></td> -->
+                                 <td><?=$rx->road_name; ?></td>
+                                 <td><?=$rx->fromm.' - '.$rx->too; ?></td>
+                                 <td><?=$rx->status; ?></td>
+                              </tr>
+                           <?php } ?>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </div>            
+         </div>
+         <!-- 4-blocks row end -->
+      </div>
+   </div>
+   <?php }else{ ?>
+      <div class="content-wrapper">
+      <!-- Container-fluid starts -->
+      <!-- Main content starts -->
+      <div class="container-fluid" style="background-color:#e5e5e5">
+         <div class="row">
+            <div class="main-header">
+               <h3 style="text-align:center;">Welcome <?=$fullname; ?> !</h3><br/>
+               <h4>Traffic points in your location</h4>
+            </div>
+         </div>
+         <div class="row dashboard-header"> 
+            <div class="card">
                <div class="card-block">
                   <div class="row">
                      <div class="col-sm-12 table-responsive">
@@ -1816,6 +1884,54 @@ if ($role == 'super_admin') {
                      </div>
                   </div>
                </div>
+            </div>   
+         </div>
+      </div>
+   </div>
+   <?php } ?>
+<?php }elseif ($role == 'user' && $location == 'Bweyogerere Police Station') {   
+  if (isset($_REQUEST['traffic_points'])) { ?>
+    <div class="content-wrapper">
+      <!-- Container-fluid starts -->
+      <!-- Main content starts -->
+      <div class="container-fluid" style="background-color:#e5e5e5">
+         <div class="row">
+            <div class="main-header">
+               <h4>Traffic points in all locations</h4>
+            </div>
+         </div>
+         <!-- 4-blocks row start -->
+         <div class="row dashboard-header">
+             <div class="card">
+               <div class="card-block">
+                  <div class="row">
+                     <div class="col-sm-12 table-responsive">
+                        <table class="table table-hover">
+                           <thead>
+                              <tr>
+                                 <!-- <th>id</th> -->
+                                 <th>Road</th>
+                                 <th>Traffic Point</th>
+                                 <th>Traffic Status</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                           <?php $roads_routes = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.road_id = t.road_id");
+                           $x = 1; 
+                           // `rid`, `road_id`, `fromm`, `too`, `status`
+                           while($rx = $roads_routes->fetch(PDO::FETCH_OBJ)){ ?>
+                              <tr>
+                                 <!-- <td><?=$x++; ?></td> -->
+                                 <td><?=$rx->road_name; ?></td>
+                                 <td><?=$rx->fromm.' - '.$rx->too; ?></td>
+                                 <td><?=$rx->status; ?></td>
+                              </tr>
+                           <?php } ?>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
             </div>            
          </div>
          <!-- 4-blocks row end -->
@@ -1828,39 +1944,12 @@ if ($role == 'super_admin') {
       <div class="container-fluid" style="background-color:#e5e5e5">
          <div class="row">
             <div class="main-header">
-               <h4>Welcome <?=$fullname; ?> !</h4>
+               <h3 style="text-align:center;">Welcome <?=$fullname; ?> !</h3><br/>
+               <h4>Traffic points in your location</h4>
             </div>
          </div>
          <div class="row dashboard-header"> 
-            <div class="col-lg-3 col-md-6">
-               <div class="card dashboard-product">
-                  <h5>Traffic Points</h5>
-                  <?php $rts = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.location = 'Mukono Police Station' AND r.road_id = t.road_id ")->rowCount(); ?>
-                  <h2 class="dashboard-total-products"><span><?=number_format($rts); ?></span></h2>
-                  <span class="label" style="background-color: #ff9c02; padding:8px;"><a style="text-decoration: none; color: #ffffff; " href="?traffic_points">Traffic Points</a></span>
-                  <div class="side-box">
-                     <i class="icon-map text-warning-color"></i>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-   <?php } ?>
-<?php }elseif ($role == 'user' && $location == 'Bweyogerere Police Station') { 
-  if (isset($_REQUEST['traffic_points'])) { ?>
-    <div class="content-wrapper">
-      <!-- Container-fluid starts -->
-      <!-- Main content starts -->
-      <div class="container-fluid" style="background-color:#e5e5e5">
-         <div class="row">
-            <div class="main-header">
-               <h4>Traffic Points</h4>
-            </div>
-         </div>
-         <!-- 4-blocks row start -->
-         <div class="row dashboard-header">
-             <div class="card">
+            <div class="card">
                <div class="card-block">
                   <div class="row">
                      <div class="col-sm-12 table-responsive">
@@ -1890,33 +1979,7 @@ if ($role == 'super_admin') {
                      </div>
                   </div>
                </div>
-            </div>            
-         </div>
-         <!-- 4-blocks row end -->
-      </div>
-   </div>
-   <?php }else{ ?>
-      <div class="content-wrapper">
-      <!-- Container-fluid starts -->
-      <!-- Main content starts -->
-      <div class="container-fluid" style="background-color:#e5e5e5">
-         <div class="row">
-            <div class="main-header">
-               <h4>Welcome <?=$fullname; ?> !</h4>
-            </div>
-         </div>
-         <div class="row dashboard-header"> 
-            <div class="col-lg-3 col-md-6">
-               <div class="card dashboard-product">
-                  <h5>Traffic Points</h5>
-                  <?php $rts = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.location = 'Bweyogerere Police Station' AND r.road_id = t.road_id ")->rowCount(); ?>
-                  <h2 class="dashboard-total-products"><span><?=number_format($rts); ?></span></h2>
-                  <span class="label" style="background-color: #ff9c02; padding:8px;"><a style="text-decoration: none; color: #ffffff; " href="?traffic_points">Traffic Points</a></span>
-                  <div class="side-box">
-                     <i class="icon-map text-warning-color"></i>
-                  </div>
-               </div>
-            </div>
+            </div>   
          </div>
       </div>
    </div>
