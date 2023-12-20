@@ -1701,61 +1701,20 @@ if ($role == 'super_admin') {
 <?php } ?>
 <?php }elseif ($role == 'user' && $location == 'Jinja Road Main Station') { 
   if (isset($_REQUEST['traffic_points'])) { ?>
-    <div class="content-wrapper">
-      <!-- Container-fluid starts -->
-      <!-- Main content starts -->
-      <div class="container-fluid" style="background-color:#e5e5e5">
-         <div class="row">
-            <div class="main-header">
-               <h4>Traffic points in all locations</h4>
-            </div>
-         </div>
-         <!-- 4-blocks row start -->
-         <div class="row dashboard-header">
-             <div class="card">
-               <div class="card-block">
-                  <div class="row">
-                     <div class="col-sm-12 table-responsive">
-                        <table class="table table-hover">
-                           <thead>
-                              <tr>
-                                 <!-- <th>id</th> -->
-                                 <th>Road</th>
-                                 <th>Traffic Point</th>
-                                 <th>Traffic Status</th>
-                              </tr>
-                           </thead>
-                           <tbody>
-                           <?php $roads_routes = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.road_id = t.road_id");
-                           $x = 1; 
-                           // `rid`, `road_id`, `fromm`, `too`, `status`
-                           while($rx = $roads_routes->fetch(PDO::FETCH_OBJ)){ ?>
-                              <tr>
-                                 <!-- <td><?=$x++; ?></td> -->
-                                 <td><?=$rx->road_name; ?></td>
-                                 <td><?=$rx->fromm.' - '.$rx->too; ?></td>
-                                 <td><?=$rx->status; ?></td>
-                              </tr>
-                           <?php } ?>
-                           </tbody>
-                        </table>
-                     </div>
-                  </div>
-               </div>
-            </div>            
-         </div>
-         <!-- 4-blocks row end -->
-      </div>
-   </div>
-   <?php }else{ ?>
-      <div class="content-wrapper">
+       <div class="content-wrapper">
       <!-- Container-fluid starts -->
       <!-- Main content starts -->
       <div class="container-fluid" style="background-color:#e5e5e5">
          <div class="row">
             <div class="main-header">
                <h3 style="text-align:center;">Welcome <?=$fullname; ?> !</h3><br/>
-               <h4>Traffic points in your location</h4>
+               <div class="main-header">
+                  <h4>Where are you going?</h4>
+                  <form method="GET" action="">
+                     <input type="text" style="margin-top:20px;border-radius:5px; padding:8px; width:50%;" name="search" placeholder="Search by Road or Traffic Point">
+                     <button type="submit" style="margin-top:20px; background-color:black; color:white; border-radius:5px; padding:8px;">Search</button>
+                  </form>
+               </div>
             </div>
          </div>
          <div class="row dashboard-header"> 
@@ -1766,24 +1725,86 @@ if ($role == 'super_admin') {
                         <table class="table table-hover">
                            <thead>
                               <tr>
-                                 <!-- <th>id</th> -->
                                  <th>Road</th>
                                  <th>Traffic Point</th>
                                  <th>Traffic Status</th>
                               </tr>
                            </thead>
                            <tbody>
-                           <?php $roads_routes = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.location = 'Jinja Road Main Station' AND r.road_id = t.road_id");
-                           $x = 1; 
-                           // `rid`, `road_id`, `fromm`, `too`, `status`
-                           while($rx = $roads_routes->fetch(PDO::FETCH_OBJ)){ ?>
+                              <?php
+                              $condition = ""; // Initialize the condition for the SQL query
+
+                              if (isset($_GET['search']) && !empty($_GET['search'])) {
+                                 $search = $_GET['search'];
+                                 $condition = " AND (r.road_name LIKE '%$search%' OR t.fromm LIKE '%$search%' OR t.too LIKE '%$search%' OR t.status LIKE '%$search%')";
+                              }
+
+                              $roads_routes = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.road_id = t.road_id $condition");
+                              $x = 1;
+                              while ($rx = $roads_routes->fetch(PDO::FETCH_OBJ)) { ?>
+                                 <tr>
+                                    <td><?= $rx->road_name; ?></td>
+                                    <td><?= $rx->fromm . ' - ' . $rx->too; ?></td>
+                                    <td><?= $rx->status; ?></td>
+                                 </tr>
+                              <?php } ?>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </div>   
+         </div>
+      </div>
+   </div>
+   <?php }else{ ?>
+      <div class="content-wrapper">
+      <!-- Container-fluid starts -->
+      <!-- Main content starts -->
+      <div class="container-fluid" style="background-color:#e5e5e5">
+         <div class="row">
+            <div class="main-header">
+               <h3 style="text-align:center;">Welcome <?=$fullname; ?> !</h3><br/>
+               <div class="main-header">
+                  <h4>Where are you going?</h4>
+                  <form method="GET" action="">
+                     <input type="text" style="margin-top:20px;border-radius:5px; padding:8px; width:50%;" name="search" placeholder="Search by Road or Traffic Point">
+                     <button type="submit" style="margin-top:20px; background-color:black; color:white; border-radius:5px; padding:8px;">Search</button>
+                  </form>
+               </div>
+            </div>
+         </div>
+         <div class="row dashboard-header"> 
+            <div class="card">
+               <div class="card-block">
+                  <div class="row">
+                     <div class="col-sm-12 table-responsive">
+                        <table class="table table-hover">
+                           <thead>
                               <tr>
-                                 <!-- <td><?=$x++; ?></td> -->
-                                 <td><?=$rx->road_name; ?></td>
-                                 <td><?=$rx->fromm.' - '.$rx->too; ?></td>
-                                 <td><?=$rx->status; ?></td>
+                                 <th>Road</th>
+                                 <th>Traffic Point</th>
+                                 <th>Traffic Status</th>
                               </tr>
-                           <?php } ?>
+                           </thead>
+                           <tbody>
+                              <?php
+                              $condition = ""; // Initialize the condition for the SQL query
+
+                              if (isset($_GET['search']) && !empty($_GET['search'])) {
+                                 $search = $_GET['search'];
+                                 $condition = " AND (r.road_name LIKE '%$search%' OR t.fromm LIKE '%$search%' OR t.too LIKE '%$search%' OR t.status LIKE '%$search%')";
+                              }
+
+                              $roads_routes = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.road_id = t.road_id $condition");
+                              $x = 1;
+                              while ($rx = $roads_routes->fetch(PDO::FETCH_OBJ)) { ?>
+                                 <tr>
+                                    <td><?= $rx->road_name; ?></td>
+                                    <td><?= $rx->fromm . ' - ' . $rx->too; ?></td>
+                                    <td><?= $rx->status; ?></td>
+                                 </tr>
+                              <?php } ?>
                            </tbody>
                         </table>
                      </div>
@@ -1796,53 +1817,6 @@ if ($role == 'super_admin') {
    <?php } ?>
 <?php }elseif ($role == 'user' && $location == 'Mukono Police Station') { 
   if (isset($_REQUEST['traffic_points'])) { ?>
-    <div class="content-wrapper">
-      <!-- Container-fluid starts -->
-      <!-- Main content starts -->
-      <div class="container-fluid" style="background-color:#e5e5e5">
-         <div class="row">
-            <div class="main-header">
-               <h4>Traffic points in all locations</h4>
-            </div>
-         </div>
-         <!-- 4-blocks row start -->
-         <div class="row dashboard-header">
-             <div class="card">
-               <div class="card-block">
-                  <div class="row">
-                     <div class="col-sm-12 table-responsive">
-                        <table class="table table-hover">
-                           <thead>
-                              <tr>
-                                 <!-- <th>id</th> -->
-                                 <th>Road</th>
-                                 <th>Traffic Point</th>
-                                 <th>Traffic Status</th>
-                              </tr>
-                           </thead>
-                           <tbody>
-                           <?php $roads_routes = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.road_id = t.road_id");
-                           $x = 1; 
-                           // `rid`, `road_id`, `fromm`, `too`, `status`
-                           while($rx = $roads_routes->fetch(PDO::FETCH_OBJ)){ ?>
-                              <tr>
-                                 <!-- <td><?=$x++; ?></td> -->
-                                 <td><?=$rx->road_name; ?></td>
-                                 <td><?=$rx->fromm.' - '.$rx->too; ?></td>
-                                 <td><?=$rx->status; ?></td>
-                              </tr>
-                           <?php } ?>
-                           </tbody>
-                        </table>
-                     </div>
-                  </div>
-               </div>
-            </div>            
-         </div>
-         <!-- 4-blocks row end -->
-      </div>
-   </div>
-   <?php }else{ ?>
       <div class="content-wrapper">
       <!-- Container-fluid starts -->
       <!-- Main content starts -->
@@ -1850,7 +1824,13 @@ if ($role == 'super_admin') {
          <div class="row">
             <div class="main-header">
                <h3 style="text-align:center;">Welcome <?=$fullname; ?> !</h3><br/>
-               <h4>Traffic points in your location</h4>
+               <div class="main-header">
+                  <h4>Where are you going?</h4>
+                  <form method="GET" action="">
+                     <input type="text" style="margin-top:20px;border-radius:5px; padding:8px; width:50%;" name="search" placeholder="Search by Road or Traffic Point">
+                     <button type="submit" style="margin-top:20px; background-color:black; color:white; border-radius:5px; padding:8px;">Search</button>
+                  </form>
+               </div>
             </div>
          </div>
          <div class="row dashboard-header"> 
@@ -1861,24 +1841,86 @@ if ($role == 'super_admin') {
                         <table class="table table-hover">
                            <thead>
                               <tr>
-                                 <!-- <th>id</th> -->
                                  <th>Road</th>
                                  <th>Traffic Point</th>
                                  <th>Traffic Status</th>
                               </tr>
                            </thead>
                            <tbody>
-                           <?php $roads_routes = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.location = 'Mukono Police Station' AND r.road_id = t.road_id");
-                           $x = 1; 
-                           // `rid`, `road_id`, `fromm`, `too`, `status`
-                           while($rx = $roads_routes->fetch(PDO::FETCH_OBJ)){ ?>
+                              <?php
+                              $condition = ""; // Initialize the condition for the SQL query
+
+                              if (isset($_GET['search']) && !empty($_GET['search'])) {
+                                 $search = $_GET['search'];
+                                 $condition = " AND (r.road_name LIKE '%$search%' OR t.fromm LIKE '%$search%' OR t.too LIKE '%$search%' OR t.status LIKE '%$search%')";
+                              }
+
+                              $roads_routes = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.road_id = t.road_id $condition");
+                              $x = 1;
+                              while ($rx = $roads_routes->fetch(PDO::FETCH_OBJ)) { ?>
+                                 <tr>
+                                    <td><?= $rx->road_name; ?></td>
+                                    <td><?= $rx->fromm . ' - ' . $rx->too; ?></td>
+                                    <td><?= $rx->status; ?></td>
+                                 </tr>
+                              <?php } ?>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </div>   
+         </div>
+      </div>
+   </div>
+   <?php }else{ ?>
+      <div class="content-wrapper">
+      <!-- Container-fluid starts -->
+      <!-- Main content starts -->
+      <div class="container-fluid" style="background-color:#e5e5e5">
+         <div class="row">
+            <div class="main-header">
+               <h3 style="text-align:center;">Welcome <?=$fullname; ?> !</h3><br/>
+               <div class="main-header">
+                  <h4>Where are you going?</h4>
+                  <form method="GET" action="">
+                     <input type="text" style="margin-top:20px;border-radius:5px; padding:8px; width:50%;" name="search" placeholder="Search by Road or Traffic Point">
+                     <button type="submit" style="margin-top:20px; background-color:black; color:white; border-radius:5px; padding:8px;">Search</button>
+                  </form>
+               </div>
+            </div>
+         </div>
+         <div class="row dashboard-header"> 
+            <div class="card">
+               <div class="card-block">
+                  <div class="row">
+                     <div class="col-sm-12 table-responsive">
+                        <table class="table table-hover">
+                           <thead>
                               <tr>
-                                 <!-- <td><?=$x++; ?></td> -->
-                                 <td><?=$rx->road_name; ?></td>
-                                 <td><?=$rx->fromm.' - '.$rx->too; ?></td>
-                                 <td><?=$rx->status; ?></td>
+                                 <th>Road</th>
+                                 <th>Traffic Point</th>
+                                 <th>Traffic Status</th>
                               </tr>
-                           <?php } ?>
+                           </thead>
+                           <tbody>
+                              <?php
+                              $condition = ""; // Initialize the condition for the SQL query
+
+                              if (isset($_GET['search']) && !empty($_GET['search'])) {
+                                 $search = $_GET['search'];
+                                 $condition = " AND (r.road_name LIKE '%$search%' OR t.fromm LIKE '%$search%' OR t.too LIKE '%$search%' OR t.status LIKE '%$search%')";
+                              }
+
+                              $roads_routes = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.road_id = t.road_id $condition");
+                              $x = 1;
+                              while ($rx = $roads_routes->fetch(PDO::FETCH_OBJ)) { ?>
+                                 <tr>
+                                    <td><?= $rx->road_name; ?></td>
+                                    <td><?= $rx->fromm . ' - ' . $rx->too; ?></td>
+                                    <td><?= $rx->status; ?></td>
+                                 </tr>
+                              <?php } ?>
                            </tbody>
                         </table>
                      </div>
@@ -1891,61 +1933,20 @@ if ($role == 'super_admin') {
    <?php } ?>
 <?php }elseif ($role == 'user' && $location == 'Bweyogerere Police Station') {   
   if (isset($_REQUEST['traffic_points'])) { ?>
-    <div class="content-wrapper">
-      <!-- Container-fluid starts -->
-      <!-- Main content starts -->
-      <div class="container-fluid" style="background-color:#e5e5e5">
-         <div class="row">
-            <div class="main-header">
-               <h4>Traffic points in all locations</h4>
-            </div>
-         </div>
-         <!-- 4-blocks row start -->
-         <div class="row dashboard-header">
-             <div class="card">
-               <div class="card-block">
-                  <div class="row">
-                     <div class="col-sm-12 table-responsive">
-                        <table class="table table-hover">
-                           <thead>
-                              <tr>
-                                 <!-- <th>id</th> -->
-                                 <th>Road</th>
-                                 <th>Traffic Point</th>
-                                 <th>Traffic Status</th>
-                              </tr>
-                           </thead>
-                           <tbody>
-                           <?php $roads_routes = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.road_id = t.road_id");
-                           $x = 1; 
-                           // `rid`, `road_id`, `fromm`, `too`, `status`
-                           while($rx = $roads_routes->fetch(PDO::FETCH_OBJ)){ ?>
-                              <tr>
-                                 <!-- <td><?=$x++; ?></td> -->
-                                 <td><?=$rx->road_name; ?></td>
-                                 <td><?=$rx->fromm.' - '.$rx->too; ?></td>
-                                 <td><?=$rx->status; ?></td>
-                              </tr>
-                           <?php } ?>
-                           </tbody>
-                        </table>
-                     </div>
-                  </div>
-               </div>
-            </div>            
-         </div>
-         <!-- 4-blocks row end -->
-      </div>
-   </div>
-   <?php }else{ ?>
-      <div class="content-wrapper">
+       <div class="content-wrapper">
       <!-- Container-fluid starts -->
       <!-- Main content starts -->
       <div class="container-fluid" style="background-color:#e5e5e5">
          <div class="row">
             <div class="main-header">
                <h3 style="text-align:center;">Welcome <?=$fullname; ?> !</h3><br/>
-               <h4>Traffic points in your location</h4>
+               <div class="main-header">
+                  <h4>Where are you going?</h4>
+                  <form method="GET" action="">
+                     <input type="text" style="margin-top:20px;border-radius:5px; padding:8px; width:50%;" name="search" placeholder="Search by Road or Traffic Point">
+                     <button type="submit" style="margin-top:20px; background-color:black; color:white; border-radius:5px; padding:8px;">Search</button>
+                  </form>
+               </div>
             </div>
          </div>
          <div class="row dashboard-header"> 
@@ -1956,24 +1957,86 @@ if ($role == 'super_admin') {
                         <table class="table table-hover">
                            <thead>
                               <tr>
-                                 <!-- <th>id</th> -->
                                  <th>Road</th>
                                  <th>Traffic Point</th>
                                  <th>Traffic Status</th>
                               </tr>
                            </thead>
                            <tbody>
-                           <?php $roads_routes = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.location = 'Bweyogerere Police Station' AND r.road_id = t.road_id");
-                           $x = 1; 
-                           // `rid`, `road_id`, `fromm`, `too`, `status`
-                           while($rx = $roads_routes->fetch(PDO::FETCH_OBJ)){ ?>
+                              <?php
+                              $condition = ""; // Initialize the condition for the SQL query
+
+                              if (isset($_GET['search']) && !empty($_GET['search'])) {
+                                 $search = $_GET['search'];
+                                 $condition = " AND (r.road_name LIKE '%$search%' OR t.fromm LIKE '%$search%' OR t.too LIKE '%$search%' OR t.status LIKE '%$search%')";
+                              }
+
+                              $roads_routes = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.road_id = t.road_id $condition");
+                              $x = 1;
+                              while ($rx = $roads_routes->fetch(PDO::FETCH_OBJ)) { ?>
+                                 <tr>
+                                    <td><?= $rx->road_name; ?></td>
+                                    <td><?= $rx->fromm . ' - ' . $rx->too; ?></td>
+                                    <td><?= $rx->status; ?></td>
+                                 </tr>
+                              <?php } ?>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </div>   
+         </div>
+      </div>
+   </div>
+   <?php }else{ ?>
+      <div class="content-wrapper">
+      <!-- Container-fluid starts -->
+      <!-- Main content starts -->
+      <div class="container-fluid" style="background-color:#e5e5e5">
+         <div class="row">
+            <div class="main-header">
+               <h3 style="text-align:center;">Welcome <?=$fullname; ?> !</h3><br/>
+               <div class="main-header">
+                  <h4>Where are you going?</h4>
+                  <form method="GET" action="">
+                     <input type="text" style="margin-top:20px;border-radius:5px; padding:8px; width:50%;" name="search" placeholder="Search by Road or Traffic Point">
+                     <button type="submit" style="margin-top:20px; background-color:black; color:white; border-radius:5px; padding:8px;">Search</button>
+                  </form>
+               </div>
+            </div>
+         </div>
+         <div class="row dashboard-header"> 
+            <div class="card">
+               <div class="card-block">
+                  <div class="row">
+                     <div class="col-sm-12 table-responsive">
+                        <table class="table table-hover">
+                           <thead>
                               <tr>
-                                 <!-- <td><?=$x++; ?></td> -->
-                                 <td><?=$rx->road_name; ?></td>
-                                 <td><?=$rx->fromm.' - '.$rx->too; ?></td>
-                                 <td><?=$rx->status; ?></td>
+                                 <th>Road</th>
+                                 <th>Traffic Point</th>
+                                 <th>Traffic Status</th>
                               </tr>
-                           <?php } ?>
+                           </thead>
+                           <tbody>
+                              <?php
+                              $condition = ""; // Initialize the condition for the SQL query
+
+                              if (isset($_GET['search']) && !empty($_GET['search'])) {
+                                 $search = $_GET['search'];
+                                 $condition = " AND (r.road_name LIKE '%$search%' OR t.fromm LIKE '%$search%' OR t.too LIKE '%$search%' OR t.status LIKE '%$search%')";
+                              }
+
+                              $roads_routes = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.road_id = t.road_id $condition");
+                              $x = 1;
+                              while ($rx = $roads_routes->fetch(PDO::FETCH_OBJ)) { ?>
+                                 <tr>
+                                    <td><?= $rx->road_name; ?></td>
+                                    <td><?= $rx->fromm . ' - ' . $rx->too; ?></td>
+                                    <td><?= $rx->status; ?></td>
+                                 </tr>
+                              <?php } ?>
                            </tbody>
                         </table>
                      </div>

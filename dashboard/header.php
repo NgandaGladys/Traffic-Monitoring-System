@@ -182,13 +182,8 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
                         </li>
                     <?php } elseif ($role == 'user') { ?>
                     <li class="treeview">
-                            <a class="waves-effect waves-dark" href="<?=HOME_URL; ?>">
-                                <i class="icon-map"></i><span>Your Location</span>
-                            </a>                
-                        </li>
-                    <li class="treeview">
                         <a class="waves-effect waves-dark" href="<?=HOME_URL; ?>?traffic_points">
-                            <i class="icon-map"></i><span>All Locations</span>
+                            <i class="icon-map"></i><span>Traffic Points</span>
                         </a>                
                     </li>
                     <li class="treeview">

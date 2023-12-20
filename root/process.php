@@ -94,7 +94,7 @@ if (isset($_POST['register_btn'])) {//signup
         if (count($errors) == 0) {
             // `userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered`
             $password = sha1($password);
-            $result = $dbh->query("SELECT * FROM users WHERE email = '$email' AND password = '$password' And role IN ('officer','user')");
+            $result = $dbh->query("SELECT * FROM users WHERE email = '$email' AND password = '$password' And role IN ('super_admin','admin','officer','user')");
             if ($result->rowCount() == 1) {
                 //getting the login users..
                 $row = $result->fetch(PDO::FETCH_OBJ);
