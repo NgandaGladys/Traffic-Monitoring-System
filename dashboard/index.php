@@ -9,6 +9,10 @@ if ($role == 'super_admin') {
          <div class="row">
             <div class="main-header">
                <h4>Traffic Admins</h4>
+               <form method="POST" action="">
+                     <input type="text" style="margin-top:20px;border-radius:5px; padding:8px; width:50%;" name="search" placeholder="Search by Full Name, Phone, Email">
+                     <button type="submit" style="margin-top:20px; background-color:black; color:white; border-radius:5px; padding:8px;">Search</button>
+               </form>
             </div>
          </div>
          <!-- 4-blocks row start -->
@@ -35,7 +39,14 @@ if ($role == 'super_admin') {
                            </thead>
                            <!-- `userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered` -->
                            <tbody>
-                           <?php $users = $dbh->query("SELECT * FROM users WHERE role ='admin' ORDER BY userid DESC ");
+                           <?php 
+                           $condition = ""; // Initialize the condition for the SQL query
+
+                              if (isset($_POST['search']) && !empty($_POST['search'])) {
+                                 $search = $_POST['search'];
+                                 $condition = " AND (fullname LIKE '%$search%' OR phone LIKE '%$search%' OR email LIKE '%$search%' OR role LIKE '%$search%')";
+                              }
+                           $users = $dbh->query("SELECT * FROM users WHERE role ='admin' $condition ORDER BY userid DESC ");
                            $x = 1;
                            while($rx = $users->fetch(PDO::FETCH_OBJ)){ ?>
                               <tr>
@@ -77,6 +88,10 @@ if ($role == 'super_admin') {
          <div class="row">
             <div class="main-header">
                <h4>Traffic Officers</h4>
+               <form method="POST" action="">
+                     <input type="text" style="margin-top:20px;border-radius:5px; padding:8px; width:50%;" name="search" placeholder="Search by Full Name, Phone, Email">
+                     <button type="submit" style="margin-top:20px; background-color:black; color:white; border-radius:5px; padding:8px;">Search</button>
+               </form>
             </div>
          </div>
          <!-- 4-blocks row start -->
@@ -103,7 +118,14 @@ if ($role == 'super_admin') {
                            </thead>
                            <!-- `userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered` -->
                            <tbody>
-                           <?php $users = $dbh->query("SELECT * FROM users WHERE role ='officer' ORDER BY userid DESC ");
+                           <?php 
+                           $condition = ""; // Initialize the condition for the SQL query
+
+                              if (isset($_POST['search']) && !empty($_POST['search'])) {
+                                 $search = $_POST['search'];
+                                 $condition = " AND (fullname LIKE '%$search%' OR phone LIKE '%$search%' OR email LIKE '%$search%' OR role LIKE '%$search%')";
+                              }
+                           $users = $dbh->query("SELECT * FROM users WHERE role ='officer' $condition ORDER BY userid DESC ");
                            $x = 1;
                            while($rx = $users->fetch(PDO::FETCH_OBJ)){ ?>
                               <tr>
@@ -200,6 +222,10 @@ if ($role == 'super_admin') {
          <div class="row">
             <div class="main-header">
                <h4>Roads</h4>
+               <form method="POST" action="">
+                     <input type="text" style="margin-top:20px;border-radius:5px; padding:8px; width:50%;" name="search" placeholder="Search by Road or Location">
+                     <button type="submit" style="margin-top:20px; background-color:black; color:white; border-radius:5px; padding:8px;">Search</button>
+               </form>
             </div>
          </div>
          <!-- 4-blocks row start -->
@@ -228,7 +254,14 @@ if ($role == 'super_admin') {
                               </tr>
                            </thead>
                            <tbody>
-                           <?php $roads = $dbh->query("SELECT * FROM roads ");
+                           <?php 
+                           $condition = ""; // Initialize the condition for the SQL query
+
+                              if (isset($_POST['search']) && !empty($_POST['search'])) {
+                                 $search = $_POST['search'];
+                                 $condition = " AND (road_name LIKE '%$search%' OR location LIKE '%$search%')";
+                              }
+                           $roads = $dbh->query("SELECT * FROM roads WHERE 1 $condition");
                            $x = 1; 
                            while($rx = $roads->fetch(PDO::FETCH_OBJ)){ ?>
                               <tr>
@@ -268,6 +301,10 @@ if ($role == 'super_admin') {
          <div class="row">
             <div class="main-header">
                <h4>Traffic Points</h4>
+               <form method="POST" action="">
+                     <input type="text" style="margin-top:20px;border-radius:5px; padding:8px; width:50%;" name="search" placeholder="Search by Road or Traffic Point">
+                     <button type="submit" style="margin-top:20px; background-color:black; color:white; border-radius:5px; padding:8px;">Search</button>
+               </form>
             </div>
          </div>
          <!-- 4-blocks row start -->
@@ -291,7 +328,14 @@ if ($role == 'super_admin') {
                               </tr>
                            </thead>
                            <tbody>
-                           <?php $roads_routes = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.road_id = t.road_id ");
+                           <?php 
+                           $condition = ""; // Initialize the condition for the SQL query
+
+                              if (isset($_POST['search']) && !empty($_POST['search'])) {
+                                 $search = $_POST['search'];
+                                 $condition = " AND (r.road_name LIKE '%$search%' OR t.fromm LIKE '%$search%' OR t.too LIKE '%$search%' OR t.status LIKE '%$search%')";
+                              }
+                           $roads_routes = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.road_id = t.road_id $condition");
                            $x = 1; 
                            // `rid`, `road_id`, `fromm`, `too`, `status`
                            while($rx = $roads_routes->fetch(PDO::FETCH_OBJ)){ ?>
@@ -419,6 +463,10 @@ if ($role == 'super_admin') {
          <div class="row">
             <div class="main-header">
                <h4>Traffic Officers</h4>
+               <form method="POST" action="">
+                     <input type="text" style="margin-top:20px;border-radius:5px; padding:8px; width:50%;" name="search" placeholder="Search by Full Name, Phone, Email,">
+                     <button type="submit" style="margin-top:20px; background-color:black; color:white; border-radius:5px; padding:8px;">Search</button>
+               </form>
             </div>
          </div>
          <!-- 4-blocks row start -->
@@ -444,7 +492,14 @@ if ($role == 'super_admin') {
                            </thead>
                            <!-- `userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered` -->
                            <tbody>
-                           <?php $users = $dbh->query("SELECT * FROM users WHERE role ='officer' AND location = 'Jinja Road Main Station' ORDER BY userid DESC ");
+                           <?php 
+                           $condition = ""; // Initialize the condition for the SQL query
+
+                              if (isset($_POST['search']) && !empty($_POST['search'])) {
+                                 $search = $_POST['search'];
+                                 $condition = " AND (fullname LIKE '%$search%' OR phone LIKE '%$search%' OR email LIKE '%$search%' OR role LIKE '%$search%')";
+                              }
+                           $users = $dbh->query("SELECT * FROM users WHERE role ='officer' AND location = 'Jinja Road Main Station' $condition ORDER BY userid DESC ");
                            $x = 1;
                            while($rx = $users->fetch(PDO::FETCH_OBJ)){ ?>
                               <tr>
@@ -484,6 +539,10 @@ if ($role == 'super_admin') {
          <div class="row">
             <div class="main-header">
                <h4>Roads</h4>
+               <form method="POST" action="">
+                     <input type="text" style="margin-top:20px;border-radius:5px; padding:8px; width:50%;" name="search" placeholder="Search by Road">
+                     <button type="submit" style="margin-top:20px; background-color:black; color:white; border-radius:5px; padding:8px;">Search</button>
+               </form>
             </div>
          </div>
          <!-- 4-blocks row start -->
@@ -512,7 +571,14 @@ if ($role == 'super_admin') {
                               </tr>
                            </thead>
                            <tbody>
-                           <?php $roads = $dbh->query("SELECT * FROM roads WHERE location = 'Jinja Road Main Station' ");
+                           <?php 
+                           $condition = ""; // Initialize the condition for the SQL query
+
+                              if (isset($_POST['search']) && !empty($_POST['search'])) {
+                                 $search = $_POST['search'];
+                                 $condition = " AND road_name LIKE '%$search%'";
+                              }
+                           $roads = $dbh->query("SELECT * FROM roads WHERE location = 'Jinja Road Main Station' $condition");
                            $x = 1; 
                            while($rx = $roads->fetch(PDO::FETCH_OBJ)){ ?>
                               <tr>
@@ -552,6 +618,10 @@ if ($role == 'super_admin') {
          <div class="row">
             <div class="main-header">
                <h4>Traffic Points</h4>
+               <form method="POST" action="">
+                     <input type="text" style="margin-top:20px;border-radius:5px; padding:8px; width:50%;" name="search" placeholder="Search by Road or Traffic Point">
+                     <button type="submit" style="margin-top:20px; background-color:black; color:white; border-radius:5px; padding:8px;">Search</button>
+               </form>
             </div>
          </div>
          <!-- 4-blocks row start -->
@@ -574,7 +644,14 @@ if ($role == 'super_admin') {
                               </tr>
                            </thead>
                            <tbody>
-                           <?php $roads_routes = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.location = 'Jinja Road Main Station' AND r.road_id = t.road_id ");
+                           <?php 
+                           $condition = ""; // Initialize the condition for the SQL query
+
+                              if (isset($_POST['search']) && !empty($_POST['search'])) {
+                                 $search = $_POST['search'];
+                                 $condition = " AND (r.road_name LIKE '%$search%' OR t.fromm LIKE '%$search%' OR t.too LIKE '%$search%' OR t.status LIKE '%$search%')";
+                              }
+                           $roads_routes = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.location = 'Jinja Road Main Station' AND r.road_id = t.road_id $condition");
                            $x = 1; 
                            // `rid`, `road_id`, `fromm`, `too`, `status`
                            while($rx = $roads_routes->fetch(PDO::FETCH_OBJ)){ ?>
@@ -679,6 +756,10 @@ if ($role == 'super_admin') {
          <div class="row">
             <div class="main-header">
                <h4>Traffic Officers</h4>
+               <form method="POST" action="">
+                     <input type="text" style="margin-top:20px;border-radius:5px; padding:8px; width:50%;" name="search" placeholder="Search by Full Name, Phone, Email,">
+                     <button type="submit" style="margin-top:20px; background-color:black; color:white; border-radius:5px; padding:8px;">Search</button>
+               </form>
             </div>
          </div>
          <!-- 4-blocks row start -->
@@ -704,7 +785,14 @@ if ($role == 'super_admin') {
                            </thead>
                            <!-- `userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered` -->
                            <tbody>
-                           <?php $users = $dbh->query("SELECT * FROM users WHERE role ='officer' AND location = 'Mukono Police Station' ORDER BY userid DESC ");
+                           <?php 
+                           $condition = ""; // Initialize the condition for the SQL query
+
+                              if (isset($_POST['search']) && !empty($_POST['search'])) {
+                                 $search = $_POST['search'];
+                                 $condition = " AND (fullname LIKE '%$search%' OR phone LIKE '%$search%' OR email LIKE '%$search%' OR role LIKE '%$search%')";
+                              }
+                           $users = $dbh->query("SELECT * FROM users WHERE role ='officer' AND location = 'Mukono Police Station' $condition ORDER BY userid DESC ");
                            $x = 1;
                            while($rx = $users->fetch(PDO::FETCH_OBJ)){ ?>
                               <tr>
@@ -744,6 +832,10 @@ if ($role == 'super_admin') {
          <div class="row">
             <div class="main-header">
                <h4>Roads</h4>
+               <form method="POST" action="">
+                     <input type="text" style="margin-top:20px;border-radius:5px; padding:8px; width:50%;" name="search" placeholder="Search by Road">
+                     <button type="submit" style="margin-top:20px; background-color:black; color:white; border-radius:5px; padding:8px;">Search</button>
+               </form>
             </div>
          </div>
          <!-- 4-blocks row start -->
@@ -772,7 +864,14 @@ if ($role == 'super_admin') {
                               </tr>
                            </thead>
                            <tbody>
-                           <?php $roads = $dbh->query("SELECT * FROM roads WHERE location = 'Mukono Police Station' ");
+                           <?php 
+                           $condition = ""; // Initialize the condition for the SQL query
+
+                              if (isset($_POST['search']) && !empty($_POST['search'])) {
+                                 $search = $_POST['search'];
+                                 $condition = " AND road_name LIKE '%$search%'";
+                              }
+                           $roads = $dbh->query("SELECT * FROM roads WHERE location = 'Mukono Police Station' $condition");
                            $x = 1; 
                            while($rx = $roads->fetch(PDO::FETCH_OBJ)){ ?>
                               <tr>
@@ -812,6 +911,10 @@ if ($role == 'super_admin') {
          <div class="row">
             <div class="main-header">
                <h4>Traffic Points</h4>
+               <form method="POST" action="">
+                     <input type="text" style="margin-top:20px;border-radius:5px; padding:8px; width:50%;" name="search" placeholder="Search by Road or Traffic Point">
+                     <button type="submit" style="margin-top:20px; background-color:black; color:white; border-radius:5px; padding:8px;">Search</button>
+               </form>
             </div>
          </div>
          <!-- 4-blocks row start -->
@@ -834,7 +937,14 @@ if ($role == 'super_admin') {
                               </tr>
                            </thead>
                            <tbody>
-                           <?php $roads_routes = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.location = 'Mukono Police Station' AND r.road_id = t.road_id ");
+                           <?php 
+                           $condition = ""; // Initialize the condition for the SQL query
+
+                              if (isset($_POST['search']) && !empty($_POST['search'])) {
+                                 $search = $_POST['search'];
+                                 $condition = " AND (r.road_name LIKE '%$search%' OR t.fromm LIKE '%$search%' OR t.too LIKE '%$search%' OR t.status LIKE '%$search%')";
+                              }
+                           $roads_routes = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.location = 'Mukono Police Station' AND r.road_id = t.road_id $condition");
                            $x = 1; 
                            // `rid`, `road_id`, `fromm`, `too`, `status`
                            while($rx = $roads_routes->fetch(PDO::FETCH_OBJ)){ ?>
@@ -939,6 +1049,10 @@ if ($role == 'super_admin') {
          <div class="row">
             <div class="main-header">
                <h4>Traffic Officers</h4>
+               <form method="POST" action="">
+                     <input type="text" style="margin-top:20px;border-radius:5px; padding:8px; width:50%;" name="search" placeholder="Search by Full Name, Phone, Email,">
+                     <button type="submit" style="margin-top:20px; background-color:black; color:white; border-radius:5px; padding:8px;">Search</button>
+               </form>
             </div>
          </div>
          <!-- 4-blocks row start -->
@@ -964,7 +1078,14 @@ if ($role == 'super_admin') {
                            </thead>
                            <!-- `userid`, `fullname`, `phone`, `email`, `password`, `token`, `role`, `date_registered` -->
                            <tbody>
-                           <?php $users = $dbh->query("SELECT * FROM users WHERE role ='officer' AND location = 'Bweyogerere Police Station' ORDER BY userid DESC ");
+                           <?php 
+                           $condition = ""; // Initialize the condition for the SQL query
+
+                              if (isset($_POST['search']) && !empty($_POST['search'])) {
+                                 $search = $_POST['search'];
+                                 $condition = " AND (fullname LIKE '%$search%' OR phone LIKE '%$search%' OR email LIKE '%$search%' OR role LIKE '%$search%')";
+                              }
+                           $users = $dbh->query("SELECT * FROM users WHERE role ='officer' AND location = 'Bweyogerere Police Station' $condition ORDER BY userid DESC ");
                            $x = 1;
                            while($rx = $users->fetch(PDO::FETCH_OBJ)){ ?>
                               <tr>
@@ -1004,6 +1125,10 @@ if ($role == 'super_admin') {
          <div class="row">
             <div class="main-header">
                <h4>Roads</h4>
+               <form method="POST" action="">
+                     <input type="text" style="margin-top:20px;border-radius:5px; padding:8px; width:50%;" name="search" placeholder="Search by Road">
+                     <button type="submit" style="margin-top:20px; background-color:black; color:white; border-radius:5px; padding:8px;">Search</button>
+               </form>
             </div>
          </div>
          <!-- 4-blocks row start -->
@@ -1032,7 +1157,14 @@ if ($role == 'super_admin') {
                               </tr>
                            </thead>
                            <tbody>
-                           <?php $roads = $dbh->query("SELECT * FROM roads WHERE location = 'Bweyogerere Police Station' ");
+                           <?php 
+                           $condition = ""; // Initialize the condition for the SQL query
+
+                              if (isset($_POST['search']) && !empty($_POST['search'])) {
+                                 $search = $_POST['search'];
+                                 $condition = " AND road_name LIKE '%$search%'";
+                              }
+                           $roads = $dbh->query("SELECT * FROM roads WHERE location = 'Bweyogerere Police Station' $condition");
                            $x = 1; 
                            while($rx = $roads->fetch(PDO::FETCH_OBJ)){ ?>
                               <tr>
@@ -1072,6 +1204,10 @@ if ($role == 'super_admin') {
          <div class="row">
             <div class="main-header">
                <h4>Traffic Points</h4>
+               <form method="POST" action="">
+                     <input type="text" style="margin-top:20px;border-radius:5px; padding:8px; width:50%;" name="search" placeholder="Search by Road or Traffic Point">
+                     <button type="submit" style="margin-top:20px; background-color:black; color:white; border-radius:5px; padding:8px;">Search</button>
+               </form>
             </div>
          </div>
          <!-- 4-blocks row start -->
@@ -1094,7 +1230,14 @@ if ($role == 'super_admin') {
                               </tr>
                            </thead>
                            <tbody>
-                           <?php $roads_routes = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.location = 'Bweyogerere Police Station' AND r.road_id = t.road_id ");
+                           <?php 
+                           $condition = ""; // Initialize the condition for the SQL query
+
+                              if (isset($_POST['search']) && !empty($_POST['search'])) {
+                                 $search = $_POST['search'];
+                                 $condition = " AND (r.road_name LIKE '%$search%' OR t.fromm LIKE '%$search%' OR t.too LIKE '%$search%' OR t.status LIKE '%$search%')";
+                              }
+                           $roads_routes = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.location = 'Bweyogerere Police Station' AND r.road_id = t.road_id $condition");
                            $x = 1; 
                            // `rid`, `road_id`, `fromm`, `too`, `status`
                            while($rx = $roads_routes->fetch(PDO::FETCH_OBJ)){ ?>
@@ -1198,6 +1341,10 @@ if ($role == 'super_admin') {
          <div class="row">
             <div class="main-header">
                <h4>Roads</h4>
+               <form method="POST" action="">
+                     <input type="text" style="margin-top:20px;border-radius:5px; padding:8px; width:50%;" name="search" placeholder="Search by Road">
+                     <button type="submit" style="margin-top:20px; background-color:black; color:white; border-radius:5px; padding:8px;">Search</button>
+               </form>
             </div>
          </div>
          <!-- 4-blocks row start -->
@@ -1222,22 +1369,30 @@ if ($role == 'super_admin') {
                               </tr>
                            </thead>
                            <tbody>
-                           <?php $roads = $dbh->query("SELECT * FROM roads WHERE location = 'Jinja Road Main Station'");
-                           $x = 1; 
-                           while($rx = $roads->fetch(PDO::FETCH_OBJ)){ ?>
-                              <tr>
-                                 <!-- <td><?=$x++; ?></td> -->
-                                 <td><?=$rx->road_name; ?></td>
-                                 <!-- <td><?=$rx->location; ?></td> -->
-                                 <td></td>
-                                 <td></td>
-                                 <td></td>
-                                 <td></td>
-                                 <td></td>
-                                 <td></td>
-                                 <td></td>
-                              </tr>
-                           <?php } ?>
+                              <?php
+                              $condition = ""; // Initialize the condition for the SQL query
+
+                              if (isset($_POST['search']) && !empty($_POST['search'])) {
+                                 $search = $_POST['search'];
+                                 $condition = " AND road_name LIKE '%$search%'";
+                              }
+
+                              $roads = $dbh->query("SELECT * FROM roads WHERE location = 'Jinja Road Main Station'$condition");
+                              $x = 1; 
+                              while($rx = $roads->fetch(PDO::FETCH_OBJ)){ ?>
+                                 <tr>
+                                    <!-- <td><?=$x++; ?></td> -->
+                                    <td><?=$rx->road_name; ?></td>
+                                    <!-- <td><?=$rx->location; ?></td> -->
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                 </tr>
+                              <?php } ?>
                            </tbody>
                         </table>
                      </div>
@@ -1256,6 +1411,10 @@ if ($role == 'super_admin') {
          <div class="row">
             <div class="main-header">
                <h4>Traffic Points</h4>
+               <form method="POST" action="">
+                     <input type="text" style="margin-top:20px;border-radius:5px; padding:8px; width:50%;" name="search" placeholder="Search by Road or Traffic Point">
+                     <button type="submit" style="margin-top:20px; background-color:black; color:white; border-radius:5px; padding:8px;">Search</button>
+               </form>
             </div>
          </div>
          <!-- 4-blocks row start -->
@@ -1279,20 +1438,24 @@ if ($role == 'super_admin') {
                               </tr>
                            </thead>
                            <tbody>
-                           <?php $roads_routes = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.location = 'Jinja Road Main Station' AND r.road_id = t.road_id ");
-                           $x = 1; 
-                           // `rid`, `road_id`, `fromm`, `too`, `status`
-                           while($rx = $roads_routes->fetch(PDO::FETCH_OBJ)){ ?>
-                              <tr>
-                                 <!-- <td><?=$x++; ?></td> -->
-                                 <td><?=$rx->road_name; ?></td>
-                                 <!-- <td><?=$rx->road_location; ?></td> -->
-                                 <td><?=$rx->fromm.' - '.$rx->too; ?></td>
-                                 <td><?=$rx->status; ?></td>
-                                 <td>
-                                    <a href="#edit-traffic-point-three<?=$rx->rid; ?>" data-toggle="modal" class="btn btn-primary">Edit</a>
-                              </tr>
-                           <?php include 'officer/edit-traffic-point-three.php'; } ?>
+                              <?php
+                              $condition = ""; // Initialize the condition for the SQL query
+
+                              if (isset($_POST['search']) && !empty($_POST['search'])) {
+                                 $search = $_POST['search'];
+                                 $condition = " AND (r.road_name LIKE '%$search%' OR t.fromm LIKE '%$search%' OR t.too LIKE '%$search%' OR t.status LIKE '%$search%')";
+                              }
+
+                              $roads_routes = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.road_id = t.road_id $condition");
+                              $x = 1;
+                              while ($rx = $roads_routes->fetch(PDO::FETCH_OBJ)) { ?>
+                                 <tr>
+                                    <td><?= $rx->road_name; ?></td>
+                                    <td><?= $rx->fromm . ' - ' . $rx->too; ?></td>
+                                    <td><?= $rx->status; ?></td>
+                                    <td><a href="#edit-traffic-point-three<?=$rx->rid; ?>" data-toggle="modal" class="btn btn-primary">Edit</a></td>
+                                 </tr>
+                              <?php include 'officer/edit-traffic-point-three.php'; } ?>
                            </tbody>
                         </table>
                      </div>
@@ -1368,6 +1531,10 @@ if ($role == 'super_admin') {
          <div class="row">
             <div class="main-header">
                <h4>Roads</h4>
+               <form method="POST" action="">
+                     <input type="text" style="margin-top:20px;border-radius:5px; padding:8px; width:50%;" name="search" placeholder="Search by Road">
+                     <button type="submit" style="margin-top:20px; background-color:black; color:white; border-radius:5px; padding:8px;">Search</button>
+               </form>
             </div>
          </div>
          <!-- 4-blocks row start -->
@@ -1392,7 +1559,14 @@ if ($role == 'super_admin') {
                               </tr>
                            </thead>
                            <tbody>
-                           <?php $roads = $dbh->query("SELECT * FROM roads WHERE location = 'Mukono Police Station'");
+                           <?php
+                           $condition = ""; // Initialize the condition for the SQL query
+
+                              if (isset($_POST['search']) && !empty($_POST['search'])) {
+                                 $search = $_POST['search'];
+                                 $condition = " AND road_name LIKE '%$search%'";
+                              }
+                           $roads = $dbh->query("SELECT * FROM roads WHERE location = 'Mukono Police Station'$condition");
                            $x = 1; 
                            while($rx = $roads->fetch(PDO::FETCH_OBJ)){ ?>
                               <tr>
@@ -1426,6 +1600,10 @@ if ($role == 'super_admin') {
          <div class="row">
             <div class="main-header">
                <h4>Traffic Points</h4>
+               <form method="POST" action="">
+                     <input type="text" style="margin-top:20px;border-radius:5px; padding:8px; width:50%;" name="search" placeholder="Search by Road or Traffic Point">
+                     <button type="submit" style="margin-top:20px; background-color:black; color:white; border-radius:5px; padding:8px;">Search</button>
+               </form>
             </div>
          </div>
          <!-- 4-blocks row start -->
@@ -1449,7 +1627,15 @@ if ($role == 'super_admin') {
                               </tr>
                            </thead>
                            <tbody>
-                           <?php $roads_routes = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.location = 'Mukono Police Station' AND r.road_id = t.road_id ");
+                           <?php
+                           $condition = ""; // Initialize the condition for the SQL query
+
+                              if (isset($_POST['search']) && !empty($_POST['search'])) {
+                                 $search = $_POST['search'];
+                                 $condition = " AND (r.road_name LIKE '%$search%' OR t.fromm LIKE '%$search%' OR t.too LIKE '%$search%' OR t.status LIKE '%$search%')";
+                              }
+ 
+                           $roads_routes = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.location = 'Mukono Police Station' AND r.road_id = t.road_id $condition");
                            $x = 1; 
                            // `rid`, `road_id`, `fromm`, `too`, `status`
                            while($rx = $roads_routes->fetch(PDO::FETCH_OBJ)){ ?>
@@ -1538,6 +1724,10 @@ if ($role == 'super_admin') {
          <div class="row">
             <div class="main-header">
                <h4>Roads</h4>
+               <form method="POST" action="">
+                     <input type="text" style="margin-top:20px;border-radius:5px; padding:8px; width:50%;" name="search" placeholder="Search by Road">
+                     <button type="submit" style="margin-top:20px; background-color:black; color:white; border-radius:5px; padding:8px;">Search</button>
+               </form>
             </div>
          </div>
          <!-- 4-blocks row start -->
@@ -1562,7 +1752,14 @@ if ($role == 'super_admin') {
                               </tr>
                            </thead>
                            <tbody>
-                           <?php $roads = $dbh->query("SELECT * FROM roads WHERE location = 'Bweyogerere Police Station'");
+                           <?php 
+                           $condition = ""; // Initialize the condition for the SQL query
+
+                              if (isset($_POST['search']) && !empty($_POST['search'])) {
+                                 $search = $_POST['search'];
+                                 $condition = " AND road_name LIKE '%$search%'";
+                              }
+                           $roads = $dbh->query("SELECT * FROM roads WHERE location = 'Bweyogerere Police Station'$condition");
                            $x = 1; 
                            while($rx = $roads->fetch(PDO::FETCH_OBJ)){ ?>
                               <tr>
@@ -1596,6 +1793,10 @@ if ($role == 'super_admin') {
          <div class="row">
             <div class="main-header">
                <h4>Traffic Points</h4>
+               <form method="POST" action="">
+                     <input type="text" style="margin-top:20px;border-radius:5px; padding:8px; width:50%;" name="search" placeholder="Search by Road or Traffic Point">
+                     <button type="submit" style="margin-top:20px; background-color:black; color:white; border-radius:5px; padding:8px;">Search</button>
+               </form>
             </div>
          </div>
          <!-- 4-blocks row start -->
@@ -1619,7 +1820,15 @@ if ($role == 'super_admin') {
                               </tr>
                            </thead>
                            <tbody>
-                           <?php $roads_routes = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.location = 'Bweyogerere Police Station' AND r.road_id = t.road_id ");
+                           <?php 
+                           $condition = ""; // Initialize the condition for the SQL query
+
+                              if (isset($_POST['search']) && !empty($_POST['search'])) {
+                                 $search = $_POST['search'];
+                                 $condition = " AND (r.road_name LIKE '%$search%' OR t.fromm LIKE '%$search%' OR t.too LIKE '%$search%' OR t.status LIKE '%$search%')";
+                              }
+
+                           $roads_routes = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.location = 'Bweyogerere Police Station' AND r.road_id = t.road_id $condition");
                            $x = 1; 
                            // `rid`, `road_id`, `fromm`, `too`, `status`
                            while($rx = $roads_routes->fetch(PDO::FETCH_OBJ)){ ?>
@@ -1710,7 +1919,7 @@ if ($role == 'super_admin') {
                <h3 style="text-align:center;">Welcome <?=$fullname; ?> !</h3><br/>
                <div class="main-header">
                   <h4>Where are you going?</h4>
-                  <form method="GET" action="">
+                  <form method="POST" action="">
                      <input type="text" style="margin-top:20px;border-radius:5px; padding:8px; width:50%;" name="search" placeholder="Search by Road or Traffic Point">
                      <button type="submit" style="margin-top:20px; background-color:black; color:white; border-radius:5px; padding:8px;">Search</button>
                   </form>
@@ -1734,8 +1943,8 @@ if ($role == 'super_admin') {
                               <?php
                               $condition = ""; // Initialize the condition for the SQL query
 
-                              if (isset($_GET['search']) && !empty($_GET['search'])) {
-                                 $search = $_GET['search'];
+                              if (isset($_POST['search']) && !empty($_POST['search'])) {
+                                 $search = $_POST['search'];
                                  $condition = " AND (r.road_name LIKE '%$search%' OR t.fromm LIKE '%$search%' OR t.too LIKE '%$search%' OR t.status LIKE '%$search%')";
                               }
 
@@ -1767,7 +1976,7 @@ if ($role == 'super_admin') {
                <h3 style="text-align:center;">Welcome <?=$fullname; ?> !</h3><br/>
                <div class="main-header">
                   <h4>Where are you going?</h4>
-                  <form method="GET" action="">
+                  <form method="POST" action="">
                      <input type="text" style="margin-top:20px;border-radius:5px; padding:8px; width:50%;" name="search" placeholder="Search by Road or Traffic Point">
                      <button type="submit" style="margin-top:20px; background-color:black; color:white; border-radius:5px; padding:8px;">Search</button>
                   </form>
@@ -1791,8 +2000,8 @@ if ($role == 'super_admin') {
                               <?php
                               $condition = ""; // Initialize the condition for the SQL query
 
-                              if (isset($_GET['search']) && !empty($_GET['search'])) {
-                                 $search = $_GET['search'];
+                              if (isset($_POST['search']) && !empty($_POST['search'])) {
+                                 $search = $_POST['search'];
                                  $condition = " AND (r.road_name LIKE '%$search%' OR t.fromm LIKE '%$search%' OR t.too LIKE '%$search%' OR t.status LIKE '%$search%')";
                               }
 
@@ -1973,13 +2182,18 @@ if ($role == 'super_admin') {
 
                               $roads_routes = $dbh->query("SELECT * FROM roads r, traffic_points t WHERE r.road_id = t.road_id $condition");
                               $x = 1;
+                              if ($roads_routes->rowCount() > 0) {
                               while ($rx = $roads_routes->fetch(PDO::FETCH_OBJ)) { ?>
                                  <tr>
                                     <td><?= $rx->road_name; ?></td>
                                     <td><?= $rx->fromm . ' - ' . $rx->too; ?></td>
                                     <td><?= $rx->status; ?></td>
                                  </tr>
-                              <?php } ?>
+                              <?php } 
+                              } else {
+                                 // No results found, display an error message
+                                 echo '<p>No results found for the specified search.</p>';
+                              } ?>
                            </tbody>
                         </table>
                      </div>
